@@ -13,7 +13,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-
 export const addLead = async (payload) => {
 	const collection = getCollection(db, 'leads_legs');
 	await addDoc(collection, payload);

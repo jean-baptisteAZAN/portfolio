@@ -1,3 +1,14 @@
 <script>
-    import Link from "$lib/components/Link.svelte";
+	import Header from '$lib/components/Header.svelte';
+	import AboutMe from '$lib/components/AboutMe.svelte';
+	import Projects from '$lib/components/Projects.svelte';
+	import WhatIDo from '$lib/components/WhatIDo.svelte';
+	import Form from '$lib/components/Form.svelte';
 </script>
+
+<Header />
+<AboutMe />
+<WhatIDo />
+<Projects />
+<Form />
+

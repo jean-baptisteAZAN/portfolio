@@ -1,12 +1,17 @@
 /* Write your global styles here, in PostCSS syntax */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 * {
-    scroll-behavior: smooth;
+	scroll-behavior: smooth;
 	-webkit-font-smoothing: antialiased; /* For Chrome and Safari */
 	-moz-osx-font-smoothing: grayscale; /* For Firefox on macOS */
 }
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+}
+
+body { @apply bg-surface-100-800-token; }

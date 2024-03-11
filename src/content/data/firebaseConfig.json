@@ -1,9 +1,8 @@
 {
-    "apiKey": "",
-    "authDomain": "name-database.firebaseapp.com",
-    "projectId": "name-database",
-    "storageBucket": "name.appspot.com",
-    "messagingSenderId": "413466814778",
-    "appId": ""
-  }
-  
+	"apiKey": "",
+	"authDomain": "name-database.firebaseapp.com",
+	"projectId": "name-database",
+	"storageBucket": "name.appspot.com",
+	"messagingSenderId": "413466814778",
+	"appId": ""
+}
