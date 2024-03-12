@@ -1,6 +1,9 @@
 <script>
 	import Card from '$lib/components/Card.svelte';
 	import { Marquee } from 'flowbite-svelte';
+	import { currentLang, translations} from '$lib/utils/store';
+
+	let lang = $currentLang;
 
 	let hoveredState = {
 		svg1: false,
@@ -27,14 +30,14 @@
 	const hoverState = createHoverState();
 </script>
 
-<div class="mt-[20rem] flex flex-col md:flex-row items-center justify-center gap-5">
-	<Card path="/frontendSvg.svg" text="As a skilled Frontend Developer, I build websites that highlight your business and design complex web applications for startups efficiently and effectively."/>
-	<Card path="/tools.svg" text="As a student developer, I stand out for my ability to quickly learn various technologies, based on my interests and, most importantly, according to your needs!"/>
-	<Card path="/people.svg" text="Interacting with my clients remains my priority throughout the development process. This approach makes me both available and responsive!" />
+<div class="md:mt-[20rem] flex flex-col md:flex-row items-center justify-center gap-5">
+	<Card path="/frontendSvg.svg" text={translations[lang].card1}/>
+	<Card path="/tools.svg" text={translations[lang].card2}/>
+	<Card path="/people.svg" text={translations[lang].card3}/>
 </div>
-<div class="marquee h-40 relative py-40">
+<div class="marquee h-40 relative py-40 hidden md:block">
 	<Marquee speed={0.7} hoverSpeed={0.6}>
-		{#each Array(3) as _, i} <!-- Suppose you have 3 SVGs -->
+		{#each Array(3) as _, i}
 			<svg class="w-16 h-16 filter grayscale transition-colors duration-700"
 					 xmlns="http://www.w3.org/2000/svg"
 					 viewBox="0 0 128 128"

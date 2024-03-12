@@ -46,7 +46,7 @@
 	$: titleClass = Side === 'left' ? 'left-0 ml-[30%]' : 'right-0';
 </script>
 
-<div class="flex justify-center items-center overflow-hidden">
+<div class="hidden md:flex justify-center items-center overflow-hidden">
 	<div bind:this={titleContainer} class={twMerge(`w-1/2 absolute opacity-0`, titleClass)}>
 		<p class="text-3xl font-bold text-secondary-400-500-token">{videoName}</p>
 	</div>
@@ -68,6 +68,11 @@
 		</video>
 	</a>
 </div>
+
+<a href={redirectLink} class="flex flex-col items-center justify-center gap-5 md:hidden">
+	<p class="text-3xl font-bold text-secondary-400-500-token text-center">{videoName}</p>
+	<img src={posterSrc} class="rounded-lg">
+</a>
 
 <style>
 	.hidden-class {

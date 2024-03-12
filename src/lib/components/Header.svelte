@@ -1,11 +1,19 @@
 <script lang="ts">
+	import { currentLang, translations, switchLanguage} from '$lib/utils/store';
 	import { onMount } from 'svelte';
+	import { SlideToggle } from '@skeletonlabs/skeleton';
+	
 	let selectedItem:any = 'about';
+	let lang = $currentLang;
+	let isFrench:boolean = false;
 	
 	onMount(() => {
 		updateCursor();
 	});
 	function selectItem(item) {
+		if (item === "about") {
+			navigateToAboutMe();
+		}
 		selectedItem = item;
 		updateCursor();
 	}
@@ -18,15 +26,28 @@
 			}
 		}, 0);
 	}
+
+	function navigateToAboutMe() {
+		if (window.innerWidth <= 768) {
+			location.href = "#AboutMeMobile";
+		} else {
+			location.href = "#AboutMeDesktop";
+		}
+	}
+
+	function toggleLanguage() {
+		isFrench = !isFrench;
+		switchLanguage(isFrench ? 'fr' : 'en');
+	}
 </script>
 
 <div class="header gap-10 sticky backdrop-blur-lg z-50 h-[3rem] w-screen">
-	<a href="#AboutMe" class="menu-item about" on:click={() => selectItem('about')}>About Me</a>
-	<a href="#Projects" class="menu-item projects" on:click={() => selectItem('projects')}>Projects</a>
-	<a href="#Contact" class="menu-item contact" on:click={() => selectItem('contact')}>Contact</a>
+	<a href="#AboutMe" class="menu-item about" on:click={() => selectItem('about')}>{translations[lang].header.about}</a>
+	<a href="#Projects" class="menu-item projects" on:click={() => selectItem('projects')}>{translations[lang].header.projects}</a>
+	<a href="#Contact" class="menu-item contact" on:click={() => selectItem('contact')}>{translations[lang].header.contact}</a>
 	<div id="cursor" class={selectedItem} />
+<!--	<SlideToggle name="slider-large" checked={isFrench} on:click={toggleLanguage} active="bg-primary-500" size="lg" />-->
 </div>
-
 
 <style>
 	.header {

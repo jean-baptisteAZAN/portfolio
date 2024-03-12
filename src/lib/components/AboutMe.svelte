@@ -1,9 +1,11 @@
 <script>
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
+	import { currentLang, translations} from '$lib/utils/store';
 	
 	let faceDiv;
 	let shadowDiv;
+	let lang = $currentLang;
 
 	onMount(() => {
 		window.addEventListener('mousemove', moveShadow);
@@ -33,7 +35,21 @@
 	}
 </script>
 
-<div id="AboutMe" class="container-me w-screen">
+<div id="AboutMeMobile" class="md:hidden flex flex-col items-center justify-center container-me py-20 gap-8">
+	<img src="/face.png" alt="Jean-Baptiste Azan" class="w-60 h-60 rounded-full" />
+	<h1 class="text-center">
+		<span class="text-4xl font-bold">AZAN</span><br />
+		<span class="text-4xl font-bold">Jean-Baptiste</span><br />
+		<span class="text-4xl font-bold text-tertiary-600">{translations[lang].poste}</span><br/>
+	</h1>
+	<a href="#Contact">
+		<button class="mt-[1rem] bg-tertiary-500 text-white px-7 py-3 text-xl font-extrabold rounded-lg hover:scale-105 transition-all">
+			{translations[lang].btnFirst}
+		</button>
+	</a>
+</div>
+
+<div id="AboutMeDesktop" class="container-me w-screen hidden md:block">
 	<div class="relative w-[20%] h-[20rem] lg:left-60 2xl:left-80 top-20 2xl:top-40">
 		<div bind:this={faceDiv} class="face" />
 		<div bind:this={shadowDiv} class="shadow bg-primary-500 " />
@@ -43,11 +59,11 @@
 			<h1>
 				<span class="text-4xl font-bold">AZAN</span><br />
 				<span class="text-4xl font-bold">Jean-Baptiste</span><br />
-				<span class="text-4xl font-bold text-tertiary-600">Freelance Web developper</span><br/>
+				<span class="text-4xl font-bold text-tertiary-600">{translations[lang].poste}</span><br/>
 			</h1>
 			<a href="#Contact">
 				<button class="mt-[1rem] bg-tertiary-500 text-white px-7 py-3 text-xl font-extrabold rounded-lg hover:scale-105 transition-all">
-					Lets work together !
+					{translations[lang].btnFirst}
 				</button>
 			</a>
 		</div>
