@@ -40,11 +40,11 @@
 	<h1 class="text-center">
 		<span class="text-4xl font-bold">AZAN</span><br />
 		<span class="text-4xl font-bold">Jean-Baptiste</span><br />
-		<span class="text-4xl font-bold text-tertiary-600">{translations[lang].poste}</span><br/>
+		<span class="text-4xl font-bold text-tertiary-600">{translations[$currentLang].poste}</span><br/>
 	</h1>
 	<a href="#Contact">
-		<button class="mt-[1rem] bg-tertiary-500 text-white px-7 py-3 text-xl font-extrabold rounded-lg hover:scale-105 transition-all">
-			{translations[lang].btnFirst}
+		<button class="mt-[0.3rem] bg-tertiary-500 text-white px-5 py-2 md:px-7 md:py-3 text-lg md:text-xl font-extrabold rounded-lg hover:scale-105 transition-all">
+			{translations[$currentLang].btnFirst}
 		</button>
 	</a>
 </div>
@@ -59,11 +59,11 @@
 			<h1>
 				<span class="text-4xl font-bold">AZAN</span><br />
 				<span class="text-4xl font-bold">Jean-Baptiste</span><br />
-				<span class="text-4xl font-bold text-tertiary-600">{translations[lang].poste}</span><br/>
+				<span class="text-4xl font-bold text-tertiary-600">{translations[$currentLang].poste}</span><br/>
 			</h1>
 			<a href="#Contact">
 				<button class="mt-[1rem] bg-tertiary-500 text-white px-7 py-3 text-xl font-extrabold rounded-lg hover:scale-105 transition-all">
-					{translations[lang].btnFirst}
+					{translations[$currentLang].btnFirst}
 				</button>
 			</a>
 		</div>

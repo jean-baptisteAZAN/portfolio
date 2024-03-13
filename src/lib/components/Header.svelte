@@ -2,12 +2,14 @@
 	import { currentLang, translations, switchLanguage} from '$lib/utils/store';
 	import { onMount } from 'svelte';
 	import { SlideToggle } from '@skeletonlabs/skeleton';
+	import { gsap } from 'gsap';
 	
 	let selectedItem:any = 'about';
-	let lang = $currentLang;
+	let toggleRef;
 	let isFrench:boolean = false;
 	
 	onMount(() => {
+		gsap.fromTo(toggleRef, { opacity: 0 }, { opacity: 1, duration: 0.5 });
 		updateCursor();
 	});
 	function selectItem(item) {
@@ -37,17 +39,25 @@
 
 	function toggleLanguage() {
 		isFrench = !isFrench;
+		gsap.fromTo(toggleRef, { x: -10, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5 });
 		switchLanguage(isFrench ? 'fr' : 'en');
 	}
 </script>
 
 <div class="header gap-10 sticky backdrop-blur-lg z-50 h-[3rem] w-screen">
-	<a href="#AboutMe" class="menu-item about" on:click={() => selectItem('about')}>{translations[lang].header.about}</a>
-	<a href="#Projects" class="menu-item projects" on:click={() => selectItem('projects')}>{translations[lang].header.projects}</a>
-	<a href="#Contact" class="menu-item contact" on:click={() => selectItem('contact')}>{translations[lang].header.contact}</a>
+	<a href="#AboutMe" class="menu-item about" on:click={() => selectItem('about')}>{translations[$currentLang].header.about}</a>
+	<a href="#Projects" class="menu-item projects" on:click={() => selectItem('projects')}>{translations[$currentLang].header.projects}</a>
+	<a href="#Contact" class="menu-item contact" on:click={() => selectItem('contact')}>{translations[$currentLang].header.contact}</a>
 	<div id="cursor" class={selectedItem} />
-<!--	<SlideToggle name="slider-large" checked={isFrench} on:click={toggleLanguage} active="bg-primary-500" size="lg" />-->
 </div>
+	<div class="hidden md:block absolute right-10 top-1 z-50">
+		<button
+			class="px-4 py-2 bg-blue-500 text-white font-bold rounded-lg shadow hover:bg-blue-700 transition-all"
+			on:click={toggleLanguage}
+			bind:this={toggleRef}>
+			{$currentLang}
+		</button>
+	</div>
 
 <style>
 	.header {

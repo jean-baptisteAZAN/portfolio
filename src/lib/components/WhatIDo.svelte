@@ -2,9 +2,7 @@
 	import Card from '$lib/components/Card.svelte';
 	import { Marquee } from 'flowbite-svelte';
 	import { currentLang, translations} from '$lib/utils/store';
-
-	let lang = $currentLang;
-
+	
 	let hoveredState = {
 		svg1: false,
 		svg2: false,
@@ -31,9 +29,9 @@
 </script>
 
 <div class="md:mt-[20rem] flex flex-col md:flex-row items-center justify-center gap-5">
-	<Card path="/frontendSvg.svg" text={translations[lang].card1}/>
-	<Card path="/tools.svg" text={translations[lang].card2}/>
-	<Card path="/people.svg" text={translations[lang].card3}/>
+	<Card path="/frontendSvg.svg" text={translations[$currentLang].card1}/>
+	<Card path="/tools.svg" text={translations[$currentLang].card2}/>
+	<Card path="/people.svg" text={translations[$currentLang].card3}/>
 </div>
 <div class="marquee h-40 relative py-40 hidden md:block">
 	<Marquee speed={0.7} hoverSpeed={0.6}>
