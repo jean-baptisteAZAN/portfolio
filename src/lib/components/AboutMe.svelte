@@ -42,10 +42,12 @@
 		<span class="text-4xl font-bold">Jean-Baptiste</span><br />
 		<span class="text-4xl font-bold text-tertiary-600">{translations[$currentLang].poste}</span><br/>
 	</h1>
-	<a href="#Contact">
-		<button class="mt-[0.3rem] bg-tertiary-500 text-white px-5 py-2 md:px-7 md:py-3 text-lg md:text-xl font-extrabold rounded-lg hover:scale-105 transition-all">
-			{translations[$currentLang].btnFirst}
-		</button>
+	<a href="#Contact" class="mt-[1rem] relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-primary-50 border-2 border-tertiary-600 rounded-full hover:text-white group hover:bg-gray-50">
+		<span class="absolute left-0 block w-full h-0 transition-all bg-tertiary-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"/>
+		<span class="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+				</span>
+		<span class="relative text-base">{translations[$currentLang].btnFirst}</span>
 	</a>
 </div>
 
@@ -61,10 +63,12 @@
 				<span class="text-4xl font-bold">Jean-Baptiste</span><br />
 				<span class="text-4xl font-bold text-tertiary-600">{translations[$currentLang].poste}</span><br/>
 			</h1>
-			<a href="#Contact">
-				<button class="mt-[1rem] bg-tertiary-500 text-white px-7 py-3 text-xl font-extrabold rounded-lg hover:scale-105 transition-all">
-					{translations[$currentLang].btnFirst}
-				</button>
+			<a href="#Contact" class="mt-[1rem] relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-primary-50 border-2 border-tertiary-600 rounded-full hover:text-white group hover:bg-gray-50">
+				<span class="absolute left-0 block w-full h-0 transition-all bg-tertiary-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"/>
+				<span class="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+				</span>
+				<span class="relative">{translations[$currentLang].btnFirst}</span>
 			</a>
 		</div>
 	</div>
