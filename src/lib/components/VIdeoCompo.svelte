@@ -57,10 +57,22 @@
 		on:mouseenter={playVideo}
 		on:mouseleave={pauseAndResetVideo}
 	>
-		<div out:fade={{duration: 900}} class:hidden-class={isPlaying} class="backdrop-blur-md absolute w-full h-full rounded-3xl">
-		</div>
-		<svg out:fade={{duration: 900}} class:hidden-class={isPlaying} xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-mouse absolute w-[2rem] left-0 right-0 top-[50%] mx-auto animate-bounce" viewBox="0 0 16 16">
-			<path d="M8 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3m4 8a4 4 0 0 1-8 0V5a4 4 0 1 1 8 0zM8 0a5 5 0 0 0-5 5v6a5 5 0 0 0 10 0V5a5 5 0 0 0-5-5"/>
+		<div
+			out:fade={{ duration: 900 }}
+			class:hidden-class={isPlaying}
+			class="backdrop-blur-md absolute w-full h-full rounded-3xl"
+		/>
+		<svg
+			out:fade={{ duration: 900 }}
+			class:hidden-class={isPlaying}
+			xmlns="http://www.w3.org/2000/svg"
+			fill="currentColor"
+			class="bi bi-mouse absolute w-[2rem] left-0 right-0 top-[50%] mx-auto animate-bounce"
+			viewBox="0 0 16 16"
+		>
+			<path
+				d="M8 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3m4 8a4 4 0 0 1-8 0V5a4 4 0 1 1 8 0zM8 0a5 5 0 0 0-5 5v6a5 5 0 0 0 10 0V5a5 5 0 0 0-5-5"
+			/>
 		</svg>
 		<video bind:this={video} class="rounded-3xl" poster={posterSrc} loop muted>
 			<source src={videoSrc} type="video/mp4" />
@@ -71,11 +83,11 @@
 
 <a href={redirectLink} class="flex flex-col items-center justify-center gap-5 md:hidden">
 	<p class="text-3xl font-bold text-secondary-400-500-token text-center">{videoName}</p>
-	<img src={posterSrc} class="rounded-lg">
+	<img src={posterSrc} class="rounded-lg" />
 </a>
 
 <style>
 	.hidden-class {
-			display: none;
+		display: none;
 	}
 </style>

@@ -1,6 +1,6 @@
 import { join } from 'path';
 const { skeleton } = require('@skeletonlabs/tw-plugin');
-import { myCustomTheme } from './my-custom-theme'
+import { myCustomTheme } from './my-custom-theme';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
