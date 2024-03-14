@@ -5,7 +5,6 @@
 	
 	let faceDiv;
 	let shadowDiv;
-	let lang = $currentLang;
 
 	onMount(() => {
 		window.addEventListener('mousemove', moveShadow);

@@ -45,7 +45,7 @@
 </script>
 
 <div class="header gap-10 sticky backdrop-blur-lg z-50 h-[3rem] w-screen">
-	<a href="#AboutMe" class="menu-item about" on:click={() => selectItem('about')}>{translations[$currentLang].header.about}</a>
+	<a href="#AboutMeDesktop" class="menu-item about" on:click={() => selectItem('about')}>{translations[$currentLang].header.about}</a>
 	<a href="#Projects" class="menu-item projects" on:click={() => selectItem('projects')}>{translations[$currentLang].header.projects}</a>
 	<a href="#Contact" class="menu-item contact" on:click={() => selectItem('contact')}>{translations[$currentLang].header.contact}</a>
 	<div id="cursor" class={selectedItem} />
