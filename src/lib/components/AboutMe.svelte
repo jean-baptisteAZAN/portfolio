@@ -37,7 +37,7 @@
 	id="AboutMeMobile"
 	class="md:hidden flex flex-col items-center justify-center container-me py-20 gap-8"
 >
-	<img src="/face.png" alt="Jean-Baptiste Azan" class="w-60 h-60 rounded-full" />
+	<img src="/face.png" alt="Jean-Baptiste Azan, Developpeur web Lille" class="w-60 h-60 rounded-full" />
 	<h1 class="text-center">
 		<span class="text-4xl font-bold">AZAN</span><br />
 		<span class="text-4xl font-bold">Jean-Baptiste</span><br />

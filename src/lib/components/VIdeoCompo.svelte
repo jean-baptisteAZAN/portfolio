@@ -75,7 +75,7 @@
 			/>
 		</svg>
 		<video bind:this={video} class="rounded-3xl" poster={posterSrc} loop muted>
-			<source src={videoSrc} type="video/mp4" />
+			<source src={videoSrc} type="video/mp4"/>
 			Your browser does not support the video tag.
 		</video>
 	</a>
@@ -83,7 +83,7 @@
 
 <a href={redirectLink} class="flex flex-col items-center justify-center gap-5 md:hidden">
 	<p class="text-3xl font-bold text-secondary-400-500-token text-center">{videoName}</p>
-	<img src={posterSrc} class="rounded-lg" />
+	<img src={posterSrc} class="rounded-lg" alt="Présentation d'un projet de developpement web"/>
 </a>
 
 <style>
