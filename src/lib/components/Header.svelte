@@ -43,7 +43,7 @@
 	}
 </script>
 
-<div class="header gap-10 sticky backdrop-blur-lg z-50 h-[3rem] w-screen">
+<div class="header gap-10 sticky backdrop-blur-lg z-50 h-[3rem] w-full">
 	<a href="#AboutMeDesktop" class="menu-item about" on:click={() => selectItem('about')}
 		>{translations[$currentLang].header.about}</a
 	>

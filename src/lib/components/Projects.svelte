@@ -8,7 +8,7 @@
 		{translations[$currentLang].someProjects}
 	</h4>
 	<div
-		class="flex flex-col mt-[2%] 2xl:mt-[5%] relative items-center justify-center w-screen px-10 gap-10"
+		class="flex flex-col mt-[2%] 2xl:mt-[5%] relative items-center justify-center w-full overflow-hidden px-10 gap-10"
 	>
 		<VIdeoCompo
 			posterSrc="/spaPlaceholder.png"

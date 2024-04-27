@@ -5,7 +5,7 @@
 
 <div id="Contact" class="mt-10 flex flex-col gap-5">
 	<div
-		class="flex flex-col items-center justify-center md:bg-surface-500 p-12 w-screen md:w-[50rem] relative left-0 right-0 mx-auto rounded-lg"
+		class="flex flex-col items-center justify-center md:bg-surface-500 p-12 w-full md:w-[50rem] relative left-0 right-0 mx-auto rounded-lg"
 	>
 		<p class="font-monserrat text-3xl font-semibold">
 			{translations[$currentLang].contact}

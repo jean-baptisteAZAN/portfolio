@@ -71,7 +71,7 @@
 	</a>
 </div>
 
-<div id="AboutMeDesktop" class="container-me w-screen hidden md:block">
+<div id="AboutMeDesktop" class="container-me w-full hidden md:block">
 	<div class="relative w-[20%] h-[20rem] lg:left-60 2xl:left-80 top-20 2xl:top-40">
 		<div bind:this={faceDiv} class="face" />
 		<div bind:this={shadowDiv} class="shadow bg-primary-500" />
