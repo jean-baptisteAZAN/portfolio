@@ -17,22 +17,24 @@
 		>
 			<input type="hidden" name="access_key" value="585da6a9-b112-4dda-a93f-acc6846cfb65" />
 			<label class="label">
-				<input class="input md:w-[30rem]" type="text" placeholder="Name" name="name" required />
+				<input class="input md:w-[30rem]" type="text" placeholder={translations[$currentLang].name} name="name" required />
 			</label>
 			<label class="label">
-				<input class="input md:w-[30rem]" type="email" placeholder="Email" name="email" required />
+				<input class="input md:w-[30rem]" type="email" placeholder={translations[$currentLang].email} name="email" required />
 			</label>
 			<label class="label">
 				<input
 					class="input md:w-[30rem]"
 					name="message"
 					type="text"
-					placeholder="Your message"
+					placeholder={translations[$currentLang].message}
 					required
 				/>
 			</label>
 			<div class="h-captcha" data-captcha="true" />
-			<button type="submit" class="btn variant-filled">Send</button>
+			<button type="submit" class="btn variant-filled">
+				{translations[$currentLang].send}
+			</button>
 		</form>
 
 		<p class="font-monserrat text-xl md:text-3xl font-semibold mt-8">
