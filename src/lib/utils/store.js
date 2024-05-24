@@ -10,6 +10,5 @@ export const translations = {
 export const currentLang = writable('fr');
 
 export function switchLanguage(lang) {
-	console.log('switchLanguage', lang);
 	currentLang.set(lang);
 }

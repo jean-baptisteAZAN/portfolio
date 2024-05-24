@@ -24,6 +24,13 @@
 			Side="left"
 			redirectLink="https://unhcr-agir.fr/sunnyday"
 		/>
+		<VIdeoCompo
+			posterSrc="/ifi_curie_placeholder.png"
+			videoName={translations[$currentLang].project3}
+			videoSrc="/ifi_curie_video.mp4"
+			Side="right"
+			redirectLink="https://ifi.curie.fr"
+		/>
 	</div>
 </div>
 
