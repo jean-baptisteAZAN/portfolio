@@ -7,7 +7,10 @@ export const translations = {
 	fr
 };
 
-export const currentLang = writable('fr');
+const browserLanguage = navigator.language || navigator.languages[0];
+const defaultLang = browserLanguage.startsWith('fr') ? 'fr' : 'en';
+
+export const currentLang = writable(defaultLang);
 
 export function switchLanguage(lang) {
 	currentLang.set(lang);

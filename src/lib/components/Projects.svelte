@@ -39,10 +39,10 @@
 		.bg-gradient-white-blue {
 			background-image: radial-gradient(
 					at 0% 0%,
-					rgba(var(--color-secondary-500) / 0.33) 0px,
+					rgba(var(--color-primary-500) / 0.33) 0px,
 					transparent 50%
 				),
-				radial-gradient(at 100% 0%, rgba(var(--color-primary-500) / 0.33) 0px, transparent 50%);
+				radial-gradient(at 100% 0%, rgba(var(--color-tertiary-50) / 0.33) 0px, transparent 50%);
 		}
 	}
 </style>

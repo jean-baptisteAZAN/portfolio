@@ -4,10 +4,12 @@
 	import Projects from '$lib/components/Projects.svelte';
 	import WhatIDo from '$lib/components/WhatIDo.svelte';
 	import Form from '$lib/components/Form.svelte';
+	import Timeline from '$lib/components/Timeline.svelte';
 </script>
 
 <Header />
 <AboutMe />
 <WhatIDo />
 <Projects />
-<Form />
+<Timeline />
+<Form/>

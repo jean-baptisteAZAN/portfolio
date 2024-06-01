@@ -3,9 +3,9 @@
 	import Footer from '$lib/components/Footer.svelte';
 </script>
 
-<div id="Contact" class="mt-10 flex flex-col gap-5">
+<div id="Contact" class="mt-10 flex flex-col gap-5 dark">
 	<div
-		class="flex flex-col items-center justify-center md:bg-surface-500 p-12 w-full md:w-[50rem] relative left-0 right-0 mx-auto rounded-lg"
+		class="flex flex-col items-center justify-center p-12 w-full md:w-[50rem] relative left-0 right-0 mx-auto rounded-lg shadow-2xl"
 	>
 		<p class="font-monserrat text-3xl font-semibold">
 			{translations[$currentLang].contact}
@@ -17,10 +17,22 @@
 		>
 			<input type="hidden" name="access_key" value="585da6a9-b112-4dda-a93f-acc6846cfb65" />
 			<label class="label">
-				<input class="input md:w-[30rem]" type="text" placeholder={translations[$currentLang].name} name="name" required />
+				<input
+					class="input md:w-[30rem]"
+					type="text"
+					placeholder={translations[$currentLang].name}
+					name="name"
+					required
+				/>
 			</label>
 			<label class="label">
-				<input class="input md:w-[30rem]" type="email" placeholder={translations[$currentLang].email} name="email" required />
+				<input
+					class="input md:w-[30rem]"
+					type="email"
+					placeholder={translations[$currentLang].email}
+					name="email"
+					required
+				/>
 			</label>
 			<label class="label">
 				<input

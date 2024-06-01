@@ -1,10 +1,9 @@
 import { join } from 'path';
 const { skeleton } = require('@skeletonlabs/tw-plugin');
-import { myCustomTheme } from './my-custom-theme';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	darkMode: 'class',
+	darkMode: 'selector',
 	content: [
 		'./src/**/*.{html,js,svelte,ts}',
 		'./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}',
@@ -20,7 +19,7 @@ module.exports = {
 	plugins: [
 		skeleton({
 			themes: {
-				custom: [myCustomTheme]
+				preset: ['crimson']
 			}
 		}),
 		require('flowbite/plugin')
