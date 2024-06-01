@@ -6,11 +6,15 @@ export const translations = {
 	en,
 	fr
 };
+function getDefaultLanguage() {
+	if (typeof navigator !== 'undefined') {
+		const browserLanguage = navigator.language || navigator.languages[0];
+		return browserLanguage.startsWith('fr') ? 'fr' : 'en';
+	}
+	return 'en';
+}
 
-const browserLanguage = navigator.language || navigator.languages[0];
-const defaultLang = browserLanguage.startsWith('fr') ? 'fr' : 'en';
-
-export const currentLang = writable(defaultLang);
+export const currentLang = writable(getDefaultLanguage());
 
 export function switchLanguage(lang) {
 	currentLang.set(lang);
