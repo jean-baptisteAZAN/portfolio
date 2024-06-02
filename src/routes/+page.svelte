@@ -5,6 +5,7 @@
 	import WhatIDo from '$lib/components/WhatIDo.svelte';
 	import Form from '$lib/components/Form.svelte';
 	import Timeline from '$lib/components/Timeline.svelte';
+	import Offer from '$lib/components/Offer.svelte';
 </script>
 
 <Header />
@@ -12,4 +13,5 @@
 <WhatIDo />
 <Projects />
 <Timeline />
+<Offer />
 <Form/>
