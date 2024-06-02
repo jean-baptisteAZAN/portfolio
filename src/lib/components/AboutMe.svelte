@@ -51,7 +51,7 @@
 	</h1>
 	<a
 		href="#Contact"
-		class="mt-[1rem] relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-primary-50 border-2 border-tertiary-600 rounded-full hover:text-white group hover:bg-gray-50"
+		class="mt-[1rem] relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-primary-400 border-2 border-primary-400 rounded-full hover:text-white group hover:bg-gray-50"
 	>
 		<span
 			class="absolute left-0 block w-full h-0 transition-all bg-tertiary-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"
@@ -73,7 +73,7 @@
 				/></svg
 			>
 		</span>
-		<span class="relative text-base">{translations[$currentLang].btnFirst}</span>
+		<span class="relative text-base">{@html translations[$currentLang].btnFirst}</span>
 	</a>
 </div>
 

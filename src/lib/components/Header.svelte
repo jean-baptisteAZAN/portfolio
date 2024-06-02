@@ -44,7 +44,7 @@
 	}
 </script>
 
-<div class="header gap-10 sticky backdrop-blur-lg z-50 h-[3rem] w-full">
+<div class="header gap-3 md:gap-10 sticky backdrop-blur-lg z-50 h-[3rem] w-full">
 	<div class="absolute left-1 md:left-10 top-3 z-50">
 		<LightSwitch/>
 	</div>
