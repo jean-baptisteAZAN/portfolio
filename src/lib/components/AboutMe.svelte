@@ -46,12 +46,13 @@
 	<h1 class="text-center">
 		<span class="text-4xl font-bold">AZAN</span><br />
 		<span class="text-4xl font-bold">Jean-Baptiste</span><br />
-		<span class="text-4xl font-bold text-tertiary-600">{translations[$currentLang].poste}</span><br
-		/>
+		<center class="text-4xl font-bold text-tertiary-600 px-10">
+			{translations[$currentLang].poste}
+		</center>
 	</h1>
 	<a
 		href="#Contact"
-		class="mt-[1rem] relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-primary-400 border-2 border-primary-400 rounded-full hover:text-white group hover:bg-gray-50"
+		class="mt-[1rem] relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-tertiary-600 border-2 border-tertiary-600 rounded-full hover:text-white group hover:bg-gray-50"
 	>
 		<span
 			class="absolute left-0 block w-full h-0 transition-all bg-tertiary-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"

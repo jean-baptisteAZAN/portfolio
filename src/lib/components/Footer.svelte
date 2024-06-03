@@ -10,6 +10,5 @@
 		<FooterLink href="https://www.privacypolicies.com/live/b12de624-c789-492d-8f9b-6bad2c8409aa"
 			>Politique de confidentialité</FooterLink
 		>
-		<FooterLink href="/#Contact">Contact</FooterLink>
 	</FooterLinkGroup>
 </Footer>

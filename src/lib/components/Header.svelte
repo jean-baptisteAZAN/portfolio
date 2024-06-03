@@ -61,13 +61,13 @@
 </div>
 <div class=" absolute right-1 md:right-10 top-1 z-50">
 	<button
-		class="text-white font-bold rounded-lg shadow"
+		class="text-white font-bold rounded-lg "
 		on:click={toggleLanguage}
 		bind:this={toggleRef}
 	>
 		{#if $currentLang === 'fr'}
-			<svg class=" w-10 h-10" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" preserveAspectRatio="xMidYMid meet"><path fill="#ED2939" d="M36 27a4 4 0 0 1-4 4h-8V5h8a4 4 0 0 1 4 4v18z"></path><path fill="#002495" d="M4 5a4 4 0 0 0-4 4v18a4 4 0 0 0 4 4h8V5H4z"></path><path fill="#EEE" d="M12 5h12v26H12z"></path></svg>
-			{:else}
+			<svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" preserveAspectRatio="xMidYMid meet"><path fill="#ED2939" d="M36 27a4 4 0 0 1-4 4h-8V5h8a4 4 0 0 1 4 4v18z"></path><path fill="#002495" d="M4 5a4 4 0 0 0-4 4v18a4 4 0 0 0 4 4h8V5H4z"></path><path fill="#EEE" d="M12 5h12v26H12z"></path></svg>
+		{:else}
 			<svg class=" w-10 h-10 rounded-xl" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 					 viewBox="0 0 130 120" enable-background="new 0 0 130 120" xml:space="preserve">
 					<g id="Infos">

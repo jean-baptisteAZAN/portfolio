@@ -26,7 +26,7 @@
 				<div class="flex flex-col sm:flex-row items-center">
 					<div class="flex justify-start w-full mx-auto items-center">
 						<div class="w-full sm:w-1/2 sm:pr-8 lg:pl-[10rem] 2xl:pl-[30rem]">
-							<div class="p-4 bg-white rounded shadow">
+							<div class="p-4 bg-surface-200  rounded shadow">
 								<p class="font-bold text-3xl font-monserrat text-center md:text-left">
 									{@html translations[$currentLang].timeline1}
 								</p>
@@ -55,7 +55,7 @@
 				<div class="flex flex-col sm:flex-row items-center">
 					<div class="flex justify-end w-full mx-auto items-center">
 						<div class="w-full sm:w-1/2 sm:pl-8 lg:pr-[10rem] 2xl:pr-[30rem]">
-							<div class="p-4 bg-white rounded shadow">
+							<div class="p-4 bg-surface-200 rounded shadow">
 								<p class="font-bold text-3xl font-monserrat text-center md:text-left">
 									{@html translations[$currentLang].timeline2}
 								</p>
@@ -85,7 +85,7 @@
 				<div class="flex flex-col sm:flex-row items-center">
 					<div class="flex justify-start w-full mx-auto items-center">
 						<div class="w-full sm:w-1/2 sm:pr-8 lg:pl-[10rem] 2xl:pl-[30rem]">
-							<div class="p-4 bg-white rounded shadow">
+							<div class="p-4 bg-surface-200 rounded shadow">
 								<p class="font-bold text-3xl font-monserrat text-center md:text-left">
 									{@html translations[$currentLang].timeline3}
 								</p>
@@ -114,7 +114,7 @@
 				<div class="flex flex-col sm:flex-row items-center">
 					<div class="flex justify-end w-full mx-auto items-center">
 						<div class="w-full sm:w-1/2 sm:pl-8 lg:pr-[10rem] 2xl:pr-[30rem]">
-							<div class="p-4 bg-white rounded shadow">
+							<div class="p-4 bg-surface-200 rounded shadow">
 								<p class="font-bold text-3xl font-monserrat text-center md:text-left">
 									{@html translations[$currentLang].timeline4}
 								</p>
