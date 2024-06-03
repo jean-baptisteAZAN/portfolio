@@ -18,7 +18,7 @@
 			<input type="hidden" name="access_key" value="585da6a9-b112-4dda-a93f-acc6846cfb65" />
 			<label class="label">
 				<input
-					class="input md:w-[30rem]"
+					class="input md:w-[30rem] input-white-text"
 					type="text"
 					placeholder={translations[$currentLang].name}
 					name="name"
@@ -27,7 +27,7 @@
 			</label>
 			<label class="label">
 				<input
-					class="input md:w-[30rem]"
+					class="input md:w-[30rem] input-white-text"
 					type="email"
 					placeholder={translations[$currentLang].email}
 					name="email"
@@ -36,7 +36,7 @@
 			</label>
 			<label class="label">
 				<input
-					class="input md:w-[30rem]"
+					class="input md:w-[30rem] input-white-text"
 					name="message"
 					type="text"
 					placeholder={translations[$currentLang].message}
@@ -92,3 +92,9 @@
 		<Footer />
 	</div>
 </div>
+
+<style>
+    .input-white-text {
+        color: white;
+    }
+</style>
