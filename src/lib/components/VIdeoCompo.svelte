@@ -48,7 +48,9 @@
 
 <div class="hidden md:flex justify-center items-center overflow-hidden">
 	<div bind:this={titleContainer} class={twMerge(`w-1/2 absolute opacity-0`, titleClass)}>
-		<p class="text-3xl font-bold text-secondary-400-500-token">{videoName}</p>
+		<p class="text-3xl font-bold text-secondary-400-500-token">
+			{videoName}
+		</p>
 	</div>
 	<a
 		href={redirectLink}
@@ -74,6 +76,10 @@
 				d="M8 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3m4 8a4 4 0 0 1-8 0V5a4 4 0 1 1 8 0zM8 0a5 5 0 0 0-5 5v6a5 5 0 0 0 10 0V5a5 5 0 0 0-5-5"
 			/>
 		</svg>
+			<div class:hidden-class={!isPlaying}
+								class="bg-red-600 w-full h-full absolute bg-transparent bg-opacity-60 rounded-3xl">
+				<img src="/Adfinitas.png" class="absolute bottom-3 right-3 w-20 z-50 " alt="Logo d'Adfinitas">
+			</div>
 		<video bind:this={video} class="rounded-3xl" poster={posterSrc} loop muted>
 			<source src={videoSrc} type="video/mp4" />
 			Your browser does not support the video tag.
@@ -81,8 +87,11 @@
 	</a>
 </div>
 
-<a href={redirectLink} class="flex flex-col items-center justify-center gap-5 md:hidden">
+<a href={redirectLink} class="flex flex-col items-center justify-center gap-5 md:hidden relative">
 	<p class="text-3xl font-bold text-secondary-400-500-token text-center">{videoName}</p>
+	<div class="bg-red-600 w-full h-full absolute bg-transparent bg-opacity-60 rounded-3xl">
+		<img src="/Adfinitas.png" class="absolute bottom-3 right-3 w-10  z-50 " alt="Logo d'Adfinitas">
+	</div>
 	<img src={posterSrc} class="rounded-lg" alt="Présentation d'un projet de developpement web" />
 </a>
 
