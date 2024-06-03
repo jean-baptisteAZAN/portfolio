@@ -8,6 +8,28 @@
 	import Offer from '$lib/components/Offer.svelte';
 </script>
 
+
+<svelte:head>
+	<!-- Primary Meta Tags -->
+	<title>Jean-baptiste AZAN's portfolio</title>
+	<meta name="title" content="Jean-baptiste AZAN's portfolio" />
+	<meta name="description" content="Discover the portfolio of Jean-Baptiste Azan, freelance web developer. Explore his skills, completed projects and contact him for a free quote. Visit Jeanbaptisteazan.fr to find out more." />
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://metatags.io/" />
+	<meta property="og:title" content="Jean-baptiste AZAN's portfolio" />
+	<meta property="og:description" content="Discover the portfolio of Jean-Baptiste Azan, freelance web developer. Explore his skills, completed projects and contact him for a free quote. Visit Jeanbaptisteazan.fr to find out more." />
+	<meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+	
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content="https://metatags.io/" />
+	<meta property="twitter:title" content="Jean-baptiste AZAN's portfolio" />
+	<meta property="twitter:description" content="Discover the portfolio of Jean-Baptiste Azan, freelance web developer. Explore his skills, completed projects and contact him for a free quote. Visit Jeanbaptisteazan.fr to find out more." />
+	<meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+</svelte:head>
+
 <Header />
 <AboutMe />
 <WhatIDo />
