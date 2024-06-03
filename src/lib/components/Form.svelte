@@ -8,7 +8,7 @@
 		class="flex flex-col items-center justify-center p-12 w-full md:w-[50rem] relative left-0 right-0 mx-auto rounded-lg shadow-2xl"
 	>
 		<p class="font-monserrat text-3xl font-semibold">
-			{translations[$currentLang].contact}
+			{@html translations[$currentLang].contact}
 		</p>
 		<form
 			action="https://api.web3forms.com/submit"
