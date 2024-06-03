@@ -103,7 +103,7 @@
 				</div>
 			</div>
 			<div class="h-[40%] flex items-end justify-center w-full relative mb-5">
-				<a href="https://www.marcheauxfleursdeparis.fr/" class="w-80" target="_blank">
+				<a href="https://www.adfinitas.frt" class="w-80" target="_blank">
 					<button class="mt-4 w-[100%] btn hover:scale-105 hover:variant-filled-surface variant-filled transition-all">
 						{translations[$currentLang].viewCompany}
 					</button>
@@ -143,7 +143,7 @@
 				</div>
 			</div>
 			<div class="h-[40%] flex items-end justify-center w-full relative mb-5">
-				<a href="https://www.marcheauxfleursdeparis.fr/" class="w-80" target="_blank">
+				<a href="https://1robepour1soir.com/fr_FR/" class="w-80" target="_blank">
 					<button class="mt-4 w-[100%] btn hover:scale-105 hover:variant-filled-surface variant-filled transition-all">
 						{translations[$currentLang].viewCompany}
 					</button>
@@ -181,7 +181,7 @@
 				</div>
 			</div>
 			<div class="h-[40%] flex items-end justify-center w-full relative mb-5">
-				<a href="https://www.marcheauxfleursdeparis.fr/" class="w-80" target="_blank">
+				<a href="https://www.twinpromotion.fr" class="w-80" target="_blank">
 					<button class="mt-4 w-[100%] btn hover:scale-105 hover:variant-filled-surface variant-filled transition-all">
 						{translations[$currentLang].viewCompany}
 					</button>
