@@ -7,6 +7,7 @@
 	let selectedItem: any = 'about';
 	let toggleRef: HTMLElement;
 	let isFrench: boolean = false;
+	let redirectionDone: boolean = false;
 
 	onMount(() => {
 		gsap.fromTo(toggleRef, { opacity: 0 }, { opacity: 1, duration: 0.5 });
@@ -30,11 +31,13 @@
 	}
 
 	function navigateToAboutMe(): void {
+		if (redirectionDone)
 		if (window.innerWidth <= 768) {
 			location.href = '#AboutMeMobile';
 		} else {
 			location.href = '#AboutMeDesktop';
 		}
+		redirectionDone = true
 	}
 
 	function toggleLanguage(): void {
