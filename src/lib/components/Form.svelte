@@ -92,7 +92,7 @@
 			</a>
 		</div>
 	</div>
-	<div class="flex items-center justify-center">
+	<div class="flex items-center justify-center pt-20">
 		<Footer />
 	</div>
 </div>
