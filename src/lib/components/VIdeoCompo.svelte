@@ -54,6 +54,7 @@
 	</div>
 	<a
 		href={redirectLink}
+		target="_blank"
 		aria-label="Redirection to the project website"
 		bind:this={videoContainer}
 		class={twMerge('w-1/2 relative', classes)}
@@ -88,7 +89,7 @@
 	</a>
 </div>
 
-<a href={redirectLink}  aria-label="Redirection to the project website" class="flex flex-col items-center justify-center gap-5 md:hidden relative">
+<a href={redirectLink} target="_blank" aria-label="Redirection to the project website" class="flex flex-col items-center justify-center gap-5 md:hidden relative">
 	<p class="text-3xl font-bold text-secondary-400-500-token text-center">{videoName}</p>
 	<div class="bg-red-600 w-full h-full absolute bg-transparent bg-opacity-60 rounded-3xl">
 		<img src="/Adfinitas.png" class="absolute bottom-3 right-3 w-10  z-50 " alt="Logo d'Adfinitas">
