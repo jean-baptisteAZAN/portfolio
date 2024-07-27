@@ -55,6 +55,7 @@
 		<div class="flex flex-row mt-10 gap-10 md:gap-20">
 			<a
 				href="https://github.com/jean-baptisteAZAN"
+				aria-label="Find me on Github"
 				class="w-20 h-20 hover:scale-110 transition-all"
 			>
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"
@@ -71,6 +72,7 @@
 			</a>
 			<a
 				href="https://linkedin.com/in/jean-baptiste-azan"
+				aria-label="Find me on Linkedin"
 				class="w-20 h-20 hover:scale-110 transition-all"
 			>
 				<svg
