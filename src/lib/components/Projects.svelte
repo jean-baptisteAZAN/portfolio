@@ -14,7 +14,7 @@
 	>
 		<article>
 			<VIdeoCompo
-				posterSrc="/spaPlaceholder.png"
+				posterSrc="/spaPlaceholder.jpg"
 				videoName={translations[$currentLang].project1}
 				videoSrc="/spaVideo.mp4"
 				Side="right"
@@ -23,7 +23,7 @@
 		</article>
 		<article>
 			<VIdeoCompo
-				posterSrc="/placeholderUnhcr.png"
+				posterSrc="/placeholderUnhcr.jpg"
 				videoName={translations[$currentLang].project2}
 				videoSrc="/sunnydayVideo.mp4"
 				Side="left"
@@ -32,7 +32,7 @@
 		</article>
 		<article>
 			<VIdeoCompo
-				posterSrc="/ifi_curie_placeholder.png"
+				posterSrc="/ifi_curie_placeholder.jpg"
 				videoName={translations[$currentLang].project3}
 				videoSrc="/ifi_curie_video.mp4"
 				Side="right"
