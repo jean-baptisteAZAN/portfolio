@@ -13,5 +13,4 @@
 <WhatIDo />
 <Projects />
 <Timeline />
-<Offer />
 <Form/>
