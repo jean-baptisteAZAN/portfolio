@@ -39,7 +39,7 @@
 	class="md:hidden flex flex-col items-center justify-center container-me py-20 gap-8"
 >
 	<img
-		src="/face.png"
+		src="/face.jpg"
 		alt="Jean-Baptiste Azan, Développeur web Lille"
 		class="w-60 h-60 rounded-full"
 	/>
@@ -133,7 +133,7 @@
 	.face {
 		width: 100%;
 		height: 100%;
-		background: url('/face.png') no-repeat center center;
+		background: url('/face.jpg') no-repeat center center;
 		border-radius: 50%;
 		background-size: cover;
 		position: absolute;
