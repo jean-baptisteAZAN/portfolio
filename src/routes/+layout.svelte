@@ -190,4 +190,4 @@
 			</div>
 		{/if}
 		</Drawer>
-		<slot />
+	<slot />
