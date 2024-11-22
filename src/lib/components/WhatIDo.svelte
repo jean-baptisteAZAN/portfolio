@@ -24,11 +24,12 @@
 	const hoverState = createHoverState();
 </script>
 
-<div class="md:mt-[20rem] flex flex-col md:flex-row items-center justify-center gap-5">
+<div class="md:mt-[20rem] flex px-5 flex-col md:flex-row items-center justify-center gap-5">
 	<Card path="/frontendSvg.svg" text={translations[$currentLang].card1} />
 	<Card path="/tools.svg" text={translations[$currentLang].card2} />
 	<Card path="/people.svg" text={translations[$currentLang].card3} />
 </div>
+
 <div class="marquee h-40 relative py-40 hidden md:block">
 	<Marquee speed={0.7} hoverSpeed={0.6}>
 		{#each Array(3) as _, i}
