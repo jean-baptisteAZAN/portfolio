@@ -95,7 +95,6 @@
 	</div>
 	<div class="mt-6 text-center text-sm text-surface-600 dark:text-surface-300 flex items-center justify-center gap-2">
 		<Icon icon="lucide:mouse" class="w-4 h-4" />
-		<span>Scroll horizontalement pour découvrir plus</span>
 	</div>
 </div>
 

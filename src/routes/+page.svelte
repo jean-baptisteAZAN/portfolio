@@ -5,12 +5,14 @@
 	import Timeline from '$lib/components/hp/Timeline.svelte';
 	import Testimonials from '$lib/components/hp/Testimonials.svelte';
 	import Form from '$lib/components/hp/Form.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
 </script>
 
 <svelte:head>
 	<title> Jean-Baptiste Azan </title>
 </svelte:head>
 
+<Navbar />
 <FaceBlock />
 <Cards />
 <Projects/>

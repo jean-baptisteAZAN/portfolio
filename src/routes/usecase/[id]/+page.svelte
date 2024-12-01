@@ -4,10 +4,7 @@
     import Preview from '$lib/components/hp/Preview.svelte';
     import Icon from '@iconify/svelte';
     import { scale, fly } from 'svelte/transition';
-    import { quintOut, elasticOut } from 'svelte/easing';
-    import { onMount } from 'svelte';
-
-    // Définition des use cases... (reste inchangé)
+    import { elasticOut } from 'svelte/easing';
     const useCases = {
         "1": {
             title: translations[$currentLang].timeline1,
@@ -146,28 +143,9 @@
         background: linear-gradient(to right, ${hexToRGBA(currentCase.gradientFrom, 0.3)}, ${hexToRGBA(currentCase.gradientTo, 0.3)});
     `);
 
-    let backgroundBlobs = $derived([
-        {
-            classes: "absolute top-0 left-1/4 w-96 h-96 rounded-full mix-blend-overlay filter blur-xl animate-blob",
-            gradient: `background: linear-gradient(to bottom right, ${hexToRGBA(currentCase.gradientFrom, 0.2)}, ${hexToRGBA(currentCase.gradientTo, 0.2)})`,
-            delay: 0
-        },
-        {
-            classes: "absolute bottom-0 right-1/4 w-96 h-96 rounded-full mix-blend-overlay filter blur-xl animate-blob",
-            gradient: `background: linear-gradient(to bottom right, ${hexToRGBA(currentCase.color, 0.2)}, ${hexToRGBA(currentCase.gradientTo, 0.15)})`,
-            delay: 2000
-        },
-        {
-            classes: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full mix-blend-overlay filter blur-xl animate-blob",
-            gradient: `background: linear-gradient(to bottom right, ${hexToRGBA(currentCase.gradientTo, 0.2)}, ${hexToRGBA(currentCase.gradientFrom, 0.2)})`,
-            delay: 4000
-        }
-    ]);
-
-    let bgGradient = $derived(`background: linear-gradient(to bottom right, ${hexToRGBA(currentCase.gradientFrom, 0.1)}, ${hexToRGBA(currentCase.gradientTo, 0.1)})`);
 </script>
 
-<div class="min-h-screen relative" style="background: linear-gradient(to bottom right, {hexToRGBA(currentCase.gradientFrom, 0.1)}, {hexToRGBA(currentCase.gradientTo, 0.1)})">
+<div class="min-h-screen relative g" >
     <!-- Bouton retour animé -->
     <button
       class="fixed left-10 top-14 z-50"
@@ -189,10 +167,6 @@
               class="w-5 h-5 relative z-10 group-hover:-translate-x-1 transition-transform duration-300"
             />
 
-            <span class="relative z-10 font-medium text-white transform translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                Retour
-            </span>
-
             {#if isHovering}
                 <div
                   class="absolute inset-0"
@@ -208,20 +182,6 @@
     </button>
 
     <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Formes d'arrière-plan animées -->
-        <div class="absolute inset-0 overflow-hidden">
-            {#each backgroundBlobs as blob}
-                <div
-                  class={blob.classes}
-                  style={blob.gradient}
-                  class:animation-delay-2000={blob.delay === 2000}
-                  class:animation-delay-4000={blob.delay === 4000}
-                ></div>
-            {/each}
-        </div>
-
-
-
         <!-- Content -->
         <div class="relative z-10 text-center space-y-12 px-4 max-w-5xl mx-auto">
             <div
