@@ -5,7 +5,7 @@
 
 <div class="relative h-full p-8">
 	<div
-		class="group relative h-full w-full rounded-xl border border-surface-300/20
+		class="group relative h-full w-full rounded-xl border md:border-surface-300/20
      p-8 transition-all duration-500
     ease-out hover:-translate-y-2 hover:border-primary-400
     hover:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.15)]"
@@ -13,7 +13,7 @@
 		<div class="relative mb-6">
 			<Icon
 				icon={icon}
-				class="w-16 h-16 text-surface-300/20 group-hover:text-primary-400 transition-all duration-500"
+				class="w-16 h-16 text-primary-400 md:text-surface-300/20 md:group-hover:text-primary-400 transition-all duration-500"
 			/>
 			<div
 				class="absolute -bottom-2 left-0 h-1 w-8 rounded-full
@@ -22,7 +22,7 @@
 			></div>
 		</div>
 
-		<p class="font-monserrat text-lg leading-relaxed text-surface-300/20 transition-all group-hover:text-primary-400">
+		<p class="font-monserrat text-lg leading-relaxed text-primary-400 md:text-surface-300/20 transition-all md:group-hover:text-primary-400">
 			{text}
 		</p>
 	</div>
