@@ -30,6 +30,9 @@
 	"timeline5": "Oden - Application mobile",
 	"timeline5Date": "Juillet - Septembre 2024",
 	"timeline5Role": "Développeur Fullstack - Mobile",
+	"timeline6": "Eh Bam - Site E-commerce",
+	"timeline6Date": "Septembre - Novembre 2024",
+	"timeline6Role": "Développeur Fullstack",
 	"learnMoreButton": "En savoir plus",
 	"contact": "Rencontrons-nous&nbsp;!",
 	"findMe": "Et retrouvez moi sur :",
@@ -41,7 +44,9 @@
 		"timeline1Desc": "Le marché aux fleurs Elisabeth II est un marché aux fleurs situé à Paris. Il est le plus grand marché aux fleurs de la ville et propose une grande variété de fleurs et de plantes. En temps que développeur FullStack Freelance, j'ai eu l'occasion de concevoir et de développer leurs landing page ayant pour but de promouvoir leur collecte de fond. Pour mener à bien ce projet, j'ai du mettre en place une pipeline de dons en ligne permettant aux utilisateurs de faire des dons en ligne.",
 		"timeline2Desc": "Adfintas est une entreprise spécialisée dans le marketing associatif. En tant qu'intégrateur / développeur web, j'ai eu l'occasion de travailler sur le développement de nombreuses landing pages pour des associations caritatives de renom comme la SPA, l'Ordre de Malte ou encore l'hopital de la fondation Rothschild. J'ai commencé à travailler chez Adfinitas en tant que stagiaire, pour evoluer a la fin de mon stage en temps que développeur web freelance.",
 		"timeline3Desc": "Une Robe un Soir est une entreprise spécialisée dans la location de robes de soirée de luxe. En tant que développeur fullstack / devops, j'ai eu l'occasion de travailler, en Freelance, sur le développement du site marchand de l'entreprise, ainsi que sur la mise en place de plusieurs services d'automatisation et d'un logiciel metier de gestion du stock.",
-		"timeline4Desc": "Twin Promotion est une entreprise spécialisée dans la promotion immobilière. J'ai été embauché en tant que développeur Frontend Freelance pour travailler sur le site web de l'entreprise. Ma mission était de mettre à jour le site existant en réglant des bugs d'UX et en ajoutant de nouvelles fonctionnalités."
+		"timeline4Desc": "Twin Promotion est une entreprise spécialisée dans la promotion immobilière. J'ai été embauché en tant que développeur Frontend Freelance pour travailler sur le site web de l'entreprise. Ma mission était de mettre à jour le site existant en réglant des bugs d'UX et en ajoutant de nouvelles fonctionnalités.",
+		"timeline5Desc": "Oden est une application mobile qui a pour but de faciliter la vie associative des étudiants, nous avons travailler en collaboration avec l'Espas-Estice pour la création de cette application. En tant que créateur de cette application, j'ai du concevoir et développer l'ensemble de l'application de zéro. De la conception du produit au développement, j'ai pu créer une application mobile qui répond aux besoins des étudiants.",
+		"timeline6Desc": "Eh Bam est une entreprise spécialisée dans la vente de produits alimentaires locaux. En tant que développeur Fullstack j'ai eu a concevoir et développer leur site e-commerce. Ma mission était de mettre en place un site e-commerce permettant aux utilisateurs de commander des produits locaux en ligne."
 	},
 	"techStack": "Stack technique:",
 	"viewProject": "Voir le projet",

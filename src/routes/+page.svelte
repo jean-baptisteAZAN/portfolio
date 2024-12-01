@@ -7,6 +7,10 @@
 	import Form from '$lib/components/hp/Form.svelte';
 </script>
 
+<svelte:head>
+	<title> Jean-Baptiste Azan </title>
+</svelte:head>
+
 <FaceBlock />
 <Cards />
 <Projects/>

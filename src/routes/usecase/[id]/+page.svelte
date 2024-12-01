@@ -99,6 +99,26 @@
                 { name: "GitHub", icon: "bi:github" },
                 { name: "RNFirebase", icon: "logos:firebase" }
             ]
+        },
+        "6": {
+            title: translations[$currentLang].timeline6,
+            date: translations[$currentLang].timeline6Date,
+            role: translations[$currentLang].timeline6Role,
+            description: translations[$currentLang].projectDescriptions.timeline6Desc,
+            website: "https://www.ehbam.fr",
+            color: "#2C0156",
+            gradientFrom: "#E6C834",
+            gradientTo: "#2C0156",
+            icon: "fluent:food-16-filled",
+            isAvailable: true,
+            techStack: [
+                { name: "Node.js", icon: "logos:nodejs" },
+                { name: "SvelteKit", icon: "devicon:svelte" },
+                { name: "Vercel", icon: "logos:vercel" },
+                { name: "Digital Ocean", icon: "logos:digital-ocean" },
+                { name: "Stripe", icon: "logos:stripe" },
+                { name: "Directus", icon: "simple-icons:directus" }
+            ]
         }
     };
 

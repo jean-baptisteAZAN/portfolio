@@ -30,6 +30,9 @@
 	"timeline5": "Oden - Mobile Application",
 	"timeline5Date": "July - September 2024",
 	"timeline5Role": "Fullstack - Mobile Developer",
+	"timeline6": "Eh Bam - E-commerce Website",
+	"timeline6Date": "September - November 2024",
+	"timeline6Role": "Fullstack Developer",
 	"learnMoreButton": "Learn more",
 	"contact": "Let's get in touch&nbsp;!",
 	"findMe": "And find me on:",
@@ -42,7 +45,8 @@
 		"timeline2Desc": "Adfinitas is a company specializing in associative marketing development. As an integrator / web developer, I had the opportunity to work on developing numerous landing pages for renowned charitable associations such as SPA, Order of Malta, and Rothschild Foundation Hospital. I started working at Adfinitas as an intern and evolved into a freelance web developer at the end of my internship.",
 		"timeline3Desc": "Une Robe un Soir is a company specializing in the rental of luxury evening dresses. As a fullstack / devops developer, I had the opportunity to work, as a Freelance, on the development of the company's e-commerce site, as well as setting up several automation services and a stock management software.",
 		"timeline4Desc": "Twin Promotion is a company specializing in real estate promotion. I was hired as a Freelance Frontend Developer to work on the company's website. My mission was to update the existing site by fixing UX bugs and adding new features. After this first successful mission, I was hired to work on the company's new website as a Fullstack developer",
-		"timeline5Desc": "Oden is a mobile application that aims to facilitate the lives of students by offering them a platform where they can find all the information they need to succeed in their studies. As the creator of this application, I had to design and develop the entire application from scratch. From product design to development, I was able to create a mobile application that meets the needs of students."
+		"timeline5Desc": "Oden is a mobile application that aims to facilitate the lives of students by offering them a platform where they can find all the information they need to succeed in their studies. As the creator of this application, I had to design and develop the entire application from scratch. From product design to development, I was able to create a mobile application that meets the needs of students.",
+		"timeline6Desc": "Eh Bam is a company specializing in the sale of local food products. As a Fullstack developer, I had to design and develop their e-commerce website. My mission was to set up an e-commerce website allowing users to order local products online."
 	},
 	"techStack": "Tech stack:",
 	"viewProject": "View the project",

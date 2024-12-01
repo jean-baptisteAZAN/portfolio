@@ -4,6 +4,14 @@
 
 	const timelineItems = [
 		{
+			id: "6",
+			position: "start",
+			title: translations[$currentLang].timeline6,
+			date: translations[$currentLang].timeline6Date,
+			role: translations[$currentLang].timeline6Role,
+			icon: "fluent:food-16-filled"
+		},
+		{
 			id: "5",
 			position: "start",
 			title: translations[$currentLang].timeline5,
@@ -56,12 +64,10 @@
 			{#each timelineItems as item}
 				<a
 					href="/usecase/{item.id}"
-					class="group flex-shrink-0 w-[300px] md:w-[400px]
-                    hover:bg-surface-300/50 rounded-xl p-6 transition-all duration-300
-                    hover:-translate-y-2 relative overflow-hidden"
+					rel="external"
+					class="border-[1px] border-secondary-50 group flex-shrink-0 w-[300px] md:w-[400px] hover:bg-surface-300/50 rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden"
 				>
 					<div class="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 bg-gradient-to-br from-primary-900 to-primary-500"></div>
-
 					<div class="relative z-10">
 						<!-- Icon and Date -->
 						<div class="flex items-center gap-4 mb-4">
@@ -77,7 +83,7 @@
 						<p class="text-surface-600 dark:text-surface-300 mb-4">
 							{@html item.role}
 						</p>
-						<div class="inline-flex items-center text-primary-500 font-medium
+						<div class="inline-flex items-center text-primary-500 font-medium p-4 rounded-lg
                             group-hover:translate-x-2 transition-transform duration-300">
 							{translations[$currentLang].learnMoreButton}
 							<Icon icon="lucide:arrow-right" class="ml-2 w-4 h-4" />
@@ -87,8 +93,6 @@
 			{/each}
 		</div>
 	</div>
-
-	<!-- Scroll Indicator -->
 	<div class="mt-6 text-center text-sm text-surface-600 dark:text-surface-300 flex items-center justify-center gap-2">
 		<Icon icon="lucide:mouse" class="w-4 h-4" />
 		<span>Scroll horizontalement pour découvrir plus</span>
