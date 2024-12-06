@@ -154,12 +154,10 @@
     >
         <a
           href="/"
-          class="relative group flex items-center gap-2 px-6 py-3 rounded-full transform hover:scale-110 transition-all duration-300 overflow-hidden"
-          style={buttonGradient}
+          class="relative bg-primary-800 group flex items-center gap-2 px-6 py-3 rounded-full transform hover:scale-110 transition-all duration-300 overflow-hidden"
         >
             <div
               class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={buttonHoverGradient}
             ></div>
 
             <Icon
@@ -190,7 +188,6 @@
             >
                 <span
                   class="text-5xl transform hover:scale-125 transition-transform duration-300 hover:rotate-12"
-                  style="color: {currentCase.color}"
                 >
                     <Icon icon={currentCase.icon} />
                 </span>
@@ -242,15 +239,11 @@
                               class="group p-6 rounded-2xl transition-all duration-500 hover:scale-105 transform hover:rotate-1 bg-gradient-to-br from-white/5 to-white/10 hover:from-white/10 hover:to-white/15 border border-white/10 hover:border-white/20"
                             >
                                 <div class="flex items-center gap-4">
-                                    <div class="w-14 h-14 flex items-center justify-center rounded-xl bg-white/10 group-hover:bg-white/15 transition-colors duration-300 relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                        <Icon
-                                          icon={tech.icon}
-                                          width="32"
-                                          height="32"
-                                          class="group-hover:scale-125 transition-transform duration-500 relative z-10"
-                                        />
-                                    </div>
+                                    <Icon
+                                      icon={tech.icon}
+                                      width="50"
+                                      height="50"
+                                    />
                                     <span class="font-monserrat font-medium text-white/90 group-hover:text-white transition-colors duration-300">
                                         {tech.name}
                                     </span>

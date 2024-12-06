@@ -32,7 +32,7 @@ export default {
 
 	plugins: [
 		skeleton({
-			themes: [themes.cerberus]
+			themes: [themes.catppuccin]
 		}),
 		typography
 	]
