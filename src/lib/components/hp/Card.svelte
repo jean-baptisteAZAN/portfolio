@@ -5,8 +5,9 @@
 
 <div class="relative h-full p-8">
 	<div
-		class="group relative h-full w-full rounded-xl border md:border-surface-300/20
+		class="group relative h-full w-full rounded-xl  md:border-surface-300/20
      p-8 transition-all duration-500
+     border-2
     ease-out hover:-translate-y-2 hover:border-primary-400
     hover:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.15)]"
 	>

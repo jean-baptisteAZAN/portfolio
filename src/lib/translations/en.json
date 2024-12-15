@@ -6,7 +6,7 @@
 	},
 	"poste": "Freelance Developer",
 	"btnFirst": "Let's work together&nbsp;!",
-	"card1": "As a fullstack and mobile developer, I design websites and applications that enhance your business while developing complex web solutions for startups effectively and efficiently",
+	"card1": "As a FullStack developer, I design websites and applications that enhance your business while developing complex web solutions for startups effectively and efficiently",
 	"card2": "As a student developer, I stand out for my ability to quickly learn various technologies, based on my interests and, most importantly, according to your needs!",
 	"card3": "Interacting with my clients remains my priority throughout the development process. This approach makes me both available and responsive!",
 	"someProjects": "Some of my latest projects",
@@ -50,5 +50,6 @@
 	},
 	"techStack": "Tech stack:",
 	"viewProject": "View the project",
-	"viewCompany": "View the company"
+	"viewCompany": "View the company",
+	"lets_talk": "Let's talk about your project"
 }

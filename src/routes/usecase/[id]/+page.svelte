@@ -135,9 +135,6 @@
     });
 
     let isHovering = $state(false);
-    let buttonGradient = $derived(`
-        background: linear-gradient(to right, ${hexToRGBA(currentCase.gradientFrom, 0.8)}, ${hexToRGBA(currentCase.gradientTo, 0.8)});
-    `);
 
     let buttonHoverGradient = $derived(`
         background: linear-gradient(to right, ${hexToRGBA(currentCase.gradientFrom, 0.3)}, ${hexToRGBA(currentCase.gradientTo, 0.3)});
@@ -145,8 +142,11 @@
 
 </script>
 
+<svelte:head>
+    <title>{currentCase.name}</title>
+</svelte:head>
+
 <div class="min-h-screen relative g" >
-    <!-- Bouton retour animé -->
     <button
       class="fixed left-10 top-14 z-50"
       onmouseenter={() => isHovering = true}
