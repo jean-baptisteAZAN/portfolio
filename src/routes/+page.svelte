@@ -36,7 +36,7 @@
 <Timeline/>
 <Form/>
 
-<button class="fixed btn preset-filled bottom-7 right-7 hover:scale-110 transition-all" onclick={openCalendly}>
+<button class="fixed btn preset-filled bottom-7 right-7 hover:scale-110 transition-all duration-500" onclick={openCalendly}>
 	<span class="badge-icon preset-filled-primary-500 absolute -right-2 -top-2 z-10">1</span>
 	{translations[$currentLang].lets_talk}
 </button>
