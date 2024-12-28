@@ -5,7 +5,7 @@
 
 <section class="bg-surface-100-800-token bg-gradient-white-blue mt-20 md:mt-0">
 	<header class="text-center">
-		<h2 id="Projects" class="text-4xl mb-10 md:mb-0 font-monserrat font-bold">
+		<h2 id="Projects" class="text-4xl mb-10 md:mb-0 font-bold">
 			{translations[$currentLang].someProjects}
 		</h2>
 	</header>
