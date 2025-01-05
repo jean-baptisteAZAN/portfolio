@@ -3,7 +3,7 @@
 	let { icon, text } = $props();
 </script>
 
-<div class="relative h-full p-8">
+<div class="relative h-full md:p-8">
 	<div
 		class="group relative h-full w-full rounded-xl  md:border-surface-300/20
      p-8 transition-all duration-500

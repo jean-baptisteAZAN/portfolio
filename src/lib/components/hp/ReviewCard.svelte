@@ -8,21 +8,14 @@
 </script>
 
 <figure
-	class={cn(
-      "relative w-80 cursor-pointer overflow-hidden rounded-2xl border p-4",
-      // light styles
-      "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-      // dark styles
-      "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
-    )}
+	class={cn("card preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-full max-w-md p-4")}
 >
 	<div class="flex flex-row items-center gap-2">
 		<img class="rounded-full" width="60" height="60" alt="" src={img} />
 		<div class="flex flex-col">
-			<!-- svelte-ignore a11y-structure -->
-			<figcaption class="text-sm font-medium dark:text-white">
+			<h5 class="text-sm font-medium dark:text-white">
 				{name}
-			</figcaption>
+			</h5>
 			<p class="text-xs font-medium dark:text-white/40">{username}</p>
 		</div>
 	</div>

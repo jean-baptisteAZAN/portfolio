@@ -4,6 +4,14 @@
 
 	const timelineItems = [
 		{
+			id: "7",
+			position: "start",
+			title: translations[$currentLang].timeline7,
+			date: translations[$currentLang].timeline7Date,
+			role: translations[$currentLang].timeline7Role,
+			icon: "carbon:collaborate"
+		},
+		{
 			id: "6",
 			position: "start",
 			title: translations[$currentLang].timeline6,
@@ -33,7 +41,7 @@
 			title: translations[$currentLang].timeline3,
 			date: translations[$currentLang].timeline3Date,
 			role: translations[$currentLang].timeline3Role,
-			icon: "bi:diamond-half"
+			icon: "ph:dress-fill"
 		},
 		{
 			id: "2",
@@ -69,7 +77,6 @@
 				>
 					<div class="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 bg-gradient-to-br from-primary-900 to-primary-500"></div>
 					<div class="relative z-10">
-						<!-- Icon and Date -->
 						<div class="flex items-center gap-4 mb-4">
 							<div class="w-12 h-12 rounded-full bg-surface-300/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
 								<Icon icon={item.icon} class="w-6 h-6" />

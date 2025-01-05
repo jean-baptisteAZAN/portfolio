@@ -3,7 +3,7 @@
 	import VideoCompo from '$lib/components/hp/VideoCompo.svelte';
 </script>
 
-<section class="bg-surface-100-800-token bg-gradient-white-blue mt-20 md:mt-0">
+<section class="bg-surface-100-800-token education-section bg-gradient-white-blue mt-20 md:mt-0">
 	<header class="text-center">
 		<h2 id="Projects" class="text-4xl mb-10 md:mb-0 font-bold">
 			{translations[$currentLang].someProjects}
@@ -47,12 +47,9 @@
 <style>
     @media (min-width: 768px) {
         .bg-gradient-white-blue {
-            background-image: radial-gradient(
-                    at 0% 0%,
-                    rgba(var(--color-primary-500) / 0.33) 0px,
-                    transparent 50%
-            ),
-            radial-gradient(at 100% 0%, rgba(var(--color-tertiary-50) / 0.33) 0px, transparent 50%);
+            background-image:
+                    radial-gradient(at 0% 0%, rgba(var(--color-primary-500) / 0.33) 0px, transparent 50%),
+                    radial-gradient(at 100% 0%, rgba(var(--color-tertiary-50) / 0.33) 0px, transparent 50%)
         }
     }
 </style>

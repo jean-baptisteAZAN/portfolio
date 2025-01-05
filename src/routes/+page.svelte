@@ -7,8 +7,8 @@
 	import Form from '$lib/components/hp/Form.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import { currentLang, translations } from '$lib/utils/store';
-	// Load Calendly script
 	import { onMount } from 'svelte';
+
 	onMount(() => {
 		const script = document.createElement('script');
 		script.src = 'https://assets.calendly.com/assets/external/widget.js';
@@ -32,11 +32,13 @@
 <FaceBlock />
 <Cards />
 <Projects/>
-<!--<Testimonials/>-->
+<!--<Education/>-->
+<Testimonials/>
 <Timeline/>
 <Form/>
 
-<button class="fixed btn preset-filled bottom-7 right-7 hover:scale-110 transition-all duration-500" onclick={openCalendly}>
+
+<button class="fixed btn z-50 preset-filled bottom-7 right-7 hover:scale-110 transition-all duration-500" onclick={openCalendly}>
 	<span class="badge-icon preset-filled-primary-500 absolute -right-2 -top-2 z-10">1</span>
 	{translations[$currentLang].lets_talk}
 </button>

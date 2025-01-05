@@ -1,11 +1,11 @@
 <script src="https://web3forms.com/client/script.js" async defer>
 	import { currentLang, translations } from '$lib/utils/store.js';
-	// import Footer from '$lib/components/Footer.svelte';
+	import { Phone } from 'lucide-svelte';
 </script>
 
-<div id="Contact" class="my-10 flex flex-col gap-5 dark">
+<div id="Contact" class="bg-gradient-white-blue   flex flex-col gap-5 dark">
 	<div
-		class="flex flex-col items-center justify-center p-12 w-full md:w-[50rem] relative left-0 right-0 mx-auto rounded-lg shadow-2xl"
+		class="flex flex-col mb-10 items-center justify-center p-12 w-full md:w-[50rem] relative left-0 right-0 mx-auto rounded-lg shadow-2xl"
 	>
 		<p class="font-monserrat text-3xl font-semibold">
 			{@html translations[$currentLang].contact}
@@ -18,7 +18,7 @@
 			<input type="hidden" name="access_key" value="585da6a9-b112-4dda-a93f-acc6846cfb65" />
 			<label class="label">
 				<input
-					class="input md:w-[30rem] input-white-text"
+					class="input md:w-[30rem] text-white"
 					type="text"
 					placeholder={translations[$currentLang].name}
 					name="name"
@@ -27,7 +27,7 @@
 			</label>
 			<label class="label">
 				<input
-					class="input md:w-[30rem] input-white-text"
+					class="input md:w-[30rem] text-white"
 					type="email"
 					placeholder={translations[$currentLang].email}
 					name="email"
@@ -36,7 +36,7 @@
 			</label>
 			<label class="label">
 				<input
-					class="input md:w-[30rem] input-white-text"
+					class="input md:w-[30rem] text-white"
 					name="message"
 					type="text"
 					placeholder={translations[$currentLang].message}
@@ -57,7 +57,7 @@
 				href="https://github.com/jean-baptisteAZAN"
 				aria-label="Find me on Github"
 				target="_blank"
-				class="w-20 h-20 hover:scale-110 transition-all"
+				class="w-10 h-10 md:w-20 md:h-20 hover:scale-110 transition-all"
 			>
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"
 				><g fill="white"
@@ -75,11 +75,11 @@
 				href="https://linkedin.com/in/jean-baptiste-azan"
 				aria-label="Find me on Linkedin"
 				target="_blank"
-				class="w-20 h-20 hover:scale-110 transition-all"
+				class="w-10 h-10 md:w-20 md:h-20 hover:scale-110 transition-all"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
-					class="w-20 h-20 hover:scale-110 transition-all"
+					class="w-10 h-10 md:w-20 md:h-20 hover:scale-110 transition-all"
 					viewBox="0 0 128 128"
 				><path
 					fill="#0076b2"
@@ -90,18 +90,17 @@
 				/></svg
 				>
 			</a>
-			<a href="tel:+33642239623" aria-label="My phone number">
-				<svg xmlns="http://www.w3.org/2000/svg" class="hover:scale-110 transition-all" width="90" height="90" viewBox="0 0 24 24" style="fill: white"><path d="M17.707 12.293a.999.999 0 0 0-1.414 0l-1.594 1.594c-.739-.22-2.118-.72-2.992-1.594s-1.374-2.253-1.594-2.992l1.594-1.594a.999.999 0 0 0 0-1.414l-4-4a.999.999 0 0 0-1.414 0L3.581 5.005c-.38.38-.594.902-.586 1.435.023 1.424.4 6.37 4.298 10.268s8.844 4.274 10.269 4.298h.028c.528 0 1.027-.208 1.405-.586l2.712-2.712a.999.999 0 0 0 0-1.414l-4-4.001zm-.127 6.712c-1.248-.021-5.518-.356-8.873-3.712-3.366-3.366-3.692-7.651-3.712-8.874L7 4.414 9.586 7 8.293 8.293a1 1 0 0 0-.272.912c.024.115.611 2.842 2.271 4.502s4.387 2.247 4.502 2.271a.991.991 0 0 0 .912-.271L17 14.414 19.586 17l-2.006 2.005z"></path></svg>
-			</a>
+			<Phone href="tel:0642239623" target="_blank" class="w-10 md:w-20 h-10 md:h-20"/>
 		</div>
 	</div>
 </div>
 
 <style>
-    .input-white-text {
-        color: white;
-    }
-
+			.bg-gradient-white-blue {
+					background-image:
+									radial-gradient(at 0% 100%, rgba(var(--color-primary-500) / 0.33) 0px, transparent 50%),
+									radial-gradient(at 98% 99%, rgba(var(--color-tertiary-500) / 0.33) 0px, transparent 50%);
+			}
 		input {
 				padding: 0.5rem;
 		}

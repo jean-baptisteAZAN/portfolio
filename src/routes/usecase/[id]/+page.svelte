@@ -116,6 +116,24 @@
                 { name: "Stripe", icon: "logos:stripe" },
                 { name: "Directus", icon: "simple-icons:directus" }
             ]
+        },
+        "7": {
+            title: translations[$currentLang].timeline7,
+            date: translations[$currentLang].timeline7Date,
+            role: translations[$currentLang].timeline7Role,
+            description: translations[$currentLang].projectDescriptions.timeline7Desc,
+            color: "#0f219e",
+            gradientFrom: "#0f219e",
+            gradientTo: "#ecb300",
+            isAvailable: false,
+            icon: "carbon:collaborate",
+            techStack: [
+                { name: "Nuxt.js", icon: "logos:nuxt" },
+                { name: "React-Native", icon: "vscode-icons:file-type-reacttemplate" },
+                { name: "Tailwind CSS", icon: "logos:tailwindcss-icon" },
+                { name: "NestJS", icon: "logos:nestjs" },
+                { name: "PostrgeSQL", icon: "logos:postgresql" }
+            ]
         }
     };
 
@@ -148,7 +166,7 @@
 
 <div class="min-h-screen relative g" >
     <button
-      class="fixed left-10 top-14 z-50"
+      class="fixed left-5 md:left-10 top-5 md:top-14 z-50"
       onmouseenter={() => isHovering = true}
       onmouseleave={() => isHovering = false}
     >
@@ -179,7 +197,7 @@
         </a>
     </button>
 
-    <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <header class="relative md:min-h-screen mt-40 md:mt-0 flex items-center justify-center overflow-hidden">
         <!-- Content -->
         <div class="relative z-10 text-center space-y-12 px-4 max-w-5xl mx-auto">
             <div
@@ -187,7 +205,7 @@
               in:fly={{ y: 50, duration: 1000, delay: 200 }}
             >
                 <span
-                  class="text-5xl transform hover:scale-125 transition-transform duration-300 hover:rotate-12"
+                  class="text-3xl md:text-5xl transform hover:scale-125 transition-transform duration-300 hover:rotate-12"
                 >
                     <Icon icon={currentCase.icon} />
                 </span>
@@ -197,7 +215,7 @@
             </div>
 
             <h1
-              class="text-7xl md:text-9xl font-bold font-monserrat leading-tight animate-gradient-text"
+              class="text-5xl md:text-9xl font-bold font-monserrat leading-tight animate-gradient-text"
               in:fly={{ y: 50, duration: 1000, delay: 400 }}
             >
                 {@html currentCase.title}
@@ -236,7 +254,7 @@
                     <div class="grid grid-cols-2 gap-6">
                         {#each currentCase.techStack as tech}
                             <div
-                              class="group p-6 rounded-2xl transition-all duration-500 hover:scale-105 transform hover:rotate-1 bg-gradient-to-br from-white/5 to-white/10 hover:from-white/10 hover:to-white/15 border border-white/10 hover:border-white/20"
+                              class="group p-2  md:p-6 rounded-2xl transition-all duration-500 hover:scale-105 transform hover:rotate-1 bg-gradient-to-br from-white/5 to-white/10 hover:from-white/10 hover:to-white/15 border border-white/10 hover:border-white/20"
                             >
                                 <div class="flex items-center gap-4">
                                     <Icon
@@ -244,7 +262,7 @@
                                       width="50"
                                       height="50"
                                     />
-                                    <span class="font-monserrat font-medium text-white/90 group-hover:text-white transition-colors duration-300">
+                                    <span class="font-monserrat font-medium text-xs lg:text-xl text-white/90 group-hover:text-white transition-colors duration-300">
                                         {tech.name}
                                     </span>
                                 </div>

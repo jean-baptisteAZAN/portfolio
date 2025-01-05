@@ -33,6 +33,9 @@
 	"timeline6": "Eh Bam - E-commerce Website",
 	"timeline6Date": "September - November 2024",
 	"timeline6Role": "Fullstack Developer",
+	"timeline7": "Proppl - Recruitment Platform",
+	"timeline7Date": "November 2024 - Today",
+	"timeline7Role": "Fullstack Developer",
 	"learnMoreButton": "Learn more",
 	"contact": "Let's get in touch&nbsp;!",
 	"findMe": "And find me on:",
@@ -46,7 +49,8 @@
 		"timeline3Desc": "Une Robe un Soir is a company specializing in the rental of luxury evening dresses. As a fullstack / devops developer, I had the opportunity to work, as a Freelance, on the development of the company's e-commerce site, as well as setting up several automation services and a stock management software.",
 		"timeline4Desc": "Twin Promotion is a company specializing in real estate promotion. I was hired as a Freelance Frontend Developer to work on the company's website. My mission was to update the existing site by fixing UX bugs and adding new features. After this first successful mission, I was hired to work on the company's new website as a Fullstack developer",
 		"timeline5Desc": "Oden is a mobile application that aims to facilitate the lives of students by offering them a platform where they can find all the information they need to succeed in their studies. As the creator of this application, I had to design and develop the entire application from scratch. From product design to development, I was able to create a mobile application that meets the needs of students.",
-		"timeline6Desc": "Eh Bam is a company specializing in the sale of local food products. As a Fullstack developer, I had to design and develop their e-commerce website. My mission was to set up an e-commerce website allowing users to order local products online."
+		"timeline6Desc": "Eh Bam is a company specializing in the sale of local food products. As a Fullstack developer, I had to design and develop their e-commerce website. My mission was to set up an e-commerce website allowing users to order local products online.",
+		"timeline7Desc": "Proppl is a cooptation platform specializing in recruitment. As a Fullstack developer, I had the opportunity to work on the development of the platform. My mission was to maintain and improve the existing platform by adding new features and fixing bugs."
 	},
 	"techStack": "Tech stack:",
 	"viewProject": "View the project",

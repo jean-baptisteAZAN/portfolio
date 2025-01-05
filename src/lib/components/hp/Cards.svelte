@@ -74,7 +74,7 @@
 	let hoveredId: string | null = $state(null);
 </script>
 
-<div class="flex flex-col items-center justify-center gap-5 px-5 md:mt-[20rem] md:flex-row">
+<div class="flex flex-col items-center justify-center gap-3 px-3 md:mt-[20rem] lg:flex-row">
 	<Card icon="iconamoon:star-fill" text={translations[$currentLang].card1} />
 	<Card icon="mdi:tools" text={translations[$currentLang].card2} />
 	<Card icon="mdi:people" text={translations[$currentLang].card3} />

@@ -33,6 +33,9 @@
 	"timeline6": "Eh Bam - Site E-commerce",
 	"timeline6Date": "Septembre - Novembre 2024",
 	"timeline6Role": "Développeur Fullstack",
+	"timeline7": "Proppl - Plateforme de recrutement",
+	"timeline7Date": "Novembre 2024 - Aujourd'hui",
+	"timeline7Role": "Développeur Fullstack",
 	"learnMoreButton": "En savoir plus",
 	"contact": "Rencontrons-nous&nbsp;!",
 	"findMe": "Et retrouvez moi sur :",
@@ -46,7 +49,8 @@
 		"timeline3Desc": "Une Robe un Soir est une entreprise spécialisée dans la location de robes de soirée de luxe. En tant que développeur fullstack / devops, j'ai eu l'occasion de travailler, en Freelance, sur le développement du site marchand de l'entreprise, ainsi que sur la mise en place de plusieurs services d'automatisation et d'un logiciel metier de gestion du stock.",
 		"timeline4Desc": "Twin Promotion est une entreprise spécialisée dans la promotion immobilière. J'ai été embauché en tant que développeur Frontend Freelance pour travailler sur le site web de l'entreprise. Ma mission était de mettre à jour le site existant en réglant des bugs d'UX et en ajoutant de nouvelles fonctionnalités.",
 		"timeline5Desc": "Oden est une application mobile qui a pour but de faciliter la vie associative des étudiants, nous avons travailler en collaboration avec l'Espas-Estice pour la création de cette application. En tant que créateur de cette application, j'ai du concevoir et développer l'ensemble de l'application de zéro. De la conception du produit au développement, j'ai pu créer une application mobile qui répond aux besoins des étudiants.",
-		"timeline6Desc": "Eh Bam est une entreprise spécialisée dans la vente de produits alimentaires locaux. En tant que développeur Fullstack j'ai eu a concevoir et développer leur site e-commerce. Ma mission était de mettre en place un site e-commerce permettant aux utilisateurs de commander des produits locaux en ligne."
+		"timeline6Desc": "Eh Bam est une entreprise spécialisée dans la vente de produits alimentaires locaux. En tant que développeur Fullstack j'ai eu a concevoir et développer leur site e-commerce. Ma mission était de mettre en place un site e-commerce permettant aux utilisateurs de commander des produits locaux en ligne.",
+		"timeline7Desc": "Proppl est une plateforme de cooptation spécialisée dans le recrutement. En tant que développeur Fullstack, j'ai eu l'occasion de travailler sur le développement de la plateforme. Ma mission était de maintenir et d'améliorer la plateforme existante en ajoutant de nouvelles fonctionnalités et en corrigeant des bugs."
 	},
 	"techStack": "Stack technique:",
 	"viewProject": "Voir le projet",
