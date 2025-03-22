@@ -76,9 +76,15 @@
 
 {#if !$isLoading}
 	<div class="flex flex-col items-center justify-center gap-3 px-3 md:mt-[20rem] lg:flex-row">
-		<Card icon="iconamoon:star-fill" text={$_('card1')} />
-		<Card icon="mdi:tools" text={$_('card2')} />
-		<Card icon="mdi:people" text={$_('card3')} />
+		<div class="card-item">
+			<Card icon="iconamoon:star-fill" text={$_('card1')} />
+		</div>
+		<div class="card-item">
+			<Card icon="mdi:tools" text={$_('card2')} />
+		</div>
+		<div class="card-item">
+			<Card icon="mdi:people" text={$_('card3')} />
+		</div>
 	</div>
 
 	<div class="marquee-container relative hidden h-40 py-40 md:block">

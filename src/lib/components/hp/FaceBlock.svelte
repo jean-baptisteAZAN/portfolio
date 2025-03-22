@@ -5,9 +5,61 @@
 
 	let faceDiv: HTMLElement | undefined = $state();
 	let shadowDiv: HTMLElement | undefined = $state();
+	let titleRef: HTMLElement | undefined = $state();
+	let subtitleRef: HTMLElement | undefined = $state();
+	let ctaButtonRef: HTMLElement | undefined = $state();
+	let isLoaded = $state(false);
 
 	onMount(() => {
 		window.addEventListener('mousemove', moveShadow);
+		
+		// Animation sequence for title elements
+		const tl = gsap.timeline({ delay: 0.3 });
+		
+		if (titleRef && subtitleRef && ctaButtonRef) {
+			// Split text animation for title
+			const titleText = titleRef.innerHTML || '';
+			titleRef.innerHTML = '';
+			
+			titleText.split('<br>').forEach((line, index) => {
+				const lineDiv = document.createElement('div');
+				lineDiv.style.overflow = 'hidden';
+				
+				const textSpan = document.createElement('span');
+				textSpan.innerHTML = line;
+				textSpan.style.display = 'inline-block';
+				
+				lineDiv.appendChild(textSpan);
+				if (titleRef) {
+					titleRef.appendChild(lineDiv);
+				}
+				
+				tl.from(textSpan, {
+					y: 100,
+					opacity: 0,
+					duration: 0.7,
+					ease: "power3.out"
+				}, index * 0.1);
+			});
+			
+			// Animate subtitle from bottom
+			tl.from(subtitleRef, {
+				y: 30,
+				opacity: 0,
+				duration: 0.6,
+				ease: "power2.out"
+			}, "-=0.3");
+			
+			// Button animation
+			tl.from(ctaButtonRef, {
+				scale: 0.8,
+				opacity: 0,
+				duration: 0.5,
+				ease: "back.out(1.7)"
+			}, "-=0.2");
+		}
+		
+		isLoaded = true;
 	});
 
 	function moveShadow(event: MouseEvent) {
@@ -43,19 +95,24 @@
 		id="AboutMeMobile"
 		class="container-me flex flex-col items-center justify-center gap-8 py-20 md:hidden"
 	>
-		<img
-			src="/face.jpg"
-			alt="Jean-Baptiste Azan, Développeur web Lille"
-			class="h-60 w-60 rounded-full"
-		/>
-		<h1 class="text-center">
+		<div class="relative">
+			<img
+				src="/face.jpg"
+				alt="Jean-Baptiste Azan, Développeur web Lille"
+				class="h-60 w-60 rounded-full animated-border"
+			/>
+			<div class="gradient-blob"></div>
+		</div>
+		
+		<h1 bind:this={titleRef} class="text-center">
 			<span class="text-4xl font-bold">AZAN</span><br />
 			<span class="text-4xl font-bold">Jean-Baptiste</span><br />
-			<span class="px-10 text-center text-3xl font-bold text-tertiary-600">
+			<span bind:this={subtitleRef} class="px-10 text-center text-3xl font-bold text-tertiary-600">
 				{$_('poste')}
 			</span>
 		</h1>
 		<a
+			bind:this={ctaButtonRef}
 			href="#Contact"
 			class="group relative inline-flex items-center overflow-hidden rounded-full border-2 border-tertiary-600 px-12 py-3 text-lg font-medium text-tertiary-600 hover:bg-gray-50 hover:text-white md:mt-[1rem]"
 		>
@@ -89,16 +146,18 @@
 			<div class="relative h-[20rem] w-[20rem]">
 				<div bind:this={faceDiv} class="face"></div>
 				<div bind:this={shadowDiv} class="bg-primary-500 shadow"></div>
+				<div class="gradient-blob"></div>
 			</div>
 			
 			<!-- Right side with text content -->
 			<div class="flex flex-col items-start">
-				<h1 class="mb-6">
+				<h1 bind:this={titleRef} class="mb-6">
 					<span class="text-5xl font-bold">AZAN</span><br />
 					<span class="text-5xl font-bold">Jean-Baptiste</span><br />
-					<span class="text-4xl font-bold text-tertiary-600">{$_('poste')}</span>
+					<span bind:this={subtitleRef} class="text-4xl font-bold text-tertiary-600">{$_('poste')}</span>
 				</h1>
 				<a
+					bind:this={ctaButtonRef}
 					href="#Contact"
 					class="group relative inline-flex items-center overflow-hidden rounded-full border-2 border-tertiary-600 px-12 py-3 text-lg font-medium text-tertiary-600 hover:bg-gray-50 hover:text-white"
 				>
@@ -145,12 +204,63 @@
 		border-radius: 50%;
 		background-size: cover;
 		position: absolute;
+		z-index: 2;
 	}
 	.shadow {
 		width: 105%;
 		height: 105%;
 		border-radius: 50%;
 		position: absolute;
-		z-index: -1;
+		z-index: 1;
+	}
+	
+	.gradient-blob {
+		position: absolute;
+		width: 250px;
+		height: 250px;
+		background: linear-gradient(135deg, rgba(var(--color-primary-500), 0.6), rgba(var(--color-tertiary-500), 0.6));
+		border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+		filter: blur(30px);
+		opacity: 0.5;
+		z-index: 0;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		animation: blob-movement 8s infinite alternate ease-in-out;
+	}
+	
+	.animated-border {
+		position: relative;
+		z-index: 2;
+		border: 3px solid transparent;
+		background-clip: padding-box;
+		animation: border-pulse 4s infinite;
+	}
+	
+	@keyframes border-pulse {
+		0%, 100% {
+			box-shadow: 0 0 15px rgba(var(--color-primary-500), 0.5);
+		}
+		50% {
+			box-shadow: 0 0 25px rgba(var(--color-tertiary-500), 0.7);
+		}
+	}
+	
+	@keyframes blob-movement {
+		0% {
+			border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+		}
+		25% {
+			border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%;
+		}
+		50% {
+			border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+		}
+		75% {
+			border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+		}
+		100% {
+			border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+		}
 	}
 </style>
