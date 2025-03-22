@@ -1,16 +1,18 @@
 <script lang="ts">
-	import { currentLang, translations, switchLanguage } from '$lib/utils/store';
+	import { currentLang, switchLanguage } from '$lib/utils/store';
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
-	import Icon from '@iconify/svelte/dist/OfflineIcon.svelte';
+	import { _ } from 'svelte-i18n';
 
 	let selectedItem = $state('about');
-	let toggleRef = $state();
+	let toggleRef: HTMLElement | undefined = $state();
 	let isFrench: boolean = false;
 	let redirectionDone: boolean = false;
 
 	onMount(() => {
-		gsap.fromTo(toggleRef, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+		if (toggleRef) {
+			gsap.fromTo(toggleRef as HTMLElement, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+		}
 		updateCursor();
 	});
 	function selectItem(item: string): void {
@@ -22,10 +24,11 @@
 	}
 	function updateCursor(): void {
 		setTimeout(() => {
-			const activeElement = document.querySelector(`.${selectedItem}`);
-			if (activeElement) {
-				document.getElementById('cursor').style.left = `${activeElement.offsetLeft}px`;
-				document.getElementById('cursor').style.width = `${activeElement.offsetWidth}px`;
+			const activeElement = document.querySelector(`.${selectedItem}`) as HTMLElement;
+			const cursor = document.getElementById('cursor');
+			if (activeElement && cursor) {
+				cursor.style.left = `${activeElement.offsetLeft}px`;
+				cursor.style.width = `${activeElement.offsetWidth}px`;
 			}
 		}, 0);
 	}
@@ -42,21 +45,27 @@
 
 	function toggleLanguage(): void {
 		isFrench = !isFrench;
-		gsap.fromTo(toggleRef, { x: -10, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5 });
+		if (toggleRef) {
+			gsap.fromTo(
+				toggleRef as HTMLElement,
+				{ x: -10, opacity: 0 },
+				{ x: 0, opacity: 1, duration: 0.5 }
+			);
+		}
 		switchLanguage(isFrench ? 'fr' : 'en');
 	}
 </script>
 
 <div class="header sticky z-50 h-[3rem] w-full gap-3 backdrop-blur-lg md:gap-10">
 	<a href="#AboutMeDesktop" class="menu-item about" onclick={() => selectItem('about')}
-		>{translations[$currentLang].header.about}</a
+		>{$_('header.about')}</a
 	>
 	<a href="#Projects" class="menu-item projects" onclick={() => selectItem('projects')}
-		>{translations[$currentLang].header.projects}</a
+		>{$_('header.projects')}</a
 	>
-	<a href="#Contact" class="menu-item contact" onclick={() => selectItem('contact')}
-		>{translations[$currentLang].header.contact}</a
-	>
+	<a href="#Contact" class="menu-item contact" onclick={() => selectItem('contact')}>
+		{$_('header.contact')}
+	</a>
 	<div id="cursor" class={selectedItem}></div>
 </div>
 <div class=" absolute right-1 top-1 z-50 md:right-10">

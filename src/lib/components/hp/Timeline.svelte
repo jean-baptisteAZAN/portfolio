@@ -1,115 +1,126 @@
 <script lang="ts">
-	import { currentLang, translations } from '$lib/utils/store.js';
+	import { _, isLoading } from 'svelte-i18n';
 	import Icon from '@iconify/svelte';
+	import { derived } from 'svelte/store';
 
-	const timelineItems = [
+	const timelineItems = derived(_, ($_) => [
 		{
-			id: "7",
-			position: "start",
-			title: translations[$currentLang].timeline7,
-			date: translations[$currentLang].timeline7Date,
-			role: translations[$currentLang].timeline7Role,
-			icon: "carbon:collaborate"
+			id: '7',
+			position: 'start',
+			title: $_('timeline7'),
+			date: $_('timeline7Date'),
+			role: $_('timeline7Role'),
+			icon: 'carbon:collaborate'
 		},
 		{
-			id: "6",
-			position: "start",
-			title: translations[$currentLang].timeline6,
-			date: translations[$currentLang].timeline6Date,
-			role: translations[$currentLang].timeline6Role,
-			icon: "fluent:food-16-filled"
+			id: '6',
+			position: 'start',
+			title: $_('timeline6'),
+			date: $_('timeline6Date'),
+			role: $_('timeline6Role'),
+			icon: 'fluent:food-16-filled'
 		},
 		{
-			id: "5",
-			position: "start",
-			title: translations[$currentLang].timeline5,
-			date: translations[$currentLang].timeline5Date,
-			role: translations[$currentLang].timeline5Role,
-			icon: "circum:mobile-1"
+			id: '5',
+			position: 'start',
+			title: $_('timeline5'),
+			date: $_('timeline5Date'),
+			role: $_('timeline5Role'),
+			icon: 'circum:mobile-1'
 		},
 		{
-			id: "4",
-			position: "end",
-			title: translations[$currentLang].timeline4,
-			date: translations[$currentLang].timeline4Date,
-			role: translations[$currentLang].timeline4Role,
-			icon: "bi:houses-fill"
+			id: '4',
+			position: 'end',
+			title: $_('timeline4'),
+			date: $_('timeline4Date'),
+			role: $_('timeline4Role'),
+			icon: 'bi:houses-fill'
 		},
 		{
-			id: "3",
-			position: "start",
-			title: translations[$currentLang].timeline3,
-			date: translations[$currentLang].timeline3Date,
-			role: translations[$currentLang].timeline3Role,
-			icon: "ph:dress-fill"
+			id: '3',
+			position: 'start',
+			title: $_('timeline3'),
+			date: $_('timeline3Date'),
+			role: $_('timeline3Role'),
+			icon: 'ph:dress-fill'
 		},
 		{
-			id: "2",
-			position: "end",
-			title: translations[$currentLang].timeline2,
-			date: translations[$currentLang].timeline2Date,
-			role: translations[$currentLang].timeline2Role,
-			icon: "bi:person-arms-up"
+			id: '2',
+			position: 'end',
+			title: $_('timeline2'),
+			date: $_('timeline2Date'),
+			role: $_('timeline2Role'),
+			icon: 'bi:person-arms-up'
 		},
 		{
-			id: "1",
-			position: "start",
-			title: translations[$currentLang].timeline1,
-			date: translations[$currentLang].timeline1Date,
-			role: translations[$currentLang].timeline1Role,
-			icon: "bi:flower3"
+			id: '1',
+			position: 'start',
+			title: $_('timeline1'),
+			date: $_('timeline1Date'),
+			role: $_('timeline1Role'),
+			icon: 'bi:flower3'
 		}
-	];
+	]);
 </script>
 
-<div class="mb-20">
-	<h3 class="text-4xl py-10 text-center font-monserrat font-bold">
-		{@html translations[$currentLang].journey}
-	</h3>
+{#if !$isLoading}
+	<div class="mb-20">
+		<h3 class="py-10 text-center font-monserrat text-4xl font-bold">
+			{@html $_('journey')}
+		</h3>
 
-	<div class="scrollbar-hide overflow-auto px-4">
-		<div class="flex space-x-6 md:space-x-10 py-8 min-w-max px-4">
-			{#each timelineItems as item}
-				<a
-					href="/usecase/{item.id}"
-					rel="external"
-					class="border-[1px] border-primary-500 group flex-shrink-0 w-[300px] md:w-[400px] hover:bg-surface-300/50 rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden"
-				>
-					<div class="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 bg-gradient-to-br from-primary-900 to-primary-500"></div>
-					<div class="relative z-10">
-						<div class="flex items-center gap-4 mb-4">
-							<div class="w-12 h-12 rounded-full bg-surface-300/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-								<Icon icon={item.icon} class="w-6 h-6" />
+		<div class="scrollbar-hide overflow-auto px-4">
+			<div class="flex min-w-max space-x-6 px-4 py-8 md:space-x-10">
+				{#each $timelineItems as item}
+					<a
+						href="/usecase/{item.id}"
+						rel="external"
+						class="group relative w-[300px] flex-shrink-0 overflow-hidden rounded-xl border-[1px] border-primary-500 p-6 transition-all duration-300 hover:-translate-y-2 hover:bg-surface-300/50 md:w-[400px]"
+					>
+						<div
+							class="absolute inset-0 bg-gradient-to-br from-primary-900 to-primary-500 opacity-0 transition-opacity duration-300 group-hover:opacity-10"
+						></div>
+						<div class="relative z-10">
+							<div class="mb-4 flex items-center gap-4">
+								<div
+									class="flex h-12 w-12 items-center justify-center rounded-full bg-surface-300/50 transition-transform duration-300 group-hover:scale-110"
+								>
+									<Icon icon={item.icon} class="h-6 w-6" />
+								</div>
+								<span class="text-sm font-medium opacity-75">{@html item.date}</span>
 							</div>
-							<span class="text-sm font-medium opacity-75">{@html item.date}</span>
+							<h4 class="mb-2 font-monserrat text-xl font-bold">
+								{@html item.title}
+							</h4>
+							<p class="mb-4 text-surface-600 dark:text-surface-300">
+								{@html item.role}
+							</p>
+							<div
+								class="btn inline-flex items-center rounded-lg font-medium text-primary-500 transition-transform duration-300 preset-filled-primary-500 group-hover:translate-x-2"
+							>
+								{$_('learnMoreButton')}
+								<Icon icon="lucide:arrow-right" class="ml-2 h-4 w-4" />
+							</div>
 						</div>
-						<h4 class="text-xl font-bold font-monserrat mb-2">
-							{@html item.title}
-						</h4>
-						<p class="text-surface-600 dark:text-surface-300 mb-4">
-							{@html item.role}
-						</p>
-						<div class="inline-flex items-center preset-filled-primary-500 text-primary-500 font-medium btn rounded-lg group-hover:translate-x-2 transition-transform duration-300">
-							{translations[$currentLang].learnMoreButton}
-							<Icon icon="lucide:arrow-right" class="ml-2 w-4 h-4" />
-						</div>
-					</div>
-				</a>
-			{/each}
+					</a>
+				{/each}
+			</div>
+		</div>
+		<div
+			class="mt-6 flex items-center justify-center gap-2 text-center text-sm text-surface-600 dark:text-surface-300"
+		>
+			<Icon icon="lucide:mouse" class="h-4 w-4" />
 		</div>
 	</div>
-	<div class="mt-6 text-center text-sm text-surface-600 dark:text-surface-300 flex items-center justify-center gap-2">
-		<Icon icon="lucide:mouse" class="w-4 h-4" />
-	</div>
-</div>
+{/if}
 
 <style>
-    /* Hide scrollbar */
-    .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-    }
+	/* Hide scrollbar */
+	.scrollbar-hide {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
 </style>

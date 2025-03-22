@@ -2,7 +2,7 @@
 	import Card from '$lib/components/hp/Card.svelte';
 	import Marquee from '$lib/components/hp/Marquee.svelte';
 	import Icon from '@iconify/svelte';
-	import { currentLang, translations } from '$lib/utils/store';
+	import { _, isLoading } from 'svelte-i18n';
 
 	const logos = [
 		{
@@ -74,33 +74,35 @@
 	let hoveredId: string | null = $state(null);
 </script>
 
-<div class="flex flex-col items-center justify-center gap-3 px-3 md:mt-[20rem] lg:flex-row">
-	<Card icon="iconamoon:star-fill" text={translations[$currentLang].card1} />
-	<Card icon="mdi:tools" text={translations[$currentLang].card2} />
-	<Card icon="mdi:people" text={translations[$currentLang].card3} />
-</div>
+{#if !$isLoading}
+	<div class="flex flex-col items-center justify-center gap-3 px-3 md:mt-[20rem] lg:flex-row">
+		<Card icon="iconamoon:star-fill" text={$_('card1')} />
+		<Card icon="mdi:tools" text={$_('card2')} />
+		<Card icon="mdi:people" text={$_('card3')} />
+	</div>
 
-<div class="marquee-container relative hidden h-40 py-40 md:block">
-	<Marquee class="[--duration:20s]">
-		{#each logos as logo}
-			<div
-				class="mx-8 w-16 transition-all duration-500"
-				class:grayscale={hoveredId !== logo.id}
-				onmouseenter={() => (hoveredId = logo.id)}
-				onmouseleave={() => (hoveredId = null)}
-			>
-				<Icon icon={logo.icon} width="100%" height="100%" />
-			</div>
-		{/each}
-	</Marquee>
+	<div class="marquee-container relative hidden h-40 py-40 md:block">
+		<Marquee class="[--duration:20s]">
+			{#each logos as logo}
+				<div
+					class="mx-8 w-16 transition-all duration-500"
+					class:grayscale={hoveredId !== logo.id}
+					onmouseenter={() => (hoveredId = logo.id)}
+					onmouseleave={() => (hoveredId = null)}
+				>
+					<Icon icon={logo.icon} width="100%" height="100%" />
+				</div>
+			{/each}
+		</Marquee>
 
-	<div
-		class="from-background pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r"
-	></div>
-	<div
-		class="from-background pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l"
-	></div>
-</div>
+		<div
+			class="from-background pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r"
+		></div>
+		<div
+			class="from-background pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l"
+		></div>
+	</div>
+{/if}
 
 <style>
 	.marquee-container {

@@ -8,13 +8,7 @@
 		icon: string;
 	}
 
-	let {
-		website,
-		gradientFrom,
-		gradientTo,
-		color,
-		icon
-	}: Props = $props();
+	let { website, gradientFrom, gradientTo, color, icon }: Props = $props();
 
 	let iframeLoaded = $state(false);
 	let iframeError = $state(false);
@@ -28,17 +22,17 @@
 	}
 </script>
 
-<div class="mb-20  relative rounded-xl">
+<div class="relative mb-20 rounded-xl">
 	<div
-		class="w-full h-[80vh] md:aspect-video rounded-xl overflow-hidden p-1 shadow-lg"
+		class="h-[80vh] w-full overflow-hidden rounded-xl p-1 shadow-lg md:aspect-video"
 		style="background: linear-gradient(135deg, {gradientFrom}, {gradientTo})"
 	>
-		<div class="w-full h-full bg-surface-900 rounded-none overflow-hidden relative">
+		<div class="relative h-full w-full overflow-hidden rounded-none bg-surface-900">
 			<!-- Loading State -->
 			{#if !iframeLoaded && !iframeError}
 				<div class="absolute inset-0 flex items-center justify-center bg-surface-900">
-					<div class="text-6xl animate-pulse" style="color: {color}">
-						<Icon icon={icon} />
+					<div class="animate-pulse text-6xl" style="color: {color}">
+						<Icon {icon} />
 					</div>
 				</div>
 			{/if}
@@ -48,7 +42,7 @@
 				<iframe
 					src={website}
 					title="Site Preview"
-					class="w-full h-full border-0 transition-opacity duration-500"
+					class="h-full w-full border-0 transition-opacity duration-500"
 					style="opacity: {iframeLoaded ? '1' : '0'}"
 					onload={handleIframeLoad}
 					onerror={handleIframeError}
@@ -58,14 +52,12 @@
 			<!-- Error State -->
 			{#if iframeError}
 				<div class="absolute inset-0 flex flex-col items-center justify-center gap-4">
-					<p class="text-surface-500 text-xl font-monserrat">
-						Prévisualisation non disponible
-					</p>
+					<p class="font-monserrat text-xl text-surface-500">Prévisualisation non disponible</p>
 					<a
 						href={website}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="btn variant-filled hover:scale-105 transition-transform"
+						class="variant-filled btn transition-transform hover:scale-105"
 						style="background: linear-gradient(135deg, {gradientFrom}, {gradientTo})"
 					>
 						Visiter le site →
@@ -74,14 +66,16 @@
 			{/if}
 
 			<!-- Browser-like top bar -->
-			<div class="absolute -top-1 left-0 right-0 h-8 rounded-lg bg-surface-800/80 backdrop-blur-sm flex items-center px-4 gap-2">
+			<div
+				class="absolute -top-1 left-0 right-0 flex h-8 items-center gap-2 rounded-lg bg-surface-800/80 px-4 backdrop-blur-sm"
+			>
 				<div class="flex gap-2">
-					<div class="w-3 h-3 rounded-full bg-red-500"></div>
-					<div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-					<div class="w-3 h-3 rounded-full bg-green-500"></div>
+					<div class="h-3 w-3 rounded-full bg-red-500"></div>
+					<div class="h-3 w-3 rounded-full bg-yellow-500"></div>
+					<div class="h-3 w-3 rounded-full bg-green-500"></div>
 				</div>
-				<div class="flex-1 ml-4">
-					<div class="bg-surface-700/50 rounded-full px-4 py-1 text-xs truncate max-w-md mx-auto">
+				<div class="ml-4 flex-1">
+					<div class="mx-auto max-w-md truncate rounded-full bg-surface-700/50 px-4 py-1 text-xs">
 						{website}
 					</div>
 				</div>
@@ -90,8 +84,12 @@
 	</div>
 
 	<!-- Decorative elements -->
-	<div class="absolute -bottom-6 -right-6 w-24 h-24 rounded-full opacity-20 blur-xl"
-			 style="background: linear-gradient(135deg, {gradientFrom}, {gradientTo})"></div>
-	<div class="absolute -top-6 -left-6 w-24 h-24 rounded-full opacity-20 blur-xl"
-			 style="background: linear-gradient(135deg, {gradientTo}, {gradientFrom})"></div>
+	<div
+		class="absolute -bottom-6 -right-6 h-24 w-24 rounded-full opacity-20 blur-xl"
+		style="background: linear-gradient(135deg, {gradientFrom}, {gradientTo})"
+	></div>
+	<div
+		class="absolute -left-6 -top-6 h-24 w-24 rounded-full opacity-20 blur-xl"
+		style="background: linear-gradient(135deg, {gradientTo}, {gradientFrom})"
+	></div>
 </div>

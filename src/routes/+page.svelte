@@ -6,8 +6,8 @@
 	import Testimonials from '$lib/components/hp/Testimonials.svelte';
 	import Form from '$lib/components/hp/Form.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { currentLang, translations } from '$lib/utils/store';
 	import { onMount } from 'svelte';
+	import { _ } from 'svelte-i18n';
 
 	onMount(() => {
 		const script = document.createElement('script');
@@ -24,21 +24,23 @@
 </script>
 
 <svelte:head>
-	<title> Jean-Baptiste Azan </title>
-	<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+	<title>Jean-Baptiste Azan</title>
+	<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
 </svelte:head>
 
 <Navbar />
 <FaceBlock />
 <Cards />
-<Projects/>
+<Projects />
 <!--<Education/>-->
-<Testimonials/>
-<Timeline/>
-<Form/>
+<Testimonials />
+<Timeline />
+<Form />
 
-
-<button class="fixed btn z-50 preset-filled bottom-7 right-7 hover:scale-110 transition-all duration-500" onclick={openCalendly}>
-	<span class="badge-icon preset-filled-primary-500 absolute -right-2 -top-2 z-10">1</span>
-	{translations[$currentLang].lets_talk}
+<button
+	class="btn fixed bottom-7 right-7 z-50 transition-all duration-500 preset-filled hover:scale-110"
+	onclick={openCalendly}
+>
+	<span class="badge-icon absolute -right-2 -top-2 z-10 preset-filled-primary-500">1</span>
+	{$_('lets_talk')}
 </button>
