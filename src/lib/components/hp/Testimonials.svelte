@@ -1,55 +1,64 @@
 <script>
 	import Marquee from '$lib/components/hp/Marquee.svelte';
 	import ReviewCard from '$lib/components/hp/ReviewCard.svelte';
+	import { _, isLoading } from 'svelte-i18n';
+	import { derived } from 'svelte/store';
 
-	let testimonials = $state([
+	// Use derived store to update testimonials when language changes
+	const testimonials = derived(_, ($_) => [
 		{
-			name: 'Romain Leroy',
-			username: 'DSI chez Immodirect France',
-			body: 'Jean-Baptiste a répondu à nos attentes et respecté les délais avec un travail sérieux et appliqué.',
+			name: $_('testimonials.person1.name') || 'Romain Leroy',
+			username: $_('testimonials.person1.role') || 'CIO at Immodirect France',
+			body: $_('testimonials.person1.quote') || 'Jean-Baptiste met our expectations and respected deadlines with serious and diligent work.',
 			img: '/testi1.jpeg'
 		},
 		{
-			name: 'Mr MEUNIER',
-			username:
-				'Secretaire général - Association DEFENSE ET SAUVEGARDE DU MARCHE AUX FLEURS REINE ELIZABETH II',
-			body: "Prestataire de qualité, réactif et à l'écoute. Il a été force de proposition et de bon conseil pour notre projet. Je recommande fortement car notre projet a été mené à terme.",
+			name: $_('testimonials.person2.name') || 'Mr MEUNIER',
+			username: $_('testimonials.person2.role') || 'General Secretary - DEFENSE AND PRESERVATION OF THE QUEEN ELIZABETH II FLOWER MARKET Association',
+			body: $_('testimonials.person2.quote') || "Quality service provider, responsive and attentive. He made helpful suggestions and gave good advice for our project. I highly recommend him as our project was completed successfully.",
 			img: '/img_4.png'
 		},
 		{
-			name: 'Melusine Secq',
-			username: 'Présidente BDE F’estice',
-			body: 'Merci à Jean Baptiste pour son application hyper fonctionnelle, pour sa réactivité et pour son écoute à toutes nos demandes. La collaboration est une vraie réussite ! Je vous le recommande vivement.',
+			name: $_('testimonials.person3.name') || 'Melusine Secq',
+			username: $_('testimonials.person3.role') || 'President of BDE F\'estice',
+			body: $_('testimonials.person3.quote') || 'Thank you to Jean Baptiste for his highly functional application, for his responsiveness and for listening to all our requests. The collaboration was a real success! I highly recommend him.',
 			img: '/espas-estice.png'
 		}
 	]);
-	let firstRow = $derived(testimonials.slice(0, testimonials.length));
-	let secondRow = $derived([...testimonials].reverse());
+
+	$: firstRow = $testimonials?.slice(0, $testimonials?.length) || [];
+	$: secondRow = [...($testimonials || [])].reverse();
 </script>
 
-<div class="relative bg-gradient-to-br py-20">
-	<div class="w-full">
-		<h2 class="mb-16 text-center text-4xl font-bold">Ce qu'ils pensent de notre collaboration</h2>
+{#if !$isLoading}
+	<div class="relative bg-gradient-to-br py-20">
+		<div class="w-full">
+			<h2 class="mb-16 text-center text-4xl font-bold">{$_('testimonials.title')}</h2>
 
-		<div class="relative flex flex-col overflow-hidden">
-			<Marquee pauseOnHover class="[--duration:30s]">
-				{#each firstRow as item}
-					<ReviewCard {...item} />
-				{/each}
-			</Marquee>
-			<Marquee reverse pauseOnHover class="[--duration:30s]">
-				{#each secondRow as item}
-					<ReviewCard {...item} />
-				{/each}
-			</Marquee>
+			<div class="relative flex flex-col overflow-hidden">
+				<Marquee pauseOnHover class="[--duration:30s]">
+					{#each firstRow as item}
+						<ReviewCard {...item} />
+					{/each}
+				</Marquee>
+				<Marquee reverse pauseOnHover class="[--duration:30s]">
+					{#each secondRow as item}
+						<ReviewCard {...item} />
+					{/each}
+				</Marquee>
 
-			<!-- Effets de fondu sur les bords -->
-			<div
-				class="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-surface-900"
-			></div>
-			<div
-				class="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-surface-900"
-			></div>
+				<!-- Effets de fondu sur les bords -->
+				<div
+					class="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-surface-900"
+				></div>
+				<div
+					class="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-surface-900"
+				></div>
+			</div>
 		</div>
 	</div>
-</div>
+{:else}
+	<div class="flex h-60 w-full items-center justify-center">
+		<div class="h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-primary-500 border-t-transparent"></div>
+	</div>
+{/if}

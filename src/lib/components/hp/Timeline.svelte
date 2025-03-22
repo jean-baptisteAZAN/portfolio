@@ -5,6 +5,22 @@
 
 	const timelineItems = derived(_, ($_) => [
 		{
+			id: '9',
+			position: 'start',
+			title: 'CareCall',
+			date: '2024',
+			role: 'Backend Developer',
+			icon: 'mdi:phone-in-talk'
+		},
+		{
+			id: '8',
+			position: 'end',
+			title: 'Archimeuble',
+			date: '2023',
+			role: 'AI Chatbot Developer',
+			icon: 'mdi:sofa'
+		},
+		{
 			id: '7',
 			position: 'start',
 			title: $_('timeline7'),

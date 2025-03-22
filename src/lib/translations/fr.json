@@ -36,6 +36,12 @@
 	"timeline7": "Proppl - Plateforme de recrutement",
 	"timeline7Date": "Novembre 2024 - Aujourd'hui",
 	"timeline7Role": "Développeur Fullstack",
+	"timeline8": "Archimeuble",
+	"timeline8Date": "2023",
+	"timeline8Role": "Développeur de Chatbot IA",
+	"timeline9": "CareCall",
+	"timeline9Date": "2024",
+	"timeline9Role": "Développeur Backend",
 	"learnMoreButton": "En savoir plus",
 	"contact": "Rencontrons-nous&nbsp;!",
 	"findMe": "Et retrouvez moi sur :",
@@ -43,6 +49,24 @@
 	"name": "Nom",
 	"email": "Email",
 	"message": "Votre message",
+	"testimonials": {
+		"title": "Ce qu'ils pensent de notre collaboration",
+		"person1": {
+			"name": "Romain Leroy",
+			"role": "DSI chez Immodirect France",
+			"quote": "Jean-Baptiste a répondu à nos attentes et respecté les délais avec un travail sérieux et appliqué."
+		},
+		"person2": {
+			"name": "Mr MEUNIER",
+			"role": "Secretaire général - Association DEFENSE ET SAUVEGARDE DU MARCHE AUX FLEURS REINE ELIZABETH II",
+			"quote": "Prestataire de qualité, réactif et à l'écoute. Il a été force de proposition et de bon conseil pour notre projet. Je recommande fortement car notre projet a été mené à terme."
+		},
+		"person3": {
+			"name": "Melusine Secq",
+			"role": "Présidente BDE F'estice",
+			"quote": "Merci à Jean Baptiste pour son application hyper fonctionnelle, pour sa réactivité et pour son écoute à toutes nos demandes. La collaboration est une vraie réussite ! Je vous le recommande vivement."
+		}
+	},
 	"projectDescriptions": {
 		"timeline1Desc": "Le marché aux fleurs Elisabeth II est un marché aux fleurs situé à Paris. Il est le plus grand marché aux fleurs de la ville et propose une grande variété de fleurs et de plantes. En temps que développeur FullStack Freelance, j'ai eu l'occasion de concevoir et de développer leurs landing page ayant pour but de promouvoir leur collecte de fond. Pour mener à bien ce projet, j'ai du mettre en place une pipeline de dons en ligne permettant aux utilisateurs de faire des dons en ligne.",
 		"timeline2Desc": "Adfintas est une entreprise spécialisée dans le marketing associatif. En tant qu'intégrateur / développeur web, j'ai eu l'occasion de travailler sur le développement de nombreuses landing pages pour des associations caritatives de renom comme la SPA, l'Ordre de Malte ou encore l'hopital de la fondation Rothschild. J'ai commencé à travailler chez Adfinitas en tant que stagiaire, pour evoluer a la fin de mon stage en temps que développeur web freelance.",
@@ -50,10 +74,23 @@
 		"timeline4Desc": "Twin Promotion est une entreprise spécialisée dans la promotion immobilière. J'ai été embauché en tant que développeur Frontend Freelance pour travailler sur le site web de l'entreprise. Ma mission était de mettre à jour le site existant en réglant des bugs d'UX et en ajoutant de nouvelles fonctionnalités.",
 		"timeline5Desc": "Oden est une application mobile qui a pour but de faciliter la vie associative des étudiants, nous avons travailler en collaboration avec l'Espas-Estice pour la création de cette application. En tant que créateur de cette application, j'ai du concevoir et développer l'ensemble de l'application de zéro. De la conception du produit au développement, j'ai pu créer une application mobile qui répond aux besoins des étudiants.",
 		"timeline6Desc": "Eh Bam est une entreprise spécialisée dans la vente de produits alimentaires locaux. En tant que développeur Fullstack j'ai eu a concevoir et développer leur site e-commerce. Ma mission était de mettre en place un site e-commerce permettant aux utilisateurs de commander des produits locaux en ligne.",
-		"timeline7Desc": "Proppl est une plateforme de cooptation spécialisée dans le recrutement. En tant que développeur Fullstack, j'ai eu l'occasion de travailler sur le développement de la plateforme. Ma mission était de maintenir et d'améliorer la plateforme existante en ajoutant de nouvelles fonctionnalités et en corrigeant des bugs."
+		"timeline7Desc": "Proppl est une plateforme de cooptation spécialisée dans le recrutement. En tant que développeur Fullstack, j'ai eu l'occasion de travailler sur le développement de la plateforme. Ma mission était de maintenir et d'améliorer la plateforme existante en ajoutant de nouvelles fonctionnalités et en corrigeant des bugs.",
+		"timeline8Desc": "Archimeuble est un fabricant de meubles sur mesure basé dans la région des Hauts-de-France. J'ai développé un chatbot propulsé par IA qui génère des designs de meubles personnalisés. Cette solution aide les clients à visualiser et à personnaliser leurs meubles avant de commander, améliorant ainsi la satisfaction client et réduisant les itérations de conception. Le projet a impliqué l'intégration de l'API OpenAI avec un backend PHP et Three.js pour la visualisation 3D.",
+		"timeline9Desc": "CareCall est un assistant vocal IA dédié au secteur de la santé qui automatise les appels des patients et la gestion des rendez-vous. J'ai intégré l'API de paiement GoCardless et développé un framework de test en TypeScript pour interagir avec les agents vocaux. Cette solution aide les prestataires de soins à gagner du temps, réduire les coûts et améliorer la satisfaction des patients en automatisant les appels de routine et les suivis."
 	},
 	"techStack": "Stack technique:",
 	"viewProject": "Voir le projet",
 	"viewCompany": "Voir l'entreprise",
-	"lets_talk": "Parlons de votre projet"
+	"lets_talk": "Parlons de votre projet",
+	"switchToLight": "Passer en mode clair",
+	"switchToDark": "Passer en mode sombre",
+	"about": "À propos",
+	"preview": "Aperçu",
+	"projectPreview": "Aperçu du projet",
+	"aboutProject": "À propos du projet",
+	"previousProject": "Projet précédent",
+	"nextProject": "Projet suivant",
+	"visitSite": "Visiter le site",
+	"back": "Retour",
+	"loading": "Chargement..."
 }

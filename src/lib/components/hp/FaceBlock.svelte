@@ -83,21 +83,24 @@
 		</a>
 	</div>
 
-	<div id="AboutMeDesktop" class="container-me hidden w-full md:block">
-		<div class="relative top-20 h-[20rem] w-[20%] lg:left-60 2xl:left-80 2xl:top-40">
-			<div bind:this={faceDiv} class="face"></div>
-			<div bind:this={shadowDiv} class="bg-primary-500 shadow"></div>
-		</div>
-		<div class="relative lg:w-full 2xl:w-[80%]">
-			<div class="absolute right-[10%]">
-				<h1>
-					<span class="text-4xl font-bold">AZAN</span><br />
-					<span class="text-4xl font-bold">Jean-Baptiste</span><br />
-					<span class="text-4xl font-bold text-tertiary-600">{$_('poste')}</span><br />
+	<div id="AboutMeDesktop" class="container-me hidden md:block">
+		<div class="mx-auto flex max-w-7xl flex-row items-center justify-between gap-8 py-28 px-4 lg:px-8">
+			<!-- Left side with face image -->
+			<div class="relative h-[20rem] w-[20rem]">
+				<div bind:this={faceDiv} class="face"></div>
+				<div bind:this={shadowDiv} class="bg-primary-500 shadow"></div>
+			</div>
+			
+			<!-- Right side with text content -->
+			<div class="flex flex-col items-start">
+				<h1 class="mb-6">
+					<span class="text-5xl font-bold">AZAN</span><br />
+					<span class="text-5xl font-bold">Jean-Baptiste</span><br />
+					<span class="text-4xl font-bold text-tertiary-600">{$_('poste')}</span>
 				</h1>
 				<a
 					href="#Contact"
-					class="group relative mt-[1rem] inline-flex items-center overflow-hidden rounded-full border-2 border-tertiary-600 px-12 py-3 text-lg font-medium text-tertiary-600 hover:bg-gray-50 hover:text-white"
+					class="group relative inline-flex items-center overflow-hidden rounded-full border-2 border-tertiary-600 px-12 py-3 text-lg font-medium text-tertiary-600 hover:bg-gray-50 hover:text-white"
 				>
 					<span
 						class="duration-400 ease absolute left-0 top-1/2 block h-0 w-full bg-tertiary-600 opacity-100 transition-all group-hover:top-0 group-hover:h-full"
