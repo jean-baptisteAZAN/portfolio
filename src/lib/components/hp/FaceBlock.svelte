@@ -13,7 +13,6 @@
 	onMount(() => {
 		window.addEventListener('mousemove', moveShadow);
 		
-		// Animation sequence for title elements
 		const tl = gsap.timeline({ delay: 0.3 });
 		
 		if (titleRef && subtitleRef && ctaButtonRef) {

@@ -24,28 +24,6 @@
 	let calendlyLoaded = $state(false);
 
 	onMount(() => {
-		// Load ScrollTrigger dynamically to avoid import errors
-		import('gsap/ScrollTrigger').then(module => {
-			const ScrollTrigger = module.default;
-			gsap.registerPlugin(ScrollTrigger);
-			
-			// Setup scroll animations for other sections
-			sections.forEach(section => {
-				gsap.from(section, {
-					scrollTrigger: {
-						trigger: section,
-						start: "top 80%",
-						toggleActions: "play none none none"
-					},
-					y: 60,
-					opacity: 0,
-					duration: 0.8,
-					ease: "power2.out"
-				});
-			});
-		});
-
-		// Load Calendly
 		const script = document.createElement('script');
 		script.src = 'https://assets.calendly.com/assets/external/widget.js';
 		script.async = true;
@@ -54,10 +32,8 @@
 		};
 		document.body.appendChild(script);
 
-		// Initial page animation
 		const tl = gsap.timeline();
 		
-		// Navbar animation
 		if (navbarRef) {
 			tl.from(navbarRef, {
 				y: -50,
@@ -76,31 +52,6 @@
 				ease: "back.out(1.7)"
 			}, "-=0.4");
 		}
-		
-		// Cards animation with stagger
-		if (cardsRef) {
-			const cardItems = cardsRef.querySelectorAll('.card-item');
-			if (cardItems.length > 0) {
-				tl.from(cardItems, {
-					y: 50,
-					opacity: 0,
-					stagger: 0.2,
-					duration: 0.6,
-					ease: "power2.out"
-				}, "-=0.2");
-			}
-		}
-
-		// Float animation for talk button
-		if (talkButtonRef) {
-			gsap.to(talkButtonRef, {
-				y: -10,
-				duration: 1.5,
-				repeat: -1,
-				yoyo: true,
-				ease: "sine.inOut"
-			});
-		}
 
 		// Mark page as loaded for conditional rendering
 		pageLoaded = true;
@@ -116,7 +67,6 @@
 		}
 	}
 
-	// Action for section binding
 	function sectionAction(node: HTMLElement) {
 		sections = [...sections, node];
 		return {

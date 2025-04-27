@@ -75,7 +75,7 @@
 </script>
 
 {#if !$isLoading}
-	<div class="flex flex-col items-center justify-center gap-3 px-3 md:mt-[20rem] lg:flex-row">
+	<div class="flex flex-col items-center justify-center gap-3 px-3  lg:flex-row">
 		<div class="card-item">
 			<Card icon="iconamoon:star-fill" text={$_('card1')} />
 		</div>
