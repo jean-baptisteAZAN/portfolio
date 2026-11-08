@@ -1,0 +1,95 @@
+---
+/**
+ * Audit pipeline, generic on purpose (client under NDA):
+ * document dropped → OCR → AI analysis against custom criteria → audit proposal
+ * the auditor validates. The four stages are always on screen; the active one
+ * lights up in turn. A tile shows the first and last stage only.
+ */
+---
+<div class="cq"><ol class="flow" aria-hidden="true">
+  <li class="stage s1">
+    <p class="cap"><b>1</b>Dépôt</p>
+    <div class="doc"><span class="scan"></span><i></i><i style="width:72%"></i><i></i><i style="width:58%"></i><i style="width:84%"></i></div>
+  </li>
+  <li class="stage s2">
+    <p class="cap"><b>2</b>OCR</p>
+    <div class="text">
+      <code>Facture n° 2024-118</code>
+      <code>Montant : 4 820,00 €</code>
+      <code>Date : 12/03/2024</code>
+    </div>
+  </li>
+  <li class="stage s3">
+    <p class="cap"><b>3</b>Analyse IA</p>
+    <ul class="checks">
+      <li><span>✓</span>Montant cohérent</li>
+      <li><span>✓</span>Date dans la période</li>
+      <li class="warn"><span>!</span>Signature absente</li>
+    </ul>
+  </li>
+  <li class="stage s4">
+    <p class="cap"><b>4</b>Audit<span class="wide"> à valider</span></p>
+    <div class="verdict">
+      <span class="chip ok">Conforme · 41</span>
+      <span class="chip mid">À vérifier · 6</span>
+      <span class="chip ko">Non conforme · 2</span>
+      <span class="btn">Valider l'audit</span>
+    </div>
+  </li>
+</ol><div class="progress"><span class="pl">Justificatifs analysés</span><span class="pb"><i></i></span><span class="pn">347</span></div></div>
+
+<style>
+  .cq { container-type: inline-size; width: 100%; height: 100%; display: grid; grid-template-rows: minmax(0, 1fr) auto; }
+  .flow { list-style: none; width: 100%; height: 100%; padding: 50px 16px 14px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-items: stretch; }
+  .stage { display: none; min-width: 0; position: relative; padding: 10px; border-radius: var(--radius-m); background: var(--surface-glass-strong); border: 1px solid var(--border-glass); align-content: start; gap: 10px; transition: transform 0.3s var(--ease); }
+  .s1, .s4 { display: grid; }
+  .cap { display: flex; align-items: center; gap: 6px; font-family: var(--font-code); font-size: 10px; color: var(--t-muted); white-space: nowrap; overflow: hidden; }
+  .wide { display: none; }
+  .cap b { width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font-weight: 400; font-size: 10px; background: var(--track); color: var(--t-fg); }
+
+  .doc { position: relative; overflow: hidden; justify-self: center; width: 72px; aspect-ratio: 3 / 4; padding: 12px 9px; display: flex; flex-direction: column; gap: 6px; background: var(--neutral-0); border: 1px solid var(--divider); border-radius: 6px; }
+  .doc i { height: 4px; border-radius: 2px; background: var(--track); }
+  .scan { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--accent); animation: scan 2.4s linear infinite; }
+
+  .text { display: grid; gap: 5px; }
+  .text code { font-family: var(--font-code); font-size: 11px; padding: 4px 6px; border-radius: 4px; background: var(--neutral-0); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .checks { list-style: none; display: grid; gap: 6px; font-size: 12px; }
+  .checks li { display: flex; gap: 6px; align-items: center; }
+  .checks span { flex: none; width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; font-size: 10px; background: var(--t-fg); color: var(--color-text-inverse); }
+  .checks .warn span { background: var(--accent-strong); }
+
+  .verdict { display: grid; gap: 5px; justify-items: start; }
+  .chip { font-size: 10px; padding: 3px 8px; white-space: nowrap; border-radius: var(--radius-pill); border: 1px solid var(--divider); background: var(--neutral-0); }
+  .chip.mid { border-color: var(--accent-soft); }
+  .chip.ko { background: var(--accent-strong); color: var(--color-text-inverse); border-color: transparent; }
+  .btn { margin-top: 2px; font-size: 10px; white-space: nowrap; font-weight: 700; padding: 5px 12px; border-radius: var(--radius-pill); background: var(--t-fg); color: var(--color-text-inverse); }
+
+  /* active stage lights up in turn (2 s each) */
+  .stage { animation: active 8s infinite; }
+  .s2 { animation-delay: 2s; } .s3 { animation-delay: 4s; } .s4 { animation-delay: 6s; }
+  .stage .cap b { animation: activeDot 8s infinite; animation-delay: inherit; }
+  @keyframes active {
+    0%, 22% { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 24px -14px rgb(226 56 27 / 0.45); }
+    26%, 100% { border-color: var(--border-glass); transform: none; box-shadow: none; }
+  }
+  @keyframes activeDot { 0%, 22% { background: var(--accent-strong); color: var(--color-text-inverse); } 26%, 100% { background: var(--track); color: var(--t-fg); } }
+  @keyframes prog { from { width: 0; } to { width: 100%; } }
+  @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+
+  .progress { display: none; }
+  @container (min-width: 600px) {
+    .progress { display: flex; align-items: center; gap: 12px; padding: 0 32px 24px; font-family: var(--font-code); font-size: 11px; color: var(--t-muted); }
+    .pb { flex: 1; height: 4px; border-radius: 2px; background: var(--track); overflow: hidden; }
+    .pb i { display: block; height: 100%; background: var(--accent); animation: prog 8s linear infinite; }
+    .flow { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; padding: 40px 32px; align-items: center; }
+    .stage { display: grid; min-height: 190px; padding: 16px; }
+    .stage:not(:last-child)::after { content: '→'; position: absolute; right: -21px; top: 50%; transform: translateY(-50%); font-size: 16px; color: var(--t-muted); }
+    .doc { width: 90px; }
+    .cap { font-size: 12px; }
+    .wide { display: inline; }
+    .chip, .btn { font-size: 11px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { .stage, .stage .cap b, .scan { animation: none; } }
+</style>

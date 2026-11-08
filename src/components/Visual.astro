@@ -1,0 +1,35 @@
+---
+import CallDemo from './visuals/CallDemo.astro';
+import EouDecision from './visuals/EouDecision.astro';
+import Curve from './visuals/Curve.astro';
+import Pipeline from './visuals/Pipeline.astro';
+import InfraSketch from './visuals/InfraSketch.astro';
+import Fleet from './visuals/Fleet.astro';
+import CertChain from './visuals/CertChain.astro';
+import MacFlow from './visuals/MacFlow.astro';
+import AuditFlow from './visuals/AuditFlow.astro';
+import OdenPhone from './visuals/OdenPhone.astro';
+import OdenShowcase from './visuals/OdenShowcase.astro';
+import CallJourney from './visuals/CallJourney.astro';
+import HarpDrone from './HarpDrone.astro';
+
+export type VisualName = 'call' | 'journey' | 'eou' | 'curve' | 'pipeline' | 'arch' | 'drone' | 'fleet' | 'certchain' | 'mac-flow' | 'audit' | 'oden' | 'oden-show';
+interface Props {
+  name: VisualName;
+  drone?: 'poster' | 'embed';
+}
+const { name, drone = 'poster' } = Astro.props;
+---
+{name === 'call' && <CallDemo />}
+{name === 'eou' && <EouDecision />}
+{name === 'curve' && <Curve />}
+{name === 'pipeline' && <Pipeline />}
+{name === 'arch' && <InfraSketch />}
+{name === 'fleet' && <Fleet />}
+{name === 'certchain' && <CertChain />}
+{name === 'mac-flow' && <MacFlow />}
+{name === 'audit' && <AuditFlow />}
+{name === 'oden' && <OdenPhone />}
+{name === 'oden-show' && <OdenShowcase />}
+{name === 'journey' && <CallJourney />}
+{name === 'drone' && <HarpDrone mode={drone} />}

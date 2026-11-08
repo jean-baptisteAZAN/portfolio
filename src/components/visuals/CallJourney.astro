@@ -1,0 +1,102 @@
+---
+/**
+ * Full-width Tennor story: the conversation (left), the centre's agenda where
+ * the appointment actually moves (right), and underneath the path the call
+ * takes: phone line → SIP interop → voice agent → the centre's software.
+ * Fictional patient and centre. 10 s loop.
+ */
+const bars = Array.from({ length: 44 }, (_, i) => {
+  const env = Math.sin((i / 44) * Math.PI);
+  return Math.round(16 + env * 72 * (0.45 + 0.55 * Math.abs(Math.sin(i * 1.7))));
+});
+const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'];
+const hours = ['9 h', '11 h', '14 h', '16 h'];
+const busy = [[0, 0], [0, 2], [1, 1], [2, 0], [2, 3], [3, 1], [4, 2], [4, 0], [1, 3]];
+const lane = ['Appel patient', 'Interop SIP', 'Agent vocal', 'Logiciel du centre'];
+---
+<div class="journey" aria-hidden="true">
+  <section class="convo">
+    <div class="top"><span class="live"><i></i>Appel en cours</span><span>00:42</span></div>
+    <div class="wave">{bars.map((h, i) => <i style={`--h:${h}%;animation-delay:${(i * 0.04).toFixed(2)}s`} />)}</div>
+    <p class="m pt">Bonjour, je voudrais décaler mon IRM de jeudi.</p>
+    <p class="m ai">Bien sûr. Lundi 9 h 30 ou mardi 14 h ?</p>
+    <p class="m pt">Mardi, parfait.</p>
+    <p class="m ai">C'est noté : mardi 14 h. Vous recevez un SMS de confirmation.</p>
+  </section>
+
+  <section class="agenda">
+    <div class="ah"><span class="t">Agenda · IRM</span><span class="sync">synchronisé</span></div>
+    <div class="grid">
+      <span></span>{days.map((d) => <span class="d">{d}</span>)}
+      {hours.map((h, r) => (
+        <>
+          <span class="h">{h}</span>
+          {days.map((_, c) => (
+            <span class:list={['slot', busy.some(([bc, br]) => bc === c && br === r) && 'busy', c === 3 && r === 1 && 'from', c === 1 && r === 2 && 'to']} />
+          ))}
+        </>
+      ))}
+    </div>
+    <p class="appt">IRM du genou · <b>Mardi 14 h</b></p>
+  </section>
+
+  <section class="path">
+    {lane.map((l, i) => (
+      <>
+        <span class:list={['node', i === 2 && 'core']}>{l}</span>
+        {i < lane.length - 1 && <span class="wire"><i style={`animation-delay:${i * 0.35}s`} /></span>}
+      </>
+    ))}
+  </section>
+</div>
+
+<style>
+  .journey { width: 100%; height: 100%; padding: 28px; display: grid; grid-template-columns: 1.2fr 1fr; grid-template-rows: 1fr auto; gap: 18px 28px; color: var(--t-fg); }
+  .convo { display: grid; align-content: center; gap: 8px; }
+  .top { display: flex; justify-content: space-between; font-family: var(--font-code); font-size: 11px; color: var(--t-muted); }
+  .live { display: inline-flex; align-items: center; gap: 6px; }
+  .live i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s ease-in-out infinite; }
+  .wave { height: 40px; display: flex; align-items: center; gap: 3px; margin: 4px 0 8px; }
+  .wave i { flex: 1; height: var(--h); border-radius: 2px; background: var(--t-fg); opacity: 0.85; animation: talk 1.3s ease-in-out infinite alternate; }
+  .m { max-width: 86%; padding: 9px 13px; border-radius: var(--radius-m); font-size: 13.5px; line-height: 1.35; opacity: 0; animation: in 10s infinite; }
+  .pt { background: rgb(255 255 255 / 0.1); border-bottom-left-radius: 4px; }
+  .ai { background: var(--color-text-inverse); color: var(--color-text); justify-self: end; border-bottom-right-radius: 4px; }
+  .m:nth-of-type(2) { animation-delay: 1.2s; } .m:nth-of-type(3) { animation-delay: 2.4s; } .m:nth-of-type(4) { animation-delay: 3.8s; }
+
+  .agenda { align-self: center; padding: 16px; border-radius: var(--radius-m); background: var(--color-text-inverse); color: var(--color-text); display: grid; gap: 12px; }
+  .ah { display: flex; justify-content: space-between; align-items: center; }
+  .ah .t { font-weight: 700; font-size: 14px; }
+  .sync { font-family: var(--font-code); font-size: 10px; color: var(--color-text-muted); }
+  .grid { display: grid; grid-template-columns: 32px repeat(5, 1fr); gap: 4px; align-items: center; }
+  .d, .h { font-family: var(--font-code); font-size: 10px; color: var(--color-text-muted); text-align: center; }
+  .h { text-align: left; }
+  .slot { height: 22px; border-radius: 5px; background: var(--neutral-100); }
+  .busy { background: var(--neutral-300); }
+  .from { background: var(--neutral-950); animation: from 10s infinite; }
+  .to { animation: to 10s infinite; }
+  .appt { font-size: 12px; color: var(--color-text-muted); }
+  .appt b { color: var(--color-text); }
+
+  .path { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; padding-top: 14px; border-top: 1px solid var(--t-divider); }
+  .node { flex: none; font-size: 12px; font-weight: 500; padding: 7px 12px; border-radius: var(--radius-pill); border: 1px solid var(--border-inverse); background: rgb(255 255 255 / 0.06); }
+  .node.core { background: var(--accent-strong); border-color: transparent; color: var(--color-text-inverse); }
+  .wire { flex: 1; height: 2px; position: relative; background: rgb(255 255 255 / 0.15); overflow: hidden; border-radius: 1px; }
+  .wire i { position: absolute; top: 0; left: -30%; width: 30%; height: 100%; background: var(--accent-soft); animation: packet 1.4s linear infinite; }
+
+  @keyframes pulse { 50% { opacity: 0.35; } }
+  @keyframes talk { from { transform: scaleY(0.25); } to { transform: scaleY(1); } }
+  @keyframes in { 0% { opacity: 0; transform: translateY(6px); } 6%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
+  @keyframes from { 0%, 44% { background: var(--neutral-950); } 50%, 92% { background: var(--neutral-100); outline: 1.5px dashed var(--neutral-300); outline-offset: -1.5px; } 100% { background: var(--neutral-950); } }
+  @keyframes to { 0%, 44% { background: var(--neutral-100); } 50%, 92% { background: var(--accent-strong); box-shadow: 0 0 0 3px var(--accent-soft); } 100% { background: var(--neutral-100); } }
+  @keyframes packet { to { left: 100%; } }
+
+  @media (max-width: 760px) {
+    .journey { grid-template-columns: 1fr; padding: 20px; }
+    .path { flex-wrap: wrap; } .wire { min-width: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .m { animation: none; opacity: 1; }
+    .wave i, .live i, .wire i, .from, .to { animation: none; }
+    .to { background: var(--accent-strong); }
+  }
+</style>

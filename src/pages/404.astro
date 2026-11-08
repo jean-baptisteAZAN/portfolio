@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Page introuvable · Jean-Baptiste Azan" description="Cette page n'existe pas.">
+  <main class="wrap">
+    <section class="glass nf">
+      <span class="label">404</span>
+      <h1>Cette page n'existe pas.</h1>
+      <a href="/">← Retour à l'accueil</a>
+    </section>
+  </main>
+</Base>
+<style>
+  .nf { padding: 40px; display: grid; gap: 14px; max-width: 560px; }
+  h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.03em; }
+  a { color: var(--color-text-muted); }
+</style>

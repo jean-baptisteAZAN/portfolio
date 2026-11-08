@@ -1,0 +1,87 @@
+---
+/**
+ * A patient call, end to end: live waveform, transcript, then the booking
+ * lands in the centre's agenda. Fictional patient, fictional centre.
+ * Compact in a tile; the confirmation card sits beside the call when wide.
+ */
+const bars = Array.from({ length: 36 }, (_, i) => {
+  const env = Math.sin((i / 36) * Math.PI);
+  return Math.round(18 + env * 70 * (0.45 + 0.55 * Math.abs(Math.sin(i * 1.7))));
+});
+---
+<div class="cq"><div class="call" aria-hidden="true">
+  <div class="line">
+    <div class="top">
+      <span class="live"><i></i>Appel en cours</span>
+      <span class="timer">00:42</span>
+    </div>
+    <div class="wave">{bars.map((h, i) => <i style={`--h:${h}%;animation-delay:${(i * 0.045).toFixed(3)}s`} />)}</div>
+    <div class="msgs">
+      <p class="m pt">Bonjour, je voudrais décaler mon IRM de jeudi.</p>
+      <p class="m ai">Bien sûr. Lundi 9 h 30 ou mardi 14 h ?</p>
+      <p class="m pt">Mardi, parfait.</p>
+    </div>
+  </div>
+  <div class="booked">
+    <div class="state pending">
+      <span class="spin"></span>
+      <p class="t">Recherche d'un créneau…</p>
+      <p class="d">Agenda du centre · IRM</p>
+    </div>
+    <div class="state done">
+      <span class="ok">✓</span>
+      <p class="t">Rendez-vous déplacé</p>
+      <p class="d">IRM du genou<br />Mardi · 14 h 00</p>
+    </div>
+    <p class="sync">Écrit dans le logiciel du centre</p>
+  </div>
+</div></div>
+
+<style>
+  .cq { container-type: inline-size; width: 100%; height: 100%; }
+  .call { width: 100%; height: 100%; padding: 50px 22px 16px; display: grid; gap: 14px; align-content: end; }
+  :global(.hero) .call { align-content: center; }
+  .top { display: flex; justify-content: space-between; font-family: var(--font-code); font-size: 11px; color: var(--t-muted); }
+  .live { display: inline-flex; align-items: center; gap: 6px; }
+  .live i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s ease-in-out infinite; }
+  .wave { height: 46px; display: flex; align-items: center; gap: 3px; margin: 10px 0 12px; }
+  .wave i { flex: 1; height: var(--h); border-radius: 2px; background: var(--t-fg); opacity: 0.85; transform-origin: center; animation: talk 1.3s ease-in-out infinite alternate; }
+  .msgs { display: grid; gap: 8px; }
+  .m { max-width: 82%; padding: 10px 14px; border-radius: var(--radius-m); font-size: 14px; line-height: 1.35; opacity: 0; animation: in 10s infinite; }
+  .pt { background: rgb(255 255 255 / 0.1); border-bottom-left-radius: 4px; }
+  .ai { background: var(--color-text-inverse); color: var(--color-text); justify-self: end; border-bottom-right-radius: 4px; animation-delay: 1.4s; }
+  .m:nth-child(1) { animation-delay: 0s; }
+  .m:nth-child(3) { animation-delay: 2.8s; }
+
+  .booked {
+    display: none; position: relative;
+    padding: 18px; border-radius: var(--radius-m);
+    background: var(--color-text-inverse); color: var(--color-text);
+  }
+  .state { display: grid; justify-items: start; }
+  .done { position: absolute; top: 18px; left: 18px; right: 18px; opacity: 0; animation: book 10s var(--ease) infinite; }
+  .pending { animation: unbook 10s var(--ease) infinite; }
+  .spin { width: 28px; height: 28px; border-radius: 50%; border: 2.5px solid var(--track); border-top-color: var(--accent); animation: spin 0.9s linear infinite; }
+  .ok { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-strong); color: var(--color-text-inverse); font-size: 14px; font-weight: 700; }
+  .t { margin-top: 12px; font-weight: 700; font-size: 16px; letter-spacing: -0.01em; }
+  .d { margin-top: 4px; font-size: 14px; line-height: 1.4; color: var(--color-text-muted); }
+  .sync { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--divider); font-family: var(--font-code); font-size: 11px; color: var(--color-text-muted); }
+
+  @container (min-width: 520px) {
+    .call { grid-template-columns: 1.4fr 1fr; align-items: end; gap: 18px; padding: 56px 26px 20px; }
+    .booked { display: block; }
+  }
+
+  @keyframes unbook { 0%, 40% { opacity: 1; } 46%, 92% { opacity: 0; } 100% { opacity: 1; } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes pulse { 50% { opacity: 0.35; } }
+  @keyframes talk { from { transform: scaleY(0.25); } to { transform: scaleY(1); } }
+  @keyframes in { 0% { opacity: 0; transform: translateY(8px); } 6%, 86% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
+  @keyframes book { 0%, 40% { opacity: 0; transform: translateY(6px); } 46%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .m, .done { animation: none; opacity: 1; }
+    .pending { display: none; }
+    .done { position: static; }
+    .wave i, .live i { animation: none; }
+  }
+</style>

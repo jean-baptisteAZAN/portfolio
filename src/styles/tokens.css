@@ -1,0 +1,68 @@
+/* =====================================================================
+   Design tokens
+   1. Primitives : one warm neutral (6 steps) + one brand hue (4 steps).
+   2. Semantic tokens : the only layer components may consume.
+   No raw colour value below the semantic layer.
+   ===================================================================== */
+:root {
+  /* primitives */
+  --neutral-0: #ffffff;
+  --neutral-100: #ece8e4;
+  --neutral-300: #cfc8c1;
+  --neutral-600: #4a4440;
+  --neutral-800: #211d1a;
+  --neutral-950: #0e0c0b;
+
+  --brand-200: #ffc6b6;
+  --brand-400: #ff6c48;
+  --brand-500: #e2381b;
+  --brand-600: #c42a0f;
+  --brand-700: #9e2210;
+
+  /* text & background */
+  --color-bg: var(--neutral-100);
+  --color-text: var(--neutral-950);
+  --color-text-muted: var(--neutral-600);
+  --color-text-inverse: var(--neutral-0);
+  --color-text-inverse-muted: rgb(255 255 255 / 0.72);
+
+  /* surfaces (three levels, no more) */
+  --surface-glass: rgb(255 255 255 / 0.46);
+  --surface-glass-hover: rgb(255 255 255 / 0.66);
+  --surface-glass-strong: rgb(255 255 255 / 0.62);
+  --surface-inverse: rgb(14 12 11 / 0.8);
+  --surface-brand: rgb(196 42 15 / 0.92);
+
+  /* strokes */
+  --border-glass: rgb(255 255 255 / 0.7);
+  --border-inverse: rgb(255 255 255 / 0.16);
+  --border-brand: rgb(255 255 255 / 0.35);
+  --divider: rgb(14 12 11 / 0.08);
+  --divider-inverse: rgb(255 255 255 / 0.14);
+
+  /* signal : the only colour that "speaks" */
+  --accent: var(--brand-500);
+  --accent-soft: var(--brand-200);
+  /* accent behind white text (≥ 4.5:1) */
+  --accent-strong: var(--brand-600);
+  --track: rgb(14 12 11 / 0.08);
+
+  /* effects */
+  --blur: blur(26px) saturate(170%);
+  --shadow: 0 18px 40px -22px rgb(60 30 20 / 0.35);
+  --highlight: inset 0 1px 0 rgb(255 255 255 / 0.9);
+  --highlight-inverse: inset 0 1px 0 rgb(255 255 255 / 0.2);
+
+  /* shape */
+  --radius-l: 30px;
+  --radius-m: 16px;
+  --radius-s: 6px;
+  --radius-pill: 999px;
+
+  /* motion */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* type (font families are injected by the Astro Fonts API) */
+  --font-body: var(--font-sans), system-ui, sans-serif;
+  --font-code: var(--font-mono), ui-monospace, monospace;
+}

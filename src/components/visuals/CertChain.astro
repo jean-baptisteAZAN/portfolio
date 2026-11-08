@@ -1,0 +1,47 @@
+---
+/**
+ * Apple's MDM trust chain, redrawn from the Scaleway internship report:
+ * three Apple platforms issue the identities, one MDM server per availability
+ * zone, commands reach the Macs through Apple's push service.
+ */
+---
+<svg class="chain" viewBox="0 0 800 400" role="img" aria-label="Chaîne de confiance Apple MDM : Apple Business Manager, Developer Program et Push Certificates délivrent les identités au serveur MDM, qui pilote des milliers de Mac via le service de notifications d'Apple.">
+  <text class="zlabel" x="20" y="26">Apple</text>
+  <g class="node" transform="translate(20 40)"><rect width="220" height="70" rx="12" /><text class="l" x="16" y="30">Business Manager</text><text class="s" x="16" y="52">« qui gère ce Mac ? »</text></g>
+  <g class="node" transform="translate(290 40)"><rect width="220" height="70" rx="12" /><text class="l" x="16" y="30">Developer Program</text><text class="s" x="16" y="52">certificat fournisseur MDM</text></g>
+  <g class="node" transform="translate(560 40)"><rect width="220" height="70" rx="12" /><text class="l" x="16" y="30">Push Certificates</text><text class="s" x="16" y="52">certificat de notification</text></g>
+
+  <path class="edge" d="M130 110 C130 160 330 160 360 200" />
+  <path class="edge" d="M400 110 L400 200" />
+  <path class="edge" d="M670 110 C670 160 470 160 440 200" />
+
+  <g class="node core" transform="translate(270 200)"><rect width="260" height="74" rx="14" /><text class="l" x="18" y="32">Serveur MDM · 1 par zone</text><text class="s" x="18" y="54">pipelines de certificats automatisés</text></g>
+
+  <path class="edge hot" d="M400 274 L400 316" />
+  <g class="node" transform="translate(290 316)"><rect width="220" height="56" rx="12" /><text class="l" x="16" y="34">APNs · commandes</text></g>
+
+  <path class="edge hot" d="M510 344 L590 344" />
+  <g class="fleet" transform="translate(600 300)">
+    {Array.from({ length: 24 }, (_, i) => (
+      <rect x={(i % 6) * 30} y={Math.floor(i / 6) * 22} width="24" height="16" rx="4" style={`animation-delay:${(i * 0.08).toFixed(2)}s`} />
+    ))}
+    <text class="s" x="0" y="104">Flotte · des milliers de Mac</text>
+  </g>
+</svg>
+
+<style>
+  .chain { width: 100%; height: 100%; padding: 24px; font-family: var(--font-body); overflow: visible; }
+  .zlabel { font-family: var(--font-code); font-size: 11px; fill: var(--t-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .node rect { fill: var(--surface-glass-strong); stroke: var(--t-fg); stroke-opacity: 0.18; }
+  .core rect { fill: var(--neutral-950); stroke: none; }
+  .core text { fill: var(--color-text-inverse); }
+  .l { font-size: 15px; font-weight: 700; fill: var(--t-fg); }
+  .s { font-size: 12px; fill: var(--t-muted); }
+  .core .s { fill: var(--color-text-inverse-muted); }
+  .edge { fill: none; stroke: var(--t-fg); stroke-opacity: 0.45; stroke-width: 1.5; stroke-dasharray: 5 6; animation: flow 1.6s linear infinite; }
+  .edge.hot { stroke: var(--accent); stroke-opacity: 1; stroke-width: 2; }
+  .fleet rect { fill: var(--track); animation: lit 4s infinite; }
+  @keyframes flow { to { stroke-dashoffset: -22; } }
+  @keyframes lit { 0%, 10% { fill: var(--track); } 20%, 80% { fill: var(--neutral-950); } 100% { fill: var(--track); } }
+  @media (prefers-reduced-motion: reduce) { .edge, .fleet rect { animation: none; } }
+</style>

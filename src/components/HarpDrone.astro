@@ -1,0 +1,56 @@
+---
+/**
+ * Harp's real FPV-drone tutorial (79 parts, 24 steps).
+ *
+ *   mode="poster" : still of the finished drone (bento tile, which is a link).
+ *   mode="embed"  : Harp's public viewer in an iframe, served by harp3d.fr.
+ *                   The engine stays on Harp's side; nothing is bundled here.
+ */
+import { HARP_DEMO } from '../site';
+
+interface Props {
+  mode?: 'poster' | 'embed';
+  class?: string;
+}
+const { mode = 'poster', class: className } = Astro.props;
+---
+
+<div class:list={['drone', mode, className]}>
+  <img class="poster" src="/harp/drone-poster.webp" alt="Drone FPV entièrement monté, rendu par Harp" width="826" height="419" loading="lazy" decoding="async" />
+  {mode === 'embed' && (
+    <iframe
+      src={`${HARP_DEMO}&theme=light`}
+      title="Tutoriel 3D du drone FPV, visualiseur Harp"
+      loading="lazy"
+      allow="fullscreen"
+      referrerpolicy="strict-origin-when-cross-origin"
+    ></iframe>
+  )}
+</div>
+
+<style>
+  .drone {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 8%;
+    mix-blend-mode: multiply;
+  }
+  iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: transparent;
+  }
+</style>

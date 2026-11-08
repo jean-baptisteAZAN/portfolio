@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Intro from '../components/Intro.astro';
+import ProjectTile from '../components/ProjectTile.astro';
+import Contact from '../components/Contact.astro';
+import Also from '../components/Also.astro';
+import '../styles/bento.css';
+
+const cases = (await getCollection('cases')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base
+  title="Jean-Baptiste Azan · Ingénieur IA, infra et produit"
+  description="Jean-Baptiste Azan, ingénieur et fondateur à Paris. IA vocale, infrastructure cloud-native et produits en production."
+>
+  <main class="wrap home">
+    <Intro />
+
+    <div class="section-head">
+      <h2>Projets</h2>
+    </div>
+
+    <div class="bento">
+      {cases.map((entry) => <ProjectTile entry={entry} />)}
+      <Also class="w2" />
+      <Contact class="full" />
+    </div>
+  </main>
+</Base>
+
+<style>
+  .home { display: grid; gap: 10px; }
+  .section-head { display: flex; justify-content: space-between; align-items: baseline; padding: 26px 6px 6px; }
+  .section-head h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+</style>

@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Visual from './Visual.astro';
+import Arrow from './Arrow.astro';
+
+interface Props {
+  entry: CollectionEntry<'cases'>;
+}
+const { entry } = Astro.props;
+const { tag, hook, teaser, visual, tile } = entry.data;
+const large = tile.size === 'l';
+---
+<a
+  href={`/cas/${entry.id}`}
+  class:list={['tile', 'project', 'glass', tile.tone !== 'glass' && tile.tone, large && 'large', tile.size === 'w' && 'w2 wide']}
+  data-shine
+>
+  <span class="label tag">{tag}</span>
+  <div class="vis"><Visual name={visual} /></div>
+  <div class="cap">
+    <div>
+      <h2>{hook}</h2>
+      <p>{teaser}</p>
+    </div>
+    <Arrow class="go" />
+  </div>
+</a>

@@ -1,0 +1,18 @@
+---
+/** build → canary → prod, the last stage in the signal colour. */
+const stages = ['build', 'canary', 'prod'];
+---
+<div class="pipe" aria-hidden="true">
+  {stages.map((s, i) => (
+    <div class="stg"><span>{s}</span><div class="track"><b style={`animation-delay:${i * 0.6}s`} /></div></div>
+  ))}
+</div>
+<style>
+  .pipe { width: 100%; padding: 50px 20px 12px; display: flex; flex-direction: column; gap: 9px; font-family: var(--font-code); font-size: 12px; }
+  .stg { display: grid; grid-template-columns: 58px 1fr; gap: 10px; align-items: center; }
+  .track { height: 6px; border-radius: 3px; background: var(--track); overflow: hidden; }
+  b { display: block; height: 100%; width: 0; background: var(--t-fg); animation: fill 5s infinite; }
+  .stg:last-child b { background: var(--accent); }
+  @keyframes fill { 0% { width: 0; } 30%, 100% { width: 100%; } }
+  @media (prefers-reduced-motion: reduce) { b { animation: none; width: 100%; } }
+</style>

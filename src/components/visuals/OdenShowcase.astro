@@ -1,0 +1,135 @@
+---
+/**
+ * Oden, full-width: three screens of a refreshed app (invented content).
+ * Left: the event page. Centre: the ticket, scanned at the door.
+ * Right: the board's view, members and ticket sales.
+ */
+// Deterministic QR-like pattern (decorative): 21×21 with three finder squares.
+const N = 21;
+let seed = 7;
+const rnd = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+const finder = (x: number, y: number) =>
+  [[0, 0], [N - 7, 0], [0, N - 7]].some(([fx, fy]) => x >= fx && x < fx + 7 && y >= fy && y < fy + 7);
+const finderOn = (x: number, y: number) => {
+  for (const [fx, fy] of [[0, 0], [N - 7, 0], [0, N - 7]]) {
+    const dx = x - fx, dy = y - fy;
+    if (dx >= 0 && dx < 7 && dy >= 0 && dy < 7) {
+      const ring = Math.min(dx, dy, 6 - dx, 6 - dy);
+      return ring !== 1;
+    }
+  }
+  return false;
+};
+const cells: Array<[number, number]> = [];
+for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+  if (finder(x, y) ? finderOn(x, y) : rnd() > 0.52) cells.push([x, y]);
+}
+const sales = [22, 35, 30, 48, 62, 55, 80];
+---
+<div class="show" aria-hidden="true">
+  <div class="phone side left">
+    <div class="screen">
+      <div class="art"><span class="date"><b>14</b>NOV</span><span class="tag">Soirée</span></div>
+      <div class="pad">
+        <p class="h">Soirée d'intégration</p>
+        <p class="meta">Jeu. 14 nov · 21 h · Le Hangar</p>
+        <div class="people"><i></i><i></i><i></i><i></i><span>+138 inscrits</span></div>
+        <p class="body">La soirée de rentrée du BDE. Navettes depuis le campus à partir de 20 h 30.</p>
+        <span class="cta">Prendre ma place · 8 €</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="phone center">
+    <div class="screen ticket">
+      <p class="tt">Mon billet</p>
+      <div class="qrwrap">
+        <svg class="qr" viewBox={`0 0 ${N} ${N}`} shape-rendering="crispEdges">
+          {cells.map(([x, y]) => <rect x={x} y={y} width="1" height="1" />)}
+        </svg>
+        <span class="beam"></span>
+      </div>
+      <p class="h c">Soirée d'intégration</p>
+      <p class="meta c">Place n° 0142 · Camille D.</p>
+      <span class="valid">✓ Entrée validée</span>
+    </div>
+  </div>
+
+  <div class="phone side right">
+    <div class="screen">
+      <div class="pad">
+        <p class="tt">Bureau</p>
+        <div class="kpis">
+          <div><b>312</b><span>adhérents</span></div>
+          <div><b>1 184 €</b><span>billetterie</span></div>
+        </div>
+        <p class="sec">Ventes de la semaine</p>
+        <div class="bars">{sales.map((v, i) => <i style={`--v:${v}%;animation-delay:${i * 0.12}s`} class:list={[i === sales.length - 1 && 'hl']} />)}</div>
+        <p class="sec">À venir</p>
+        <ul class="list">
+          <li><span class="dot"></span>Afterwork asso<em>Jeu.</em></li>
+          <li><span class="dot alt"></span>Tournoi de foot<em>Sam.</em></li>
+          <li><span class="dot alt"></span>AG annuelle<em>Mar.</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .show { position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; gap: 0; padding: 24px 16px 0; overflow: hidden; }
+  .phone { position: relative; flex: none; width: 210px; height: 400px; padding: 8px; border-radius: 36px; background: var(--neutral-950); box-shadow: 0 30px 60px -30px rgb(60 30 20 / 0.55); }
+  .phone::before { content: ''; position: absolute; top: 15px; left: 50%; width: 60px; height: 16px; margin-left: -30px; border-radius: 10px; background: var(--neutral-950); z-index: 2; }
+  .center { z-index: 2; transform: translateY(26px); animation: float 6s ease-in-out infinite; }
+  .side { width: 190px; height: 360px; opacity: 0.96; }
+  .left { transform: translate(34px, 54px) rotate(-8deg); }
+  .right { transform: translate(-34px, 54px) rotate(8deg); }
+  .screen { height: 100%; border-radius: 29px; overflow: hidden; background: var(--neutral-100); color: var(--color-text); position: relative; }
+  .pad { padding: 38px 14px 14px; display: grid; gap: 8px; }
+
+  .art { height: 140px; position: relative; background: radial-gradient(circle at 25% 30%, var(--brand-200), transparent 55%), radial-gradient(circle at 80% 75%, var(--brand-400), transparent 60%), var(--brand-500); }
+  .date { position: absolute; top: 34px; left: 12px; padding: 4px 7px; border-radius: 8px; background: var(--neutral-0); font-size: 8px; font-weight: 700; text-align: center; line-height: 1.1; }
+  .date b { display: block; font-size: 14px; }
+  .tag { position: absolute; bottom: 10px; left: 12px; font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 99px; background: rgb(255 255 255 / 0.85); }
+  .left .pad { padding-top: 12px; }
+  .h { font-size: 13px; font-weight: 700; letter-spacing: -0.02em; }
+  .meta { font-size: 9px; color: var(--color-text-muted); }
+  .c { text-align: center; }
+  .people { display: flex; align-items: center; }
+  .people i { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--neutral-100); margin-right: -6px; background: var(--neutral-300); }
+  .people i:nth-child(2) { background: var(--brand-200); } .people i:nth-child(3) { background: var(--neutral-600); } .people i:nth-child(4) { background: var(--brand-400); }
+  .people span { margin-left: 12px; font-size: 9px; font-weight: 700; }
+  .body { font-size: 9px; line-height: 1.45; color: var(--color-text-muted); }
+  .cta { display: grid; place-items: center; height: 30px; border-radius: 99px; background: var(--neutral-950); color: var(--neutral-0); font-size: 10px; font-weight: 700; margin-top: 4px; }
+
+  .ticket { display: grid; align-content: start; justify-items: center; gap: 8px; padding: 42px 16px 16px; background: var(--neutral-0); }
+  .tt { font-size: 16px; font-weight: 700; letter-spacing: -0.03em; justify-self: start; }
+  .qrwrap { position: relative; width: 150px; padding: 10px; border-radius: 16px; background: var(--neutral-100); overflow: hidden; }
+  .qr { width: 100%; height: auto; display: block; }
+  .qr rect { fill: var(--neutral-950); }
+  .beam { position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--accent); box-shadow: 0 0 14px 3px rgb(226 56 27 / 0.35); animation: beam 3s ease-in-out infinite; }
+  .valid { margin-top: 6px; font-size: 11px; font-weight: 700; padding: 8px 14px; border-radius: 99px; background: var(--accent-strong); color: var(--neutral-0); animation: valid 3s ease-in-out infinite; }
+
+  .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .kpis div { padding: 8px; border-radius: 10px; background: var(--neutral-0); display: grid; }
+  .kpis b { font-size: 15px; letter-spacing: -0.03em; }
+  .kpis span { font-size: 8px; color: var(--color-text-muted); }
+  .sec { font-size: 10px; font-weight: 700; margin-top: 2px; }
+  .bars { height: 64px; display: flex; align-items: flex-end; gap: 5px; padding: 8px; border-radius: 10px; background: var(--neutral-0); }
+  .bars i { flex: 1; height: var(--v); border-radius: 3px; background: var(--neutral-300); transform-origin: bottom; animation: grow 3s var(--ease) infinite alternate; }
+  .bars i.hl { background: var(--accent); }
+  .list { list-style: none; display: grid; gap: 4px; }
+  .list li { display: flex; align-items: center; gap: 6px; font-size: 9px; padding: 6px 8px; border-radius: 8px; background: var(--neutral-0); }
+  .list em { margin-left: auto; font-style: normal; color: var(--color-text-muted); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); } .dot.alt { background: var(--neutral-950); }
+
+  @keyframes float { 50% { transform: translateY(14px); } }
+  @keyframes beam { 0%, 100% { top: 6%; } 50% { top: 92%; } }
+  @keyframes valid { 0%, 40% { opacity: 0.25; transform: scale(0.96); } 55%, 100% { opacity: 1; transform: none; } }
+  @keyframes grow { from { transform: scaleY(0.6); } to { transform: scaleY(1); } }
+
+  @media (max-width: 640px) {
+    .side { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .center, .beam, .valid, .bars i { animation: none; } .beam { display: none; } }
+</style>

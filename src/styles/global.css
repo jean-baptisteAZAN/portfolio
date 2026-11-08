@@ -1,0 +1,139 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: var(--neutral-300) transparent;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+::selection {
+  background: var(--accent-strong);
+  color: var(--color-text-inverse);
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 16px 64px;
+}
+
+.label {
+  font-family: var(--font-code);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--t-muted, var(--color-text-muted));
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Background : one colour family, blurred and drifting */
+.backdrop {
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.backdrop i {
+  position: absolute;
+  border-radius: 50%;
+  animation: drift 28s ease-in-out infinite alternate;
+}
+.backdrop i:nth-child(1) { width: 48vw; height: 48vw; left: 4%; top: 2%; background: var(--brand-400); }
+.backdrop i:nth-child(2) { width: 40vw; height: 40vw; right: 4%; top: 24%; background: var(--brand-200); animation-delay: -9s; }
+.backdrop i:nth-child(3) { width: 34vw; height: 34vw; left: 34%; bottom: 0; background: var(--brand-500); opacity: 0.55; animation-delay: -15s; }
+@keyframes drift {
+  to { transform: translate(7vw, 5vh) scale(1.12); }
+}
+
+/* Glass panel : shared by bento tiles and case pages */
+.glass {
+  --t-fg: var(--color-text);
+  --t-muted: var(--color-text-muted);
+  --t-divider: var(--divider);
+  color: var(--t-fg);
+  background: var(--surface-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-l);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  box-shadow: var(--highlight), var(--shadow);
+  position: relative;
+}
+.glass.inverse {
+  --t-fg: var(--color-text-inverse);
+  --t-muted: var(--color-text-inverse-muted);
+  --t-divider: var(--divider-inverse);
+  background: var(--surface-inverse);
+  border-color: var(--border-inverse);
+  box-shadow: var(--highlight-inverse), var(--shadow);
+}
+.glass.brand {
+  --t-fg: var(--color-text-inverse);
+  --t-muted: var(--color-text-inverse);
+  --t-divider: var(--divider-inverse);
+  background: var(--surface-brand);
+  border-color: var(--border-brand);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35), var(--shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+}

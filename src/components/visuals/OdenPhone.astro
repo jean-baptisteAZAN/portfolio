@@ -1,0 +1,62 @@
+---
+/**
+ * A fresh take on the Oden app (the shipped visuals are dated): tonight's event,
+ * a ticket taken, the week ahead. Invented content, current UI.
+ */
+---
+<div class="stagep" aria-hidden="true">
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="bar"><span>9:41</span><span class="dots"><i></i><i></i><i></i></span></div>
+      <p class="hi">Ce soir</p>
+      <div class="event">
+        <div class="art"><span class="date"><b>14</b>NOV</span></div>
+        <p class="ename">Soirée d'intégration</p>
+        <p class="emeta">21 h · Le Hangar · 142 inscrits</p>
+        <span class="cta"><span class="a">Prendre ma place · 8 €</span><span class="b">✓ Place réservée</span></span>
+      </div>
+      <p class="sec">Cette semaine</p>
+      <ul class="list">
+        <li><span class="dot"></span><span>Afterwork asso</span><em>Jeu.</em></li>
+        <li><span class="dot alt"></span><span>Tournoi de foot</span><em>Sam.</em></li>
+      </ul>
+      <nav class="tabs"><i class="on"></i><i></i><i></i><i></i></nav>
+    </div>
+  </div>
+</div>
+
+<style>
+  .stagep { width: 100%; height: 100%; display: grid; place-items: end center; padding-top: 44px; overflow: hidden; }
+  .phone {
+    position: relative; width: 168px; height: 300px; padding: 7px; border-radius: 30px;
+    background: var(--neutral-950); box-shadow: var(--shadow);
+    transform: translateY(46px) rotate(-4deg); transition: transform 0.5s var(--ease);
+  }
+  :global(a:hover) .phone, :global(.hero) .phone { transform: translateY(18px) rotate(0deg); }
+  .notch { position: absolute; top: 12px; left: 50%; width: 52px; height: 14px; margin-left: -26px; border-radius: 10px; background: var(--neutral-950); z-index: 2; }
+  .screen { height: 100%; border-radius: 24px; overflow: hidden; padding: 30px 12px 10px; background: var(--neutral-100); color: var(--color-text); display: flex; flex-direction: column; gap: 8px; position: relative; }
+  .bar { position: absolute; top: 8px; left: 16px; right: 16px; display: flex; justify-content: space-between; font-size: 9px; font-weight: 700; }
+  .dots { display: flex; gap: 2px; align-items: center; } .dots i { width: 3px; height: 3px; border-radius: 50%; background: currentColor; }
+  .hi { font-size: 17px; font-weight: 700; letter-spacing: -0.03em; }
+  .event { border-radius: 14px; background: var(--neutral-0); padding: 6px 6px 8px; box-shadow: 0 6px 16px -10px rgb(60 30 20 / 0.4); }
+  .art { height: 64px; border-radius: 10px; position: relative; background: radial-gradient(circle at 25% 30%, var(--brand-200), transparent 55%), radial-gradient(circle at 80% 70%, var(--brand-400), transparent 60%), var(--brand-500); }
+  .date { position: absolute; top: 6px; left: 6px; padding: 3px 6px; border-radius: 6px; background: var(--neutral-0); font-size: 7px; font-weight: 700; text-align: center; line-height: 1.1; }
+  .date b { display: block; font-size: 12px; }
+  .ename { margin-top: 6px; font-size: 11px; font-weight: 700; }
+  .emeta { font-size: 8.5px; color: var(--color-text-muted); }
+  .cta { position: relative; display: block; height: 22px; margin-top: 6px; border-radius: var(--radius-pill); overflow: hidden; font-size: 9px; font-weight: 700; }
+  .cta span { position: absolute; inset: 0; display: grid; place-items: center; border-radius: inherit; }
+  .a { background: var(--neutral-950); color: var(--neutral-0); animation: ticketA 6s var(--ease) infinite; }
+  .b { background: var(--accent-strong); color: var(--neutral-0); animation: ticketB 6s var(--ease) infinite; }
+  .sec { font-size: 10px; font-weight: 700; margin-top: 2px; }
+  .list { list-style: none; display: grid; gap: 5px; }
+  .list li { display: flex; align-items: center; gap: 6px; font-size: 9px; padding: 6px 8px; border-radius: 9px; background: var(--neutral-0); }
+  .list em { margin-left: auto; font-style: normal; color: var(--color-text-muted); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); } .dot.alt { background: var(--neutral-950); }
+  .tabs { margin-top: auto; display: flex; justify-content: space-around; padding: 6px 0 2px; border-top: 1px solid var(--divider); }
+  .tabs i { width: 12px; height: 12px; border-radius: 4px; background: var(--neutral-300); } .tabs i.on { background: var(--neutral-950); }
+  @keyframes ticketA { 0%, 45% { opacity: 1; } 50%, 92% { opacity: 0; } 100% { opacity: 1; } }
+  @keyframes ticketB { 0%, 45% { opacity: 0; transform: scale(0.9); } 50%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .a, .b { animation: none; } .a { opacity: 0; } }
+</style>

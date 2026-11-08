@@ -1,0 +1,83 @@
+---
+import { Font } from 'astro:assets';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, image = '/og.png', type = 'website', jsonLd } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site);
+const ogImage = new URL(image, Astro.site);
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Jean-Baptiste Azan',
+  url: Astro.site?.href,
+  jobTitle: 'Ingénieur logiciel',
+  address: { '@type': 'PostalAddress', addressLocality: 'Paris', addressCountry: 'FR' },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'University of Kent' },
+    { '@type': 'CollegeOrUniversity', name: 'Epitech' },
+  ],
+  knowsAbout: ['IA vocale', 'Kubernetes', 'Infrastructure cloud-native', 'Sécurité', 'LLM', 'TypeScript', 'Python', 'Go'],
+  sameAs: ['https://www.linkedin.com/in/jean-baptiste-azan', 'https://github.com/jean-baptisteAZAN'],
+};
+const ld = [person, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])];
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="author" content="Jean-Baptiste Azan" />
+    <meta name="theme-color" content="#ece8e4" />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Jean-Baptiste Azan" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-mono" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  </head>
+  <body>
+    <div class="backdrop" aria-hidden="true"><i></i><i></i><i></i></div>
+    <slot />
+    <script>
+      // Specular highlight follows the pointer on glass panels.
+      const panels = document.querySelectorAll<HTMLElement>('[data-shine]');
+      panels.forEach((el) =>
+        el.addEventListener('pointermove', (e) => {
+          const r = el.getBoundingClientRect();
+          el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+          el.style.setProperty('--my', `${e.clientY - r.top}px`);
+        }),
+      );
+    </script>
+  </body>
+</html>

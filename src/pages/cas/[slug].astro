@@ -1,0 +1,190 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Visual from '../../components/Visual.astro';
+import Contact from '../../components/Contact.astro';
+import Arrow from '../../components/Arrow.astro';
+import '../../styles/bento.css';
+
+export async function getStaticPaths() {
+  const cases = (await getCollection('cases')).sort((a, b) => a.data.order - b.data.order);
+  return cases.map((entry, i) => ({
+    params: { slug: entry.id },
+    props: { entry, next: cases[(i + 1) % cases.length] },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'cases'>;
+  next: CollectionEntry<'cases'>;
+}
+const { entry, next } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const hero = d.hero ?? d.visual;
+const tone = d.tile.tone === 'glass' ? null : d.tile.tone;
+const url = new URL(`/cas/${entry.id}`, Astro.site).href;
+const linkIcon = { site: '↗', repo: '{ }', pdf: 'PDF' } as const;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': d.links.some((l) => l.kind === 'pdf') ? 'ScholarlyArticle' : 'CreativeWork',
+    name: d.title,
+    headline: d.title,
+    description: d.description,
+    url,
+    inLanguage: 'fr',
+    author: { '@type': 'Person', name: 'Jean-Baptiste Azan', url: Astro.site?.href },
+    keywords: d.stack.flatMap((g) => g.items).join(', '),
+    ...(d.links.length ? { sameAs: d.links.filter((l) => l.href.startsWith('http')).map((l) => l.href) } : {}),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: Astro.site?.href },
+      { '@type': 'ListItem', position: 2, name: d.title, item: url },
+    ],
+  },
+];
+---
+
+<Base title={`${d.title} · Jean-Baptiste Azan`} description={d.description} type="article" jsonLd={jsonLd}>
+  <main class="wrap case">
+    <nav class="crumbs" aria-label="Fil d'Ariane"><a href="/">← Jean-Baptiste Azan</a></nav>
+
+    <header class="head glass" data-shine>
+      <span class="label">{d.tag} · {d.period}</span>
+      <h1>{d.title}</h1>
+      <p class="brief">{d.brief}</p>
+      {d.links.length > 0 && (
+        <ul class="links-row" role="list">
+          {d.links.map((l) => (
+            <li>
+              <a class:list={['pill', l.kind]} href={l.href} {...(l.href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {})} {...(l.kind === 'pdf' ? { download: '' } : {})}>
+                <span class="ico" aria-hidden="true">{linkIcon[l.kind]}</span>{l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </header>
+
+    {hero === 'drone' ? (
+      <section class="harp glass" aria-label="Démo : le tutoriel du drone dans le visualiseur Harp">
+        <Visual name="drone" drone="embed" />
+      </section>
+    ) : (
+      <div class:list={['hero', 'glass', tone, `v-${hero}`]} data-shine><Visual name={hero} /></div>
+    )}
+
+    <ul class="facts" role="list">
+      {d.facts.map((f, i) => (
+        <li class:list={['glass', i === 0 && 'brand']} data-shine>
+          <span class="value">{f.value}</span>
+          <span class="flabel">{f.label}</span>
+        </li>
+      ))}
+    </ul>
+
+    <article class="story glass">
+      <div class="prose">
+        <Content />
+        {d.stack.length > 0 && (
+          <section class="stack" aria-labelledby="stack-title">
+            <h2 id="stack-title">Outils</h2>
+            <dl>
+              {d.stack.map((g) => (
+                <div class="axis">
+                  <dt class="label">{g.axis}</dt>
+                  <dd><ul role="list">{g.items.map((s) => <li>{s}</li>)}</ul></dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
+      </div>
+    </article>
+
+    <a class="next glass inverse" href={`/cas/${next.id}`} data-shine>
+      <div>
+        <span class="label">Projet suivant</span>
+        <p>{next.data.hook}</p>
+      </div>
+      <Arrow />
+    </a>
+
+    <div class="bento end"><Contact /></div>
+  </main>
+</Base>
+
+<style>
+  .case { max-width: 960px; display: grid; gap: 10px; }
+  .crumbs { padding: 4px 4px 14px; }
+  .crumbs a { font-size: 14px; color: var(--color-text-muted); text-decoration: none; }
+  .crumbs a:hover { color: var(--color-text); }
+
+  .head { padding: clamp(24px, 4vw, 40px); display: grid; gap: 16px; }
+  .brief { font-size: clamp(18px, 1.8vw, 21px); line-height: 1.45; color: var(--t-muted); max-width: 52ch; }
+  .head h1 { font-size: clamp(32px, 5vw, 54px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.02; max-width: 18ch; }
+
+  .links-row { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: var(--radius-pill); font-size: 14px; font-weight: 500; text-decoration: none; background: var(--surface-glass-strong); border: 1px solid var(--border-glass); transition: background 0.2s, color 0.2s; }
+  .pill .ico { font-family: var(--font-code); font-size: 11px; }
+  .pill:first-child, .links-row li:first-child .pill { background: var(--neutral-950); color: var(--color-text-inverse); border-color: var(--neutral-950); }
+  .pill:hover { background: var(--accent-strong); color: var(--color-text-inverse); border-color: var(--accent-strong); }
+
+  .hero { height: clamp(300px, 36vw, 400px); display: grid; place-items: center; overflow: hidden; }
+  .hero > :global(*) { max-width: 100%; }
+  .v-curve :global(.curve), .v-pipeline :global(.pipe) { max-width: 560px; }
+  .v-fleet :global(.fleet) { max-width: 520px; }
+  .v-journey { height: auto; min-height: 420px; }
+  .v-oden-show { height: clamp(380px, 40vw, 440px); }
+  .v-mac-flow { height: clamp(340px, 34vw, 380px); }
+  .v-audit { height: clamp(320px, 33vw, 360px); }
+  .v-arch, .v-certchain { height: auto; display: block; }
+  .v-arch :global(svg), .v-certchain :global(svg) { width: 100%; height: auto; display: block; }
+
+  .harp { position: relative; height: min(82svh, 720px); overflow: hidden; }
+
+  .facts { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+  .facts li { padding: 22px; display: grid; gap: 8px; align-content: start; }
+  .value { font-size: clamp(30px, 3.6vw, 44px); font-weight: 700; letter-spacing: -0.035em; line-height: 1; }
+  .flabel { font-size: 14px; line-height: 1.4; color: var(--t-muted); }
+
+  .story { overflow: hidden; }
+  .prose { padding: clamp(8px, 1.5vw, 14px) clamp(24px, 4vw, 44px) clamp(24px, 4vw, 44px); }
+  .prose :global(h2) { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 34px 0 12px; }
+  .prose > :global(:first-child) { margin-top: 18px; }
+  .prose :global(p), .prose :global(li) { font-size: 17px; line-height: 1.65; max-width: 68ch; }
+  .prose :global(p + p) { margin-top: 14px; }
+  .prose :global(ul), .prose :global(ol) { padding-left: 1.2em; display: grid; gap: 8px; }
+  .prose :global(li::marker) { color: var(--accent); }
+  .prose :global(strong) { font-weight: 700; }
+  .prose :global(em) { color: var(--t-muted); }
+  .prose :global(a) { text-underline-offset: 3px; }
+  .prose :global(table) { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; font-variant-numeric: tabular-nums; }
+  .prose :global(th), .prose :global(td) { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--t-divider); }
+  .prose :global(th) { font-family: var(--font-code); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--t-muted); font-weight: 400; }
+
+  .stack { margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--t-divider); }
+  .stack dl { display: grid; gap: 14px; }
+  .axis { display: grid; grid-template-columns: 140px 1fr; gap: 16px; align-items: baseline; }
+  .stack ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  @media (max-width: 560px) { .axis { grid-template-columns: 1fr; gap: 8px; } }
+  .stack li { font-size: 14px; padding: 7px 14px; border-radius: var(--radius-pill); background: var(--surface-glass-strong); border: 1px solid var(--border-glass); }
+
+  .next { margin-top: 20px; padding: 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; text-decoration: none; transition: transform 0.35s var(--ease); }
+  .next:hover { transform: translateY(-3px); }
+  .next p { font-size: clamp(20px, 2.4vw, 26px); font-weight: 700; letter-spacing: -0.025em; margin-top: 6px; }
+
+  .end { grid-template-columns: minmax(0, 1fr); }
+  .end :global(.contact) { grid-column: 1 / -1; min-height: 200px; }
+
+  @media (max-width: 760px) {
+    .hero { height: auto; min-height: 340px; }
+    .v-arch, .v-certchain { overflow-x: auto; place-items: start; }
+    .v-arch :global(svg), .v-certchain :global(svg) { min-width: 720px; }
+  }
+</style>

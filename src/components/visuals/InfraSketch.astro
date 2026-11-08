@@ -1,0 +1,78 @@
+---
+/**
+ * Architecture of the health-grade voice-AI platform (no client names, few
+ * tool names: concepts first, tools live in the page's stack list).
+ * Top: production inside the HDS zone, linked to the centres' ERP / RIS over
+ * IPsec; supervision watches the whole cluster continuously.
+ * Bottom: GitOps delivery with a canary; supervision metrics drive rollback.
+ */
+type Node = { id: string; x: number; y: number; w: number; label: string; sub?: string; tone?: 'ink' | 'accent' };
+const NODES: Node[] = [
+  // production
+  { id: 'patient', x: 10, y: 70, w: 120, label: 'Patient', sub: 'appelle son centre' },
+  { id: 'tel', x: 165, y: 70, w: 150, label: 'Téléphonie', sub: 'SIP, numéros des centres' },
+  { id: 'orch', x: 330, y: 70, w: 160, label: 'Orchestrateur vocal', sub: 'écoute, comprend, répond', tone: 'ink' },
+  { id: 'models', x: 505, y: 70, w: 160, label: 'Modèles IA', sub: 'transcription · LLM · voix' },
+  { id: 'api', x: 330, y: 190, w: 160, label: 'API & données', sub: 'rendez-vous, centres' },
+  { id: 'erp', x: 700, y: 190, w: 130, label: 'ERP / RIS', sub: 'logiciels des centres' },
+  // continuous, cluster-wide
+  { id: 'obs', x: 165, y: 290, w: 500, label: 'Supervision continue', sub: 'métriques, logs et alertes sur tout le cluster → astreinte' },
+  // delivery
+  { id: 'gitops', x: 20, y: 430, w: 210, label: 'GitOps', sub: "l'état du cluster décrit dans Git" },
+  { id: 'canary', x: 260, y: 430, w: 200, label: 'Déploiement canary', sub: "une part du trafic d'abord", tone: 'accent' },
+  { id: 'tests', x: 490, y: 430, w: 180, label: 'Tests maison', sub: 'rejouent de vrais appels' },
+];
+const EDGES: Array<[string, string]> = [
+  ['patient', 'tel'], ['tel', 'orch'], ['orch', 'models'], ['orch', 'api'], ['api', 'erp'],
+  ['gitops', 'canary'], ['canary', 'tests'],
+];
+const H = 64;
+const byId = Object.fromEntries(NODES.map((n) => [n.id, n]));
+const edge = ([a, b]: [string, string]) => {
+  const A = byId[a], B = byId[b];
+  if (Math.abs(A.y - B.y) < 1) {
+    const [L, R] = A.x < B.x ? [A, B] : [B, A];
+    return `M${L.x + L.w} ${L.y + H / 2} L${R.x} ${R.y + H / 2}`;
+  }
+  return `M${A.x + A.w / 2} ${A.y + H} L${B.x + B.w / 2} ${B.y}`;
+};
+---
+<svg class="sketch" viewBox="0 0 840 510" role="img" aria-label="Schéma d'architecture. En haut, la plateforme en production dans un hébergement de santé HDS sous Kubernetes : téléphonie, orchestrateur vocal, modèles IA, API et données, reliée aux ERP et RIS des centres par VPN IPsec. Une supervision continue couvre tout le cluster et prévient l'astreinte. En bas, la livraison GitOps : déploiement canary sur une part du trafic et tests maison qui rejouent de vrais appels ; les métriques de la supervision déclenchent le retour arrière automatique.">
+  <rect class="zone" x="150" y="40" width="525" height="332" rx="18" />
+  <text class="zlabel" x="166" y="30">Hébergement HDS · France · Kubernetes · réseau isolé, accès par VPN</text>
+  <rect class="zone ops" x="10" y="405" width="820" height="100" rx="18" />
+  <text class="zlabel" x="26" y="397">Livraison GitOps · ~3 déploiements par jour</text>
+
+  {EDGES.map((e) => <path class="edge" d={edge(e)} />)}
+  <path class="edge" d="M360 354 L360 430" />
+
+  <text class="elabel" x="502" y="214">VPN IPsec</text>
+  <text class="elabel strong" x="368" y="391">métriques → retour arrière auto</text>
+
+  {NODES.map((n) => (
+    <g class:list={['node', n.tone]} transform={`translate(${n.x} ${n.y})`}>
+      <rect width={n.w} height={H} rx="12" />
+      <text class="l" x="14" y="27">{n.label}</text>
+      {n.sub && <text class="s" x="14" y="47">{n.sub}</text>}
+    </g>
+  ))}
+</svg>
+
+<style>
+  .sketch { width: 100%; height: 100%; padding: 24px; font-family: var(--font-body); overflow: visible; }
+  .zone { fill: none; stroke: var(--t-fg); stroke-opacity: 0.25; stroke-dasharray: 6 6; }
+  .ops { stroke-opacity: 0.18; }
+  .zlabel { font-family: var(--font-code); font-size: 11px; fill: var(--t-muted); }
+  .elabel { font-family: var(--font-code); font-size: 10px; fill: var(--t-muted); }
+  .elabel.strong { fill: var(--accent-strong); }
+  .edge { fill: none; stroke: var(--t-fg); stroke-opacity: 0.5; stroke-width: 1.5; stroke-dasharray: 5 6; animation: flow 1.6s linear infinite; }
+  .node rect { fill: var(--surface-glass-strong); stroke: var(--t-fg); stroke-opacity: 0.18; }
+  .node.ink rect { fill: var(--neutral-950); stroke: none; }
+  .node.ink text { fill: var(--color-text-inverse); }
+  .node.accent rect { fill: var(--accent-strong); stroke: none; }
+  .node.accent text { fill: var(--color-text-inverse); }
+  .l { font-size: 14px; font-weight: 700; fill: var(--t-fg); letter-spacing: -0.01em; }
+  .s { font-size: 11px; fill: var(--t-muted); }
+  @keyframes flow { to { stroke-dashoffset: -22; } }
+  @media (prefers-reduced-motion: reduce) { .edge { animation: none; } }
+</style>

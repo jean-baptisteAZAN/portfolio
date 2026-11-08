@@ -1,0 +1,13 @@
+---
+import { SITE } from '../site';
+interface Props { class?: string }
+const { class: className } = Astro.props;
+---
+<section class:list={['tile', 'glass', 'inverse', 'contact', className]} aria-labelledby="contact-title" data-shine>
+  <h2 id="contact-title">Envie de prendre un café<br />pour en discuter&nbsp;?</h2>
+  <nav class="links" aria-label="Contact">
+    <a class="primary" href={`mailto:${SITE.email}`}>M'écrire</a>
+    <a href={SITE.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+    <a href={SITE.github} rel="me noopener" target="_blank">GitHub</a>
+  </nav>
+</section>

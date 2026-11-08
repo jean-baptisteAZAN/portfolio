@@ -1,0 +1,44 @@
+---
+/** Shorter missions: one line each, no case page. */
+interface Props { class?: string }
+const { class: className } = Astro.props;
+
+const items = [
+  {
+    org: 'Adfinitas',
+    meta: 'Stage puis freelance · 2023 → 2024',
+    text: 'Pages et formulaires de dons en ligne pour la SPA, l’UNHCR, l’Ordre de Malte et l’Hôpital Fondation Rothschild.',
+  },
+  {
+    org: 'Proppl',
+    meta: 'Freelance',
+    text: 'Développement full-stack d’une plateforme de recrutement par cooptation, où les salariés recommandent des candidats.',
+  },
+  {
+    org: 'Epitech',
+    meta: 'Assistant pédagogique · 2024 → 2025',
+    text: 'Encadrement d’étudiants en informatique : suivi de projets, évaluations, examens.',
+  },
+];
+---
+<section class:list={['tile', 'glass', 'also', className]} aria-labelledby="also-title" data-shine>
+  <h2 id="also-title" class="label">Aussi</h2>
+  <ul role="list">
+    {items.map((i) => (
+      <li>
+        <p class="org"><strong>{i.org}</strong><span>{i.meta}</span></p>
+        <p class="text">{i.text}</p>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .also { justify-content: flex-start; }
+  ul { list-style: none; display: grid; gap: 16px; }
+  li + li { padding-top: 16px; border-top: 1px solid var(--t-divider); }
+  .org { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+  .org strong { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .org span { font-family: var(--font-code); font-size: 11px; color: var(--t-muted); }
+  .text { margin-top: 4px; font-size: 14.5px; line-height: 1.45; color: var(--t-muted); }
+</style>

@@ -1,0 +1,140 @@
+---
+/**
+ * Scaleway hero: the life of a rented Mac, from order to wipe.
+ * Steps 2 and 3 are the mission (remote MDM enrolment, kernel extension
+ * approved without anyone at the machine) and carry an accent badge.
+ * Left: stepper. Right: a macOS-like window whose content follows the step.
+ * 5 steps × 3 s, CSS only.
+ */
+const steps = [
+  { t: 'Réservation', s: 'Un Mac mini, à l\'heure' },
+  { t: 'Enrôlement MDM', s: 'Certificats Apple vérifiés', mission: true },
+  { t: 'Extension noyau', s: 'Autorisée à distance', mission: true },
+  { t: 'Utilisation', s: 'Builds, tests, agents' },
+  { t: 'Remise à zéro', s: 'Prêt pour le suivant' },
+];
+---
+<div class="cq"><div class="flow" aria-hidden="true">
+  <ol class="steps">
+    {steps.map((st, i) => (
+      <li class="step" style={`--i:${i}`}>
+        <b>{i + 1}</b>
+        <span class="tx"><span class="t">{st.t}{st.mission && <em>Mission</em>}</span><span class="s">{st.s}</span></span>
+      </li>
+    ))}
+  </ol>
+
+  <div class="win">
+    <div class="bar"><i></i><i></i><i></i><span>mac-mini-m4 · par-1</span></div>
+    <div class="body">
+      <section class="panel" style="--i:0">
+        <p class="h">Mac mini M4</p>
+        <p class="m">Paris · 16 Go · macOS 15</p>
+        <div class="rows"><span>Facturation</span><b>à l'heure</b></div>
+        <span class="btn">Commander</span>
+        <p class="ok dim">Livraison en cours…</p>
+      </section>
+
+      <section class="panel" style="--i:1">
+        <p class="h">Enrôlement</p>
+        <ul class="checks">
+          <li><span>✓</span>Apple Business Manager</li>
+          <li><span>✓</span>Certificat fournisseur MDM</li>
+          <li><span>✓</span>Certificat de notification<em>valide 214 j</em></li>
+        </ul>
+        <p class="ok">Profil installé · pilotable à distance</p>
+      </section>
+
+      <section class="panel" style="--i:2">
+        <p class="h">Extension système</p>
+        <div class="kext"><code>com.client.security-agent</code><span class="pill">Autorisée</span></div>
+        <p class="m">Approuvée par profil MDM. Aucun clic sur la machine, personne devant l'écran.</p>
+        <p class="ok">Chargée au démarrage</p>
+      </section>
+
+      <section class="panel term" style="--i:3">
+        <code><span class="p">$</span> xcodebuild -scheme App test</code>
+        <code class="dim">Test Suite 'All tests' started</code>
+        <code class="dim">Executed 412 tests, 0 failures</code>
+        <code class="hl">** TEST SUCCEEDED **</code>
+        <div class="uses"><span>CI iOS</span><span>Tests macOS</span><span>Agents système</span></div>
+      </section>
+
+      <section class="panel" style="--i:4">
+        <p class="h">Remise à zéro</p>
+        <div class="wipe"><i></i></div>
+        <p class="m">Disque effacé, macOS réinstallé, profil MDM conservé.</p>
+        <p class="ok">Disponible pour le client suivant</p>
+      </section>
+    </div>
+  </div>
+</div></div>
+
+<style>
+  .cq { container-type: inline-size; width: 100%; height: 100%; }
+  .flow { height: 100%; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 32px; align-items: center; padding: 32px 40px; }
+
+  .steps { list-style: none; display: grid; gap: 4px; }
+  .step { --d: calc(var(--i) * 3s); display: flex; gap: 12px; align-items: center; padding: 10px 12px; border-radius: var(--radius-m); border: 1px solid transparent; animation: stepOn 15s infinite var(--d); }
+  .step b { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-code); font-weight: 400; font-size: 11px; background: var(--track); color: var(--t-fg); animation: dotOn 15s infinite var(--d); }
+  .tx { display: grid; gap: 1px; min-width: 0; }
+  .t { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .t em { font-style: normal; font-family: var(--font-code); font-weight: 400; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 7px; border-radius: var(--radius-pill); background: var(--accent-strong); color: var(--color-text-inverse); }
+  .s { font-size: 12.5px; color: var(--t-muted); }
+
+  .win { position: relative; border-radius: 16px; background: var(--neutral-0); color: var(--color-text); box-shadow: var(--shadow); overflow: hidden; border: 1px solid var(--divider); }
+  .bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: var(--neutral-100); border-bottom: 1px solid var(--divider); }
+  .bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--neutral-300); }
+  .bar span { margin-left: 8px; font-family: var(--font-code); font-size: 11px; color: var(--color-text-muted); }
+  .body { position: relative; height: 250px; }
+
+  .panel { position: absolute; inset: 0; padding: 22px; display: grid; align-content: start; gap: 12px; opacity: 0; animation: panelOn 15s infinite calc(var(--i) * 3s); }
+  .h { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+  .m { font-size: 13px; line-height: 1.45; color: var(--color-text-muted); }
+  .rows { display: flex; justify-content: space-between; font-size: 13px; padding: 10px 12px; border-radius: 10px; background: var(--neutral-100); }
+  .btn { justify-self: start; padding: 9px 18px; border-radius: var(--radius-pill); background: var(--neutral-950); color: var(--neutral-0); font-size: 13px; font-weight: 700; animation: press 15s infinite; }
+  .ok { font-family: var(--font-code); font-size: 11px; color: var(--accent-strong); }
+  .ok.dim { color: var(--color-text-muted); }
+
+  .checks { list-style: none; display: grid; gap: 7px; font-size: 13.5px; }
+  .checks li { display: flex; align-items: center; gap: 8px; }
+  .checks span { flex: none; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font-size: 10px; background: var(--neutral-950); color: var(--neutral-0); }
+  .checks em { margin-left: auto; font-style: normal; font-family: var(--font-code); font-size: 10px; color: var(--color-text-muted); }
+
+  .kext { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 10px; background: var(--neutral-100); }
+  .kext code { font-family: var(--font-code); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pill { flex: none; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-pill); background: var(--accent-strong); color: var(--neutral-0); }
+
+  .term { background: var(--neutral-950); color: var(--neutral-100); gap: 6px; }
+  .term code { font-family: var(--font-code); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .term .p { color: var(--brand-400); }
+  .term .dim { color: rgb(236 232 228 / 0.55); }
+  .term .hl { color: var(--brand-200); font-weight: 700; }
+  .uses { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .uses span { font-size: 11px; padding: 4px 10px; border-radius: var(--radius-pill); border: 1px solid rgb(255 255 255 / 0.18); }
+
+  .wipe { height: 6px; border-radius: 3px; background: var(--neutral-100); overflow: hidden; }
+  .wipe i { display: block; height: 100%; width: 0; background: var(--accent); animation: wipe 15s infinite 12s; }
+
+  /* each step owns 3 s of a 15 s loop: 20 % */
+  @keyframes panelOn { 0% { opacity: 0; transform: translateY(6px); } 2%, 18% { opacity: 1; transform: none; } 20%, 100% { opacity: 0; } }
+  @keyframes stepOn { 0%, 19% { background: var(--surface-glass-strong); border-color: var(--border-glass); } 20%, 100% { background: transparent; border-color: transparent; } }
+  @keyframes dotOn { 0%, 19% { background: var(--accent-strong); color: var(--color-text-inverse); } 20%, 100% { background: var(--track); color: var(--t-fg); } }
+  @keyframes press { 0%, 8% { transform: none; } 10% { transform: scale(0.94); } 12%, 100% { transform: none; } }
+  @keyframes wipe { 0% { width: 0; } 17%, 100% { width: 100%; } }
+
+  @container (max-width: 640px) {
+    .flow { grid-template-columns: 1fr; gap: 16px; padding: 20px 16px; align-content: center; }
+    .steps { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+    .step { padding: 6px; justify-content: center; }
+    .tx { display: none; }
+    .body { height: 210px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .step, .step b, .panel, .btn, .wipe i { animation: none; }
+    .panel { opacity: 0; } .panel[style="--i:2"] { opacity: 1; }
+    .step[style="--i:2"] { background: var(--surface-glass-strong); border-color: var(--border-glass); }
+    .step[style="--i:2"] b { background: var(--accent-strong); color: var(--color-text-inverse); }
+  }
+</style>

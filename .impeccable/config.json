@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "mocks/*"
+        ],
+        "createdAt": "2026-11-07T15:29:16.058Z",
+        "reason": "Claude: mocks/ are superseded, gitignored explorations; the shipped site lives in src/"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "mocks/*"
+        ],
+        "createdAt": "2026-11-07T15:29:16.074Z",
+        "reason": "Claude: mocks/ are superseded explorations; warm-neutral glass palette chosen by the user in this session"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "mocks/*"
+        ],
+        "createdAt": "2026-11-07T16:29:22.465Z",
+        "reason": "Claude: mock variants hidden with display:none are measured as zero-size boxes; visible panels have 22-48px padding (checked in screenshots)"
+      }
+    ]
+  }
+}

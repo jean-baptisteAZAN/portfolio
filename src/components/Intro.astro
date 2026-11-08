@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import face from '../assets/face.png';
+import { SITE } from '../site';
+---
+<header class="intro-card glass" data-shine>
+  <Image src={face} alt="Portrait de Jean-Baptiste Azan" class="face" widths={[160, 240, 400]} sizes="200px" loading="eager" fetchpriority="high" />
+  <div class="body">
+    <span class="label">Paris</span>
+    <h1>Jean-Baptiste Azan</h1>
+    <p class="tag">Ingénieur IA et infrastructure, co-fondateur.</p>
+    <p class="recap">
+      Du trunk SIP au modèle 3D, du mémoire de recherche au client qui signe : agents vocaux temps réel, infrastructure de santé certifiée, produits lancés et vendus.
+    </p>
+    <nav class="row" aria-label="Contact">
+      <a class="pill dark" href={`mailto:${SITE.email}`}>M'écrire</a>
+      <a class="pill" href={SITE.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+      <a class="pill" href={SITE.github} rel="me noopener" target="_blank">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .intro-card { padding: clamp(24px, 4vw, 44px); display: grid; grid-template-columns: auto 1fr; gap: clamp(24px, 4vw, 48px); align-items: center; }
+  .face { width: clamp(140px, 16vw, 200px); height: auto; aspect-ratio: 1; object-fit: cover; object-position: center 30%; border-radius: 50%; box-shadow: 0 0 0 6px rgb(255 255 255 / 0.6), var(--shadow); }
+  h1 { margin-top: 10px; font-size: clamp(38px, 5vw, 64px); font-weight: 700; letter-spacing: -0.035em; line-height: 0.98; }
+  .tag { margin-top: 8px; font-size: clamp(18px, 1.8vw, 22px); letter-spacing: -0.01em; color: var(--t-muted); }
+  .recap { margin-top: 18px; max-width: 54ch; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.5; color: var(--t-muted); }
+  .recap strong { color: var(--t-fg); font-weight: 600; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .pill { display: inline-flex; align-items: center; padding: 10px 16px; border-radius: var(--radius-pill); font-size: 14px; font-weight: 500; text-decoration: none; background: var(--surface-glass-strong); border: 1px solid var(--border-glass); transition: background 0.2s, color 0.2s, border-color 0.2s; }
+  .pill.dark { background: var(--neutral-950); color: var(--color-text-inverse); border-color: var(--neutral-950); }
+  .pill:hover { background: var(--accent-strong); color: var(--color-text-inverse); border-color: var(--accent-strong); }
+  @media (max-width: 720px) { .intro-card { grid-template-columns: 1fr; justify-items: start; } }
+</style>

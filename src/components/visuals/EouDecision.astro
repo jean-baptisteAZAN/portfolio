@@ -1,0 +1,49 @@
+---
+/**
+ * How the end-of-turn decision works, on an illustrative utterance:
+ * after each pause, the acoustic and lexical scores are fused and compared
+ * to the threshold. "06…" sounds finished but reads unfinished → wait.
+ * Values are illustrative, not measurements.
+ */
+const steps = [
+  { words: 'Mon numéro, c’est le 06…', ac: 82, lex: 12, fu: 31, end: false },
+  { words: 'Mon numéro, c’est le 06 12 34 56 78.', ac: 88, lex: 91, fu: 93, end: true },
+];
+---
+<div class="cq"><div class="eou" aria-hidden="true">
+  {steps.map((s, i) => (
+    <div class:list={['frame', `f${i}`]}>
+      <p class="utt">« {s.words} »<span class="pause">pause 240 ms</span></p>
+      <div class="meters">
+        <div class="m"><span>Son</span><b style={`--v:${s.ac}%`}></b><em>{(s.ac / 100).toFixed(2)}</em></div>
+        <div class="m"><span>Sens</span><b style={`--v:${s.lex}%`}></b><em>{(s.lex / 100).toFixed(2)}</em></div>
+        <div class="m fu"><span>Fusion</span><b style={`--v:${s.fu}%`}></b><em>{(s.fu / 100).toFixed(2)}</em></div>
+        <i class="th" style="--t:50%"></i>
+      </div>
+      <p class:list={['verdict', s.end && 'end']}>{s.end ? 'Répondre' : 'Attendre'}</p>
+    </div>
+  ))}
+  <p class="note">Exemple illustratif · probabilité que la phrase soit finie, le trait marque le seuil</p>
+</div></div>
+
+<style>
+  .cq { container-type: inline-size; width: 100%; height: 100%; }
+  .eou { position: relative; width: 100%; height: 100%; padding: 50px 22px 18px; }
+  .frame { position: absolute; inset: 50px 22px 30px; display: grid; align-content: center; gap: 14px; opacity: 0; animation: swap 9s infinite; }
+  .f1 { animation-delay: 4.5s; }
+  .utt { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+  .pause { display: inline-block; margin-left: 8px; font-family: var(--font-code); font-size: 10px; font-weight: 400; padding: 2px 6px; border-radius: var(--radius-pill); background: var(--track); vertical-align: middle; }
+  .meters { position: relative; display: grid; gap: 7px; }
+  .m { display: grid; grid-template-columns: 52px 1fr 34px; gap: 8px; align-items: center; font-size: 12px; }
+  .m span { color: var(--t-muted); }
+  .m b { height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--t-fg) var(--v), var(--track) var(--v)); }
+  .m.fu b { background: linear-gradient(90deg, var(--accent) var(--v), var(--track) var(--v)); }
+  .m em { font-style: normal; font-family: var(--font-code); font-size: 11px; text-align: right; }
+  .th { position: absolute; top: -4px; bottom: -4px; left: calc(60px + (100% - 102px) * 0.5); width: 0; border-left: 1.5px dashed var(--accent); }
+  .verdict { justify-self: start; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: var(--radius-pill); background: var(--track); }
+  .verdict.end { background: var(--accent-strong); color: var(--color-text-inverse); }
+  .note { position: absolute; right: 22px; bottom: 12px; font-family: var(--font-code); font-size: 10px; color: var(--t-muted); }
+  @container (min-width: 520px) { .utt { font-size: 20px; } .m { font-size: 13px; } .frame { inset: 56px 40px 36px; } }
+  @keyframes swap { 0% { opacity: 0; transform: translateY(6px); } 5%, 45% { opacity: 1; transform: none; } 50%, 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .frame { animation: none; } .f1 { opacity: 1; } }
+</style>

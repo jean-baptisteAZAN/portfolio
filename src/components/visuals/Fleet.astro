@@ -1,0 +1,13 @@
+---
+/** A rack of Macs coming online one after another. */
+const macs = Array.from({ length: 24 }, (_, i) => i);
+---
+<div class="fleet" aria-hidden="true">
+  {macs.map((i) => <i style={`animation-delay:${(i * 0.09).toFixed(2)}s`} />)}
+</div>
+<style>
+  .fleet { display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px; padding: 48px 20px 10px; width: 100%; }
+  i { aspect-ratio: 1; border-radius: var(--radius-s); background: var(--track); animation: lit 4s infinite; }
+  @keyframes lit { 0%, 10% { background: var(--track); } 20%, 80% { background: var(--t-fg); } 100% { background: var(--track); } }
+  @media (prefers-reduced-motion: reduce) { i { animation: none; } i:nth-child(3n) { background: var(--t-fg); } }
+</style>
